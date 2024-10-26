@@ -45,7 +45,7 @@
 
 ### Components  
 Django Component  
-![Django Component](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/djandocomponent-C4.png)    
+![Django Component](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/djangocomponent-C4.png)    
 
 Postgres Component  
 ![Postgres Component](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/postgrescomponent-C4.png)    
