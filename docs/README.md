@@ -25,11 +25,14 @@
 
 ## Mockups  
 ### Homepage
-![Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-homepage.png)  
+![Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockups/mockup-homepage.png)  
 
 ### Groomer Page
-![Groomer Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-groomers.png)  
+![Groomer Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockups/mockup-groomers.png)  
 
 ### Admin Page
-![Admin Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-admin.png)   
+![Admin Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockups/mockup-admin.png)   
+
+## Architecture Diagrams
+
 
