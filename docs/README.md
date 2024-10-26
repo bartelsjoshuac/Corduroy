@@ -30,5 +30,5 @@
 ![Groomer Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-groomers.png)  
 
 ## Groomer Page
-![Admin Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-admins.png)   
+![Admin Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-admin.png)   
 
