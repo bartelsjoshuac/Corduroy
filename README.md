@@ -10,24 +10,18 @@ Corduroy aims to create a simnple interface for these "groomers" to enter their 
 
 ## Installation
 Prerequisites  
-- Python 3.11.9  
-- Django 5.1.2  
+- Docker verison 27
+- Python 3.11.9 
 
-tar -xvfz corduroy-current.tar.gz
+tar -xvfz corduroy-current.tar.gz  
 
 ## Getting Started
-Setup the database:
-- python manage.py makemigrations
-- python manage.py migrate
-  
-Create a superuser:  
-- python manage.py createsuperuser  
+docker -d compose up  
+docker compose exec web bash  
+python manage.py createsuperuser  
 
-To start the webserver:  
-- python manage.py corduroy  
-
-Access the interface:  
-- http://localhost:8000/  
+Access the web interface:  
+- http://localhost:8000/   
 
 ## License
 The MIT License (MIT)
