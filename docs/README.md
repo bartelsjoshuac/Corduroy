@@ -41,6 +41,10 @@
 ---
 
 ### Containers
-![Components](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/containers-C4.png)  
+![Containers](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/containers-C4.png)  
+
+### Components  
+Web Component
+![Web Component](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/webcomponent-C4.png)  
 
 
