@@ -1,29 +1,22 @@
+# Standard stuff I need
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-
-
-from .models import Reports
-from .models import Trails 
-
-from .serializers import ReportsSerializer 
-from .serializers import TrailSerializer 
-
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.response import Response
-
-from corduroyserver.serializers import ReportsSerializer
-from corduroyserver.serializers import TrailsSerializer
-
 from rest_framework import status
 from rest_framework.permissions import DjangoObjectPermissions
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import mixins, viewsets
 
-
+# My stuff
+from .models import Reports
+from .models import Trails 
+from corduroyserver.serializers import ReportsSerializer
+from corduroyserver.serializers import TrailsSerializer
 
 # Reports
 class ReportsViewSet(viewsets.ModelViewSet):
