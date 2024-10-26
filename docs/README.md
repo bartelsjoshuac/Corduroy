@@ -45,10 +45,10 @@
 
 ### Components  
 Web Component
-![Web Component](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/webcomponent-C4.png)  
+![Web Component](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/djandocomponent-C4.png)  
 
 Popstgres Component
-![Web Component](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/dbcomponent-C4.png)  
+![Web Component](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/postgrescomponent-C4.png)  
 
 
 
