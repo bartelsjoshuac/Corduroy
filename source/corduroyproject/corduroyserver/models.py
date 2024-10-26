@@ -37,4 +37,4 @@ class Trails(models.Model):
     rating = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)])
    
     def __str__(self):
-        return self.name
+        return self.trailName
