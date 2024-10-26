@@ -23,12 +23,13 @@
 
 # Diagrams  
 
-## Homepage
+## Mockups  
+### Homepage
 ![Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-homepage.png)  
 
-## Groomer Page
+### Groomer Page
 ![Groomer Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-groomers.png)  
 
-## Groomer Page
+### Admin Page
 ![Admin Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-admin.png)   
 
