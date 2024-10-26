@@ -36,7 +36,7 @@
 ## Architecture Diagrams
 
 ### Context
-![Context](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/Context-c4.png)  
+![Context](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/Context-C4.png)  
 
 ### Component
 ![Components](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/component-c4.png)  
