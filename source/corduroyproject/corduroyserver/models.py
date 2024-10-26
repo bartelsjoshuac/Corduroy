@@ -7,25 +7,12 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-# Table of Trails
-class Trails(models.Model):
-    trailname = models.CharField(max_length=100)
-    LOCATIONS = ( 
-    ('Front Range', 'Front Range'), 
-    ('San Juans', 'San Juans'), 
-    ) 
-    location = models.CharField(max_length=100, choices=LOCATIONS)  
-    rating = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)])
-    
-    def __str__(self):
-        return self.name
-
 #Table of Reports   
 class Reports(models.Model):
     approvalStatus = models.BooleanField()
     date = models.DateField()
     groomer = models.CharField(max_length=100)
-    # In the future we would have a trail admin view for admins to main trail name, but we are only letting groomers pic for now
+    # Need some admin flows for this because we can't change code just to add new trails
     TRAILS = ( 
     ('Shrine Pass', 'Shrine Pass'), 
     ('Owl Creek Road', 'Owl Creek Road'), 
@@ -33,5 +20,21 @@ class Reports(models.Model):
     trailName = models.CharField(max_length=100,choices=TRAILS)
     report = models.CharField(max_length=1000)
 
+    def __str__(self):
+        return self.trailName
+
+
+
+# Table of Trails
+class Trails(models.Model):
+    trailName = models.CharField(max_length=100)
+    # Need some admin flows for this because we can't change code just to add new locations
+    LOCATIONS = ( 
+    ('Front Range', 'Front Range'), 
+    ('San Juans', 'San Juans'), 
+    ) 
+    location = models.CharField(max_length=100, choices=LOCATIONS)  
+    rating = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)])
+   
     def __str__(self):
         return self.name

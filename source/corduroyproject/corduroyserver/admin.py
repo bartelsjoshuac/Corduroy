@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Reports
 
-class GroomerAdmin(admin.ModelAdmin):
+class ReportsAdmin(admin.ModelAdmin):
     # Define the list of fields to display in the admin interface
     list_display = ('approvalStatus', 'date','groomer', 'trailName', 'report')
     
@@ -18,4 +18,4 @@ class GroomerAdmin(admin.ModelAdmin):
     fields = ('approvalStatus', 'date','groomer', 'trailName', 'report')
 
 # Register the model and admin class
-admin.site.register(Reports, GroomerAdmin)
+admin.site.register(Reports, ReportsAdmin)
