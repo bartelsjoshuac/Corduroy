@@ -27,8 +27,8 @@
 ![Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-homepage.png)  
 
 ## Groomer Page
-![Groomer Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-groomer.png)  
+![Groomer Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-groomers.png)  
 
 ## Groomer Page
-![Admin Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-groomer.png)   
+![Admin Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockup-admins.png)   
 
