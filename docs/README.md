@@ -38,6 +38,8 @@
 ### Contexts
 ![Context](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/Context-C4.png)  
 
+---
+
 ### Containers
 ![Components](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/containers-C4.png)  
 
