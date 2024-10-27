@@ -29,7 +29,7 @@ from rest_framework.routers import DefaultRouter
 # groomers is self explantory
 # reportadmin, will be the trail approvers
 
-# The normal Django admin
+# The normal Django admin, this is how I was combing admin with my router
 adminpattern = [
     
     path('admin/', admin.site.urls),
@@ -37,9 +37,9 @@ adminpattern = [
 
 urlpatterns = router.urls + adminpattern
 
-# So this works for the homepage, but now I lose the admin
 urlpatterns = [
-    path('', index, name='index'),  # 
+    path('', index, name='index'),
+    path('admin/', admin.site.urls),  
 ]
 
 
