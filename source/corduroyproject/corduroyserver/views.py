@@ -107,3 +107,7 @@ class TrailsViewSet(viewsets.ModelViewSet):
         return Response({'Success': 'This deleted a trail.'}, status=status.HTTP_200_OK)
 
 
+
+# Define a home landing page for the app
+def home(request):
+    return render(request, 'index.html')

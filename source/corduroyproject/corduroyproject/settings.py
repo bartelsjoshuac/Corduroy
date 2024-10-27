@@ -55,7 +55,9 @@ ROOT_URLCONF = 'corduroyproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        #'DIRS': [],
+        # Place to store our html templates
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
