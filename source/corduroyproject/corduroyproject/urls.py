@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 ### Homepage
-from corduroyserver.views import home
+from corduroyserver.views import index
 
 # Reports
 from corduroyserver.views import ReportsViewSet
@@ -36,5 +36,9 @@ adminpattern = [
 ]
 
 urlpatterns = router.urls + adminpattern
+
+urlpatterns = [
+    path('', index, name='index'),  # 
+]
 
 
