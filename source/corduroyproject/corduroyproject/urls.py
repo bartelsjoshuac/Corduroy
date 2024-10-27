@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 
+
+
 ### Pages
 from corduroyserver.views import index
 from corduroyserver.views import groomers

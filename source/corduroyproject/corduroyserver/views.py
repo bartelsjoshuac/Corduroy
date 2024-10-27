@@ -12,6 +12,12 @@ from rest_framework.permissions import DjangoObjectPermissions
 from rest_framework.viewsets import ModelViewSet
 from rest_framework import mixins, viewsets
 
+### Stuff I added for authentcation
+### For authentication
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.views.generic import TemplateView
+from django.shortcuts import redirect
+
 # My stuff
 from .models import Reports
 from .models import Trails 
@@ -19,6 +25,17 @@ from .models import Trails
 from corduroyserver.serializers import ReportsSerializer
 from corduroyserver.serializers import ReportsAdminSerializer
 from corduroyserver.serializers import TrailsSerializer
+
+#### Require auth for groomers and report admins
+class GroupRequiredMixin(UserPassesTestMixin):
+    group_name = None  
+
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.groups.filter(name=self.group_name).exists()
+
+    def handle_no_permission(self):
+        return redirect('/admin/login/')  
+
 
 ########################### Reports #######################################
 class ReportsViewSet(viewsets.ModelViewSet):
@@ -72,7 +89,14 @@ class ReportsViewSet(viewsets.ModelViewSet):
         return Response({'Success': 'This deleted a report.'}, status=status.HTTP_200_OK)
 
 ########################### ReportsAdmin #######################################
+
 class ReportsAdminViewSet(viewsets.ModelViewSet):
+####
+### With group check but I need a login page, and to serperate this into two view, or use attribute security
+#class ReportsAdminViewSet(GroupRequiredMixin, viewsets.ModelViewSet):
+####
+
+    group_name = 'ReportsAdmin'  or "Groomers"
     serializer_class = ReportsSerializer
     queryset = Reports.objects.all()
     
@@ -122,6 +146,11 @@ class ReportsAdminViewSet(viewsets.ModelViewSet):
         return Response({'Success': 'This deleted a report.'}, status=status.HTTP_200_OK)
 
 ########################### Trails #######################################
+#class TrailsViewSet(GroupRequiredMixin, viewsets.ModelViewSet):
+####
+    # No Groomers
+    #group_name = 'ReportsAdmin'
+
 class TrailsViewSet(viewsets.ModelViewSet):
     serializer_class = TrailsSerializer
     queryset = Trails.objects.all()

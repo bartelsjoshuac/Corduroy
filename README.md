@@ -26,7 +26,11 @@ Normally
 - docker compose up -d
 
 Access the web interface:  
-- http://localhost:8000/   
+- http://localhost:8000/  
+
+Create Two Groups
+- Groomers          // For access to submit grooming reports
+- Reports Admin     // For access to approve and modify reports
 
 ## License
 The MIT License (MIT)
