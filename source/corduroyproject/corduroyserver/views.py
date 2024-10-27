@@ -1,4 +1,4 @@
-# Standard stuff I need
+# Standard stuff I need, or I think I need
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.response import Response
