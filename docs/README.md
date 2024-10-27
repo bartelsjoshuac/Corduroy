@@ -32,7 +32,7 @@
 ### Groomer Page
 ![Groomer Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockups/mockup-groomers.png)  
 
-### Admin Page
+### Reports Admin Page
 ![Admin Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockups/mockup-admin.png)   
 
 ## Architecture Diagrams
