@@ -11,7 +11,7 @@ Corduroy aims to create a simnple interface for these "groomers" to enter their 
 ## Installation
 Prerequisites  
 - Docker verison 27
-- Python 3.11.9  / /All Python requirements will be pulled  
+- Python 3.11.9  // All Python requirements will be pulled  
 - PostgresSQL // Pulled from Dockerhub  
 
 tar -xvfz corduroy-current.tar.gz  
