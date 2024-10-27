@@ -10,22 +10,21 @@ from corduroyserver.views import trailsadmin
 # Reports
 from corduroyserver.views import ReportsViewSet
 
-#Trails
+
+# Trails
 from corduroyserver.views import TrailsViewSet
 
-
+# The router stuff from one of the exercises
 from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 
-# API endpoints.  Might want to think about splitting out the API from the webserver, like we did in class, but we never connected the webserver to the API, we only tested with postman, so there's that.....
-#  Given I will need to make my own pages, I may need to figure this out eventually
-
 router.register(r'reports', ReportsViewSet, basename='reports')
+
+
 router.register(r'trails', TrailsViewSet, basename='trails')
 
+
 from rest_framework.routers import DefaultRouter
-
-
 
 ###########  This is is good for admin and 
 # The normal Django admin, this is how I was combing admin with my router

@@ -14,7 +14,7 @@ Prerequisites
 - Python 3.11.9  // All Python requirements will be pulled  
 - PostgresSQL // Pulled from Dockerhub  
 
-tar -xvfz corduroy-current.tar.gz  
+tar -xf corduroy-current.tar.gz  
 
 ## Getting Started
 First time to create the superuser for Django Admin

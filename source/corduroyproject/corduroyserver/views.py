@@ -42,9 +42,6 @@ class ReportsViewSet(viewsets.ModelViewSet):
         return render(request, 'reports.html', context)
         return Response(serializer.data)
 
-#########################################################################################
-
-    
 # Create a new report, will be used on groomer page
     def create(self, request):    
         serializer = ReportsSerializer(data=request.data)
@@ -147,3 +144,6 @@ def reportsadmin(request):
 # Define a page for trail admins
 def trailsadmin(request):
     return render(request, 'trailsadmin.html')
+
+
+

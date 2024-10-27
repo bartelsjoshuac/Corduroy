@@ -7,13 +7,17 @@
         Report Description: <input type="text" name="report" id="report"><br>
         
         <!--
-        This is not secure at all.  
-        The groomer needs to come from the authenticated user, aka the groomer and not be modifable
-        The approvalStatus should always be false.  Maybe I just not expose that in the view, but then I would need two views, one for groomers and one for admins as admins are the only one to set it to true
+        This is not secure.  When I enabled auth I will change to.
+        <input type="hidden" name="groomer" id="groomer" value={{ user.username }}>
+        Then use Django security so that a member of the groomer group can not update the groomer attribute
+        The approval status won't need to be set since it has a default and a groomer does not have permissions to it
         -->
         
         <input type="hidden" name="approvalStatus" id="approvalStatus" value="False">
+        
         <input type="hidden" name="groomer" id="groomer" value="Mr Plow">
+        
+        
         
 
         <br><br>

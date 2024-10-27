@@ -9,7 +9,8 @@ from django.utils.translation import gettext_lazy as _
 
 #Table of Reports   
 class Reports(models.Model):
-    approvalStatus = models.BooleanField()
+    # This default of false is need for when Groomers enter a report because they can not update that.
+    approvalStatus = models.BooleanField(default=False)
     date = models.DateField()
     groomer = models.CharField(max_length=100)
     # Need some admin flows for this because we can't change code just to add new trails
