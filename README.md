@@ -11,7 +11,8 @@ Corduroy aims to create a simnple interface for these "groomers" to enter their 
 ## Installation
 Prerequisites  
 - Docker verison 27
-- Python 3.11.9 
+- Python 3.11.9  / /All Python requirements will be pulled  
+- PostgresSQL // Pulled from Dockerhub  
 
 tar -xvfz corduroy-current.tar.gz  
 
@@ -19,7 +20,7 @@ tar -xvfz corduroy-current.tar.gz
 First time to create the superuser for Django
 - docker compose up  -d
 - docker compose exec web bash  
-- python manage.py createsuperuser
+- python manage.py createsuperuser  // Follow the prompts
 
 Normally
 - docker compose up  -d
