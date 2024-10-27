@@ -33,7 +33,6 @@ class ReportsViewSet(viewsets.ModelViewSet):
         queryset = Reports.objects.all()
         serializer = ReportsSerializer(queryset, many=True)
         
-        # So this returns all the reports.  How can I get the individual attributes?
         context = {
             'reports' : serializer.data
         }
@@ -76,7 +75,7 @@ class ReportsViewSet(viewsets.ModelViewSet):
         reports.delete()
         return Response({'Success': 'This deleted a report.'}, status=status.HTTP_200_OK)
 
-# Trails
+########################### Trails #######################################
 class TrailsViewSet(viewsets.ModelViewSet):
     serializer_class = TrailsSerializer
     queryset = Trails.objects.all()
