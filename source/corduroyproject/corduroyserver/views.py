@@ -19,6 +19,9 @@ from corduroyserver.serializers import ReportsSerializer
 from corduroyserver.serializers import TrailsSerializer
 
 # Reports
+# Not that groomers and admins will use the same view.  Groomers will not have access to the approvalStatus flag.  Not sure I can do that securely, but we will find out.  Otherwise, I guess I just make a copy of this view for them
+# Sloppy, I dunno
+
 class ReportsViewSet(viewsets.ModelViewSet):
     serializer_class = ReportsSerializer
     queryset = Reports.objects.all()
