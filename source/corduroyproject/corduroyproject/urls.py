@@ -37,6 +37,7 @@ adminpattern = [
 
 urlpatterns = router.urls + adminpattern
 
+# So this works for the homepage, but now I lose the admin
 urlpatterns = [
     path('', index, name='index'),  # 
 ]
