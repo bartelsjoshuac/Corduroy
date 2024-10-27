@@ -29,7 +29,7 @@
 ### Homepage
 ![Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockups/mockup-homepage.png)  
 
-### Groomer Page
+### Groomers Report Page
 ![Groomer Page](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/mockups/mockup-groomers.png)  
 
 ### Reports Admin Page
