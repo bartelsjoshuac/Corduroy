@@ -116,3 +116,15 @@ class TrailsViewSet(viewsets.ModelViewSet):
 # Define a home landing page for the app
 def index(request):
     return render(request, 'index.html')
+
+# Define a page for groomers
+def groomers(request):
+    return render(request, 'groomers.html')
+
+# Define a page for report admins
+def reportsadmin(request):
+    return render(request, 'reportsadmin.html')
+
+# Define a page for trail admins
+def trailsadmin(request):
+    return render(request, 'trailsadmin.html')
