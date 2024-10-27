@@ -14,11 +14,12 @@ class Reports(models.Model):
     date = models.DateField()
     groomer = models.CharField(max_length=100)
     # Need some admin flows for this because we can't change code just to add new trails
-    TRAILS = ( 
-    ('Shrine Pass', 'Shrine Pass'), 
-    ('Owl Creek Road', 'Owl Creek Road'), 
-    ) 
-    trailName = models.CharField(max_length=100,choices=TRAILS)
+    #TRAILS = ( 
+    #('Shrine Pass', 'Shrine Pass'), 
+    #('Owl Creek Road', 'Owl Creek Road'), 
+    #) 
+    #trailName = models.CharField(max_length=100,choices=TRAILS)
+    trailName = models.CharField(max_length=100)
     report = models.CharField(max_length=1000)
 
     def __str__(self):

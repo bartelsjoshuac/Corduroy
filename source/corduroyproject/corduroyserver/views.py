@@ -15,14 +15,9 @@ from rest_framework import mixins, viewsets
 # My stuff
 from .models import Reports
 from .models import Trails 
+
 from corduroyserver.serializers import ReportsSerializer
 from corduroyserver.serializers import TrailsSerializer
-
-# Reports
-# Not that groomers and admins will use the same view.  Groomers will not have access to the approvalStatus flag.  When admins modify a report, it will simply change the report attribute with their new text
-# as it will copy it over
-# Not sure I can do that securely, but we will find out.  Otherwise, I guess I just make a copy of this view for them
-# Sloppy, I dunno
 
 class ReportsViewSet(viewsets.ModelViewSet):
     serializer_class = ReportsSerializer
@@ -36,7 +31,6 @@ class ReportsViewSet(viewsets.ModelViewSet):
         context = {
             'reports' : serializer.data
         }
-        
         # Added context here
         return render(request, 'reports.html', context)
         return Response(serializer.data)
@@ -84,7 +78,6 @@ class TrailsViewSet(viewsets.ModelViewSet):
     def list(self, request):
         queryset = Trails.objects.all()
         serializer = TrailsSerializer(queryset, many=True)
-        # So this returns all the trails
         context = {
             'trails' : serializer.data
         }

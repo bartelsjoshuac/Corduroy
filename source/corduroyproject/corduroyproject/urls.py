@@ -10,7 +10,6 @@ from corduroyserver.views import trailsadmin
 # Reports
 from corduroyserver.views import ReportsViewSet
 
-
 # Trails
 from corduroyserver.views import TrailsViewSet
 
@@ -19,10 +18,7 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 
 router.register(r'reports', ReportsViewSet, basename='reports')
-
-
 router.register(r'trails', TrailsViewSet, basename='trails')
-
 
 from rest_framework.routers import DefaultRouter
 
@@ -41,7 +37,6 @@ indexpattern = [
 # This combines my admin pattern (which must be an object???? with the router and it works)
 urlpatterns = router.urls + adminpattern
 
-# This overwrites it, and leaves me with only my admin and my homepage and I can't get my router in there.
 urlpatterns = [
     path('', index, name='index'),
     path('groomers.html', groomers, name='groomers'),
