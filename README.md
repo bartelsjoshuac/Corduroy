@@ -16,9 +16,13 @@ Prerequisites
 tar -xvfz corduroy-current.tar.gz  
 
 ## Getting Started
-docker -d compose up  
-docker compose exec web bash  
-python manage.py createsuperuser  
+First time to create the superuser for Django
+- docker compose up  -d
+- docker compose exec web bash  
+- python manage.py createsuperuser
+
+Normally
+- docker compose up  -d
 
 Access the web interface:  
 - http://localhost:8000/   
