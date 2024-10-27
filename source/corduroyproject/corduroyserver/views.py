@@ -19,6 +19,7 @@ from .models import Trails
 from corduroyserver.serializers import ReportsSerializer
 from corduroyserver.serializers import TrailsSerializer
 
+########################### Reports #######################################
 class ReportsViewSet(viewsets.ModelViewSet):
     serializer_class = ReportsSerializer
     queryset = Reports.objects.all()
@@ -48,7 +49,58 @@ class ReportsViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, pk=None):
         queryset = Reports.objects.all()
         reports = get_object_or_404(queryset, pk=pk)
-        serializer = ReportSerializer(reports)
+        serializer = ReportsSerializer(reports)
+        return Response(serializer.data)
+    
+# Update a report, which will be needed by admin to approve or modify report
+    def update(self, request, pk=None):
+        queryset = Reports.objects.all()
+        reports = get_object_or_404(queryset, pk=pk)
+        serializer = ReportsSerializer(reports, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+    
+# Delete a report which we will not need now
+    def destroy(self, request, pk=None):
+        queryset = Reports.objects.all()
+        reports = get_object_or_404(queryset, pk=pk)
+        serializer = ReportsSerializer(reports)
+        reports.delete()
+        return Response({'Success': 'This deleted a report.'}, status=status.HTTP_200_OK)
+
+########################### ReportsAdmin #######################################
+class ReportsViewSet(viewsets.ModelViewSet):
+    serializer_class = ReportsSerializer
+    queryset = Reports.objects.all()
+    
+# List all reports, will be used on public page
+    def list(self, request):
+        queryset = Reports.objects.all()
+        serializer = ReportsSerializer(queryset, many=True)
+        
+        context = {
+            'reports' : serializer.data
+        }
+        # Added context here
+        return render(request, 'reportsadmin.html', context)
+        return Response(serializer.data)
+
+# Create a new report, will be used on groomer page
+    def create(self, request):    
+        serializer = ReportsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return render(request, 'success.html')
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+# Retrive a single report (might not need this)
+    def retrieve(self, request, pk=None):
+        queryset = Reports.objects.all()
+        reports = get_object_or_404(queryset, pk=pk)
+        serializer = ReportsSerializer(reports)
         return Response(serializer.data)
     
 # Update a report, which will be needed by admin to approve or modify report
