@@ -2,7 +2,7 @@
     <h1>Enter a Grooming Report</h1>
     <form method="POST" action="http://localhost:8000/reports/">
         {% csrf_token %}
-        Date/Time: <input type="text" name="date" id="date" value="2024-10-27"><br>
+        
         Trail Name: <input type="text" name="trailName" id="trailName"><br>  
         Report Description: <input type="text" name="report" id="report"><br>
         
@@ -12,10 +12,12 @@
         Then use Django security so that a member of the groomer group can not update the groomer attribute
         The approval status won't need to be set since it has a default and a groomer does not have permissions to it
         -->
-        
-        <input type="hidden" name="approvalStatus" id="approvalStatus">
         <input type="hidden" name="groomer" id="groomer" value="Mr Plow">
-        
+        <input type="hidden" name="approvalStatus" id="approvalStatus">
+        <input type="hidden" name="date" id="date" value="{% now "Y-m-d" %}">
+      
         <br><br>
         <button type="submit">Submit</button>
+
+        
     </form>
