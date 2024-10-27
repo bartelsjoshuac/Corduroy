@@ -1,22 +1,15 @@
 <html>
     <h1>Approve/Edit/Approve Grooming Report</h1>
 
-    This is not yet implemented as it requires some more thought.
-    I need to build a form from the trails view where the approvalstatus is false.
-    Then from the form I build, update the record
-
-    Also still need to add in auth for groomers and admins
-
-    And build test cases
 
     <table style="border-collapse: collapse; width: 100%; height: 72px;" border="1">
 
         <tr>
             <td><strong> Name</strong></td> <td><strong>Trail Rating</strong></strong></td> <td><b><strong>Trail Location</strong></td>
         </tr>      
-    {% for trail in trails %}
+    {% for report in reports %}
         <tr>
-            <td>{{ trail.trailName }} </td> <td>{{ trail.rating }}</td> <td>{{ trail.location }} </td>
+            <td>{{ report.date }} </td> <td>{{ report.trailName }}</td> <td>{{ report.report }} </td>
         </tr>
     {% endfor %}
     
