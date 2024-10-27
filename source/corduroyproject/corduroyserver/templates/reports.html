@@ -1,0 +1,19 @@
+<html>
+List of Trail Reports <br><br>
+
+<table style="border-collapse: collapse; width: 100%; height: 72px;" border="1">
+    <td><strong>Date</strong></td> <td><strong>Trail Name</strong></strong></td> <td><b><strong>Current Conditions</strong></td>
+{% for report in reports %}
+    <tr>
+        <td>{{ report.date }} </td> <td>{{ report.trailName }}</td> <td>{{ report.report }} </td>
+    </tr>
+{% endfor %}
+
+</table>
+
+
+
+
+
+
+

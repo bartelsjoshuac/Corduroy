@@ -32,17 +32,29 @@ class ReportsViewSet(viewsets.ModelViewSet):
     def list(self, request):
         queryset = Reports.objects.all()
         serializer = ReportsSerializer(queryset, many=True)
+        
+        # So this returns all the reports.  How can I get the individual attributes?
+        context = {
+            'reports' : serializer.data
+        }
+        
+        # Added context here
+        return render(request, 'reports.html', context)
         return Response(serializer.data)
+
+#########################################################################################
+
     
 # Create a new report, will be used on groomer page
     def create(self, request):    
         serializer = ReportsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            return render(request, 'success.html')
             return Response(serializer.data)
         return Response(serializer.errors)
 
-# Retrive a single trail (might not need this)
+# Retrive a single report (might not need this)
     def retrieve(self, request, pk=None):
         queryset = Reports.objects.all()
         reports = get_object_or_404(queryset, pk=pk)
@@ -76,13 +88,20 @@ class TrailsViewSet(viewsets.ModelViewSet):
     def list(self, request):
         queryset = Trails.objects.all()
         serializer = TrailsSerializer(queryset, many=True)
+        # So this returns all the trails
+        context = {
+            'trails' : serializer.data
+        }
+        return render(request, 'trails.html',context)
         return Response(serializer.data)
+        
     
 # Create a new trail, will be used on groomer page
     def create(self, request):    
         serializer = TrailsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            return render(request, 'success.html')
             return Response(serializer.data)
         return Response(serializer.errors)
 
