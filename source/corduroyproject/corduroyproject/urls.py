@@ -51,5 +51,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),  
 ]
 
-#Wow, this now works and is so sloppy, but given the time I spent on it.......
+# Wow, this now works and is so sloppy, but given the time I spent on it....... Not about to mess with it ever.
 urlpatterns += router.urls

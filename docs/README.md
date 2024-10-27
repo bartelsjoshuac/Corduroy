@@ -12,7 +12,7 @@
 
 ## Mis-user stories
 1.  Snowmobilers (non-registered users) should not be able to submit reports.  
-2.  Groomers must submit a minimum of all field with the conditions being 4+ chars.    
+2.  Groomers must submit a minimum of all fields with the conditions being 4+ chars.    
 3.  Admins must not be able to change the date of trail name of the submission when approving.  
 4.  Only Admins can change the approved attribute
 
