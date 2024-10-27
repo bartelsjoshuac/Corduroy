@@ -1,10 +1,11 @@
 <html>
-List of Trails <br><br>
+List of Trails <br>
+
 
 <table style="border-collapse: collapse; width: 100%; height: 72px;" border="1">
 
     <tr>
-        <td><strong> ID/strong></td><td><strong> Name</strong></td> <td><strong>Trail Rating</strong></strong></td> <td><b><strong>Trail Location</strong></td>
+        <td><strong> ID</td><td><strong> Name</strong></td> <td><strong>Trail Rating</strong></strong></td> <td><b><strong>Trail Location</strong></td>
     </tr>      
 {% for trail in trails %}
     <tr>
@@ -13,4 +14,6 @@ List of Trails <br><br>
 {% endfor %}
 
 </table>
+
+<br><a href="http://localhost:8000">Home</a>
 

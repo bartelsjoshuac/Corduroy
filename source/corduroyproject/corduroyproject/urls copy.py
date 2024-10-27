@@ -4,13 +4,11 @@ from django.urls import path
 ### Pages
 from corduroyserver.views import index
 from corduroyserver.views import groomers
-from corduroyserver.views import reports
 from corduroyserver.views import reportsadmin
 from corduroyserver.views import trailsadmin
 
 # Reports
 from corduroyserver.views import ReportsViewSet
-from corduroyserver.views import ReportsAdminViewSet
 
 # Trails
 from corduroyserver.views import TrailsViewSet
@@ -20,7 +18,7 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 
 router.register(r'reports', ReportsViewSet, basename='reports')
-router.register(r'reportsadmin', ReportsAdminViewSet, basename='reportsadmin')
+router.register(r'reportsadmin', ReportsViewSet, basename='reportsadmin')
 router.register(r'trails', TrailsViewSet, basename='trails')
 
 from rest_framework.routers import DefaultRouter
@@ -43,7 +41,6 @@ urlpatterns = router.urls + adminpattern
 urlpatterns = [
     path('', index, name='index'),
     path('groomers.html', groomers, name='groomers'),
-    path('reports.html', reports, name='reports'),
     path('reportsadmin.html', reportsadmin, name='reportsadmin'),
     path('trailsadmin.html', trailsadmin, name='trailsadmin'),
     path('admin/', admin.site.urls),  

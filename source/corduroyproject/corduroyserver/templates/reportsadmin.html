@@ -1,21 +1,24 @@
 <html>
-    <h1>Approve/Edit/Approve Grooming Report</h1>
-
+<p> Welcome to Corduroy - Reports Admin
 
     <table style="border-collapse: collapse; width: 100%; height: 72px;" border="1">
 
         <tr>
-            <td><strong> ID</strong><td><strong> Date</strong></td> <td><strong>Groomer</strong></strong></td> <td><b><strong>Trail Location</strong></td><td><strong>Approved?</strong</td>
+            <td><strong> ID</strong>
+            <td><strong>Date</strong></td>
+            <td><strong>Approved?</strong</td>
+            <td><strong>Groomer</strong></td>
+            <td><b><strong>Report</strong></td>
         </tr>      
     {% for report in reports %}
     
         <tr>
             <form method="POST" action="http://localhost:8000/reportsadmin/{{ report.id }}/">
                 <td>{{ report.id }} </td>
+                <td><input type="checkbox" name="approvalStatus" id="approvalStat"value="{{ report.report }}" {% if report.approvalStatus == 0 %} checked {% endif %}>
                 <td>{{ report.date }} </td>
                 <td>{{ report.groomer }}</td>
-                <td><input type="text" name="report" id="report"value="{{ report.report }}"> </td>
-                <td><input type="checkbox" name="approvalStatus" id="approvalStat"value="{{ report.report }}" {% if report.approvalStatus == 0 %} checked {% endif %}> 
+                <td><input type="text" name="report" id="report"value="{{ report.report }}"> </td> 
                 </td>
                 <td><button type="submit">Submit</button></td>
             </form>
@@ -23,3 +26,4 @@
     {% endfor %}
     
     </table>
+<p><a href="http://localhost:8000">Home</a>&nbsp<a href="http://localhost:8000/groomers.html">Groomer Admin</a> &nbsp;<a href="http://localhost:8000/reportsadmin/">Reports Admin</a> &nbsp;<a href="http://localhost:8000/trailsadmin.html">Trails Admin</a> &nbsp;</p>

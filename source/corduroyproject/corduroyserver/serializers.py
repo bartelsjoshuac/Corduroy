@@ -7,6 +7,11 @@ class ReportsSerializer(serializers.ModelSerializer):
         model = Reports
         fields = ['id','approvalStatus', 'date', 'groomer', 'trailName', 'report']
 
+class ReportsAdminSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reports
+        fields = ['id','approvalStatus', 'date', 'groomer', 'trailName', 'report']
+
 class TrailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trails

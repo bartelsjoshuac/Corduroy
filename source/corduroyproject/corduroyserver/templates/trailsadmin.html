@@ -1,9 +1,24 @@
 <html>
-    <h1>Create a new Trail</h1>
+    <p> Welcome to Corduroy - Trails Admin
+stuff
     <form method="POST" action="http://localhost:8000/trails/">
-        {% csrf_token %}
-        Name: <input type="text" name="trailName" id="trailName"><br>
-        Rating: <select id="rating" name="rating">
+        {% csrf_token %}        
+    <table style="border-collapse: collapse; width: 100%; height: 72px;" border="1">
+        <tr>
+            <td>Location</td>
+            <td>Rating</td>
+            <td>Trail Name</td>
+            <td>Submit</td>
+
+        </tr>
+        <tr>
+            <td><select id="location" name="location">
+                <option value="Front Range">Front Range</option>
+                <option value="San Juans">San Juans</option>
+            </select></td>
+
+        
+        <td><select id="rating" name="rating">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -15,11 +30,11 @@
             <option value="9">9</option>
             <option value="10">10</option>
             </select>
-        <br>Location: <select id="location" name="location">
-                <option value="Front Range">Front Range</option>
-                <option value="San Juans">San Juans</option>
-            </select><br>
-
-        <br><br>
-        <button type="submit">Submit</button>
+        </td>
+        <td>Name: <input type="text" name="trailName" id="trailName"></td>
+    <td><button type="submit">Submit</button></td>
+    </tr>
+        
     </form>
+</table>
+    <p><a href="http://localhost:8000">Home</a>&nbsp<a href="http://localhost:8000/groomers.html">Groomer Admin</a> &nbsp;<a href="http://localhost:8000/reportsadmin/">Reports Admin</a> &nbsp;<a href="http://localhost:8000/trailsadmin.html">Trails Admin</a> &nbsp;</p>
