@@ -3,13 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Corduroy/title</title>
+        <title>Corduroy - Groming</title>
         {% load static %}    
         <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
 
     </head>
  <body>
-<H1>Welcome to Corduroy - Colorado snowmobile trail grooming reports</H1>
+<H1>Welcome to Corduroy</H1> 
+<h3>Colorado Snowmobile Trail Grooming Reports</h3>
 
 <br>Public functions<br><br>
 <a href="http://localhost:8000/reports">Current Reports</a>  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -17,13 +18,18 @@
 
 <hr>
 <br>Admin functions<br>
-<p><a href="http://localhost:8000/groomers.html">Groomer Admin</a> &nbsp;<a href="http://localhost:8000/reportsadmin/">Reports Admin</a> &nbsp;<a href="http://localhost:8000/trailsadmin.html">Trails Admin</a> &nbsp;</p>
+<a href="http://localhost:8000/groomers.html">Groomer Admin</a> &nbsp;<a href="http://localhost:8000/reportsadmin/">Reports Admin</a> &nbsp;<a href="http://localhost:8000/trailsadmin.html">Trails Admin</a> &nbsp;
 
 <br>
 <hr>
+<br>
+<img src="{% static 'corduroyserver/sled.png' %}">
+<br>Recent Updates:
+<li>Added CSS for mobile and dark look</li>
+
 Current Limitations:
+<li>I would like to incoorperate teh trials list into the index.html</li>
 <li>Report approval (update) was working and broke when I split the views :-(</li>
 <li>Authentication for admin functions not working</li>
 <li>Complete test cases when I get the other two functionalies working</li>
-
 
