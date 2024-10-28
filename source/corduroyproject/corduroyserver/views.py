@@ -148,7 +148,7 @@ class ReportsAdminViewSet(viewsets.ModelViewSet):
 ########################### Trails #######################################
 #class TrailsViewSet(GroupRequiredMixin, viewsets.ModelViewSet):
 ####
-    # No Groomers
+    # No Groomers on the trails page
     #group_name = 'ReportsAdmin'
 
 class TrailsViewSet(viewsets.ModelViewSet):

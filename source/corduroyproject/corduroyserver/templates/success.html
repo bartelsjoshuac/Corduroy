@@ -1,5 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Corduroy/title</title>
+        {% load static %}    
+        <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
+
+    </head>
+ <body>
+
 SUCCESS!!!!
-<br>
+
+<br><br>
 This should take the user back to the same view and load the template but.....
 
 Django is funny about the slash vs no slash on POST vs GET on Views, so it doesn't like to do that nicely and then it doesn't load the template when you do a POST vs a GET????

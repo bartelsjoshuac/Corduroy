@@ -1,4 +1,15 @@
-<html><p style="text-align: left;"><span style="color: #000080;">Welcome to Corduroy - Your home for Colorado snowmobile trail grooming reports</span></p>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Corduroy/title</title>
+        {% load static %}    
+        <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
+
+    </head>
+ <body>
+<H1>Welcome to Corduroy - Colorado snowmobile trail grooming reports</H1>
 
 <br>Public functions<br><br>
 <a href="http://localhost:8000/reports">Current Reports</a>  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -9,9 +20,10 @@
 <p><a href="http://localhost:8000/groomers.html">Groomer Admin</a> &nbsp;<a href="http://localhost:8000/reportsadmin/">Reports Admin</a> &nbsp;<a href="http://localhost:8000/trailsadmin.html">Trails Admin</a> &nbsp;</p>
 
 <br>
+<hr>
 Current Limitations:
 <li>Report approval (update) was working and broke when I split the views :-(</li>
 <li>Authentication for admin functions not working</li>
 <li>Complete test cases when I get the other two functionalies working</li>
-<li>Make it pretty :-)</li>
+
 

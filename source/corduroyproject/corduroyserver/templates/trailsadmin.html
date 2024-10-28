@@ -1,6 +1,14 @@
-<html>
-    <p> Welcome to Corduroy - Trails Admin
-stuff
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Corduroy/title</title>
+        {% load static %}    
+        <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
+
+    </head>
+ <body>
     <form method="POST" action="http://localhost:8000/trails/">
         {% csrf_token %}        
     <table style="border-collapse: collapse; width: 100%; height: 72px;" border="1">

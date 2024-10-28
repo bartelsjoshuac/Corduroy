@@ -16,4 +16,4 @@ def test_get_trail(self):
     self.assertEqual(response.status_code, status.HTTP_200_OK)
     self.assertEqual(response.data['name'], 'Shrine Pass'
                      
-###  Need to finish this when I am done messing with the code and the update is working
+###  Need to finish this when I am done messing with the code and the update is working again
