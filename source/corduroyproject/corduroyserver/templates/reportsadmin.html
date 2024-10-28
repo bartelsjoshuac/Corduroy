@@ -24,7 +24,7 @@
         <tr>
             <form method="POST" action="http://localhost:8000/reportsadmin/{{ report.id }}/">
                 <td>{{ report.id }} </td>
-                <td><input type="checkbox" name="approvalStatus" id="approvalStat"value="{{ report.report }}" {% if report.approvalStatus == 0 %} checked {% endif %}>
+                <td><input type="checkbox" name="approvalStatus" id="approvalStat"value="{{ report.report }}" {% if report.approvalStatus == 1 %} checked {% endif %}>
                 <td>{{ report.date }} </td>
                 <td>{{ report.groomer }}</td>
                 <td><input type="text" name="report" id="report"value="{{ report.report }}"> </td> 

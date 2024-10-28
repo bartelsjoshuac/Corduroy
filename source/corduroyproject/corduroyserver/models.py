@@ -34,6 +34,9 @@ class Trails(models.Model):
     LOCATIONS = ( 
     ('Front Range', 'Front Range'), 
     ('San Juans', 'San Juans'), 
+    ('Grand Mesa', 'Grand Mesa'), 
+    ('Grand Lake', 'Grand Lake'),
+    ('Other', 'Other'),
     ) 
     location = models.CharField(max_length=100, choices=LOCATIONS)  
     rating = models.IntegerField(validators=[MaxValueValidator(10), MinValueValidator(1)])
