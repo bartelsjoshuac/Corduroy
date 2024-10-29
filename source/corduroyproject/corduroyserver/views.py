@@ -77,6 +77,7 @@ class ReportsViewSet(viewsets.ModelViewSet):
         serializer = ReportsSerializer(reports, data=request.data)
         if serializer.is_valid():
             serializer.save()
+            return render(request, 'success.html')
             return Response(serializer.data)
         return Response(serializer.errors)
     
@@ -97,6 +98,8 @@ class ReportsAdminViewSet(viewsets.ModelViewSet):
 ####
 
     group_name = 'ReportsAdmin'  or "Groomers"
+   
+   
     serializer_class = ReportsSerializer
     queryset = Reports.objects.all()
     
@@ -134,6 +137,7 @@ class ReportsAdminViewSet(viewsets.ModelViewSet):
         serializer = ReportsAdminSerializer(reports, data=request.data)
         if serializer.is_valid():
             serializer.save()
+            return render(request, 'success.html')
             return Response(serializer.data)
         return Response(serializer.errors)
     

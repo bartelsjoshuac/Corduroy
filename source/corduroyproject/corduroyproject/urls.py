@@ -25,6 +25,7 @@ router.register(r'reports', ReportsViewSet, basename='reports')
 router.register(r'reportsadmin', ReportsAdminViewSet, basename='reportsadmin')
 router.register(r'trails', TrailsViewSet, basename='trails')
 
+
 from rest_framework.routers import DefaultRouter
 
 ###########  This is is good for admin and 

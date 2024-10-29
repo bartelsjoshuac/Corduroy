@@ -26,3 +26,6 @@ jobs:
 
     - name: Shut down services
       run: docker compose down
+
+
+# Not even close to implemented and tested yet, way too many bigger issues remain.
