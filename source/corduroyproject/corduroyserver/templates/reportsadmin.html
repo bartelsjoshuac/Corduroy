@@ -24,6 +24,7 @@
         <tr>
             <form method="POST" action="http://localhost:8000/reportsadmin/{{ report.id }}/">
                 <td>{{ report.id }} </td>
+                <!--If already approved, AKA true check the box.  Note that this can be used to unapprove or unpublish a report as well-->
                 <td><input type="checkbox" name="approvalStatus" id="approvalStat"value="{{ report.report }}" {% if report.approvalStatus == 1 %} checked {% endif %}>
                 <td>{{ report.date }} </td>
                 <td>{{ report.groomer }}</td>

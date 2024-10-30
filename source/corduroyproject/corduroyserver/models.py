@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 # Table of Trails
 class Trails(models.Model):
     trailName = models.CharField(max_length=100)
-    # Need some admin flows for this because we can't change code just to add new locations
+    # If I make a trails admin, then this can be removed.
     LOCATIONS = ( 
     ('Front Range', 'Front Range'), 
     ('San Juans', 'San Juans'), 
@@ -30,15 +30,11 @@ class Reports(models.Model):
     approvalStatus = models.BooleanField(default=False)
     date = models.DateField()
     groomer = models.CharField(max_length=100)
-    # Need some admin flows for this because we can't change code just to add new trails
-    #TRAILS = ( 
-    #('Shrine Pass', 'Shrine Pass'), 
-    #('Owl Creek Road', 'Owl Creek Road'), 
-    #) 
-    #trailName = models.CharField(max_length=100,choices=TRAILS)
     trailName = models.CharField(max_length=100)
-    # Fixed the model based on feedback from exercise but this is not working
+    
+    # Fixed the model based on feedback from exercise but this is not working, which again seems to be a postgres vs. sqlite thing
     # trailName = models.ForeignKey(Trails, on_delete=models.CASCADE)
+    
     report = models.CharField(max_length=1000)
 
     def __str__(self):

@@ -75,7 +75,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'corduroyproject.wsgi.application'
 
 
-# Database
+# Database (default)
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 #DATABASES = {
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'corduroyproject.wsgi.application'
 #    }
 #}
 
-# Moving to postgres
+# Using to postgres
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -136,5 +136,7 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+# For some reason this does not work when you move from sqlite to Postgres, as in it does not even apply
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

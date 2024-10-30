@@ -20,16 +20,13 @@ from corduroyserver.views import TrailsViewSet
 # The router stuff from one of the exercises
 from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
-
 router.register(r'reports', ReportsViewSet, basename='reports')
 router.register(r'reportsadmin', ReportsAdminViewSet, basename='reportsadmin')
 router.register(r'trails', TrailsViewSet, basename='trails')
 
 
-from rest_framework.routers import DefaultRouter
-
 ###########  This is is good for admin and 
-# The normal Django admin, this is how I was combing admin with my router
+# The normal Django admin,
 adminpattern = [
     
     path('admin/', admin.site.urls),
@@ -43,6 +40,7 @@ indexpattern = [
 # This combines my admin pattern (which must be an object???? with the router and it works)
 urlpatterns = router.urls + adminpattern
 
+# Seems to be needed to allow a get of static template as static html
 urlpatterns = [
     path('', index, name='index'),
     path('groomers.html', groomers, name='groomers'),
