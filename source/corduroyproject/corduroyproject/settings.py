@@ -101,20 +101,28 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
+
+# This was driving me insane in testing as there is no override in the GUI like there is in the command line createsuperuser
+'''
 AUTH_PASSWORD_VALIDATORS = [
+    # Makes testing much easier, although insecure
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+       'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+       'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+       'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+       'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+'''
+
+# Much better, but less secuure
+AUTH_PASSWORD_VALIDATORS = []
 
 
 # Internationalization

@@ -1,43 +1,19 @@
 from django.contrib import admin
-from .models import Reports
-from .models import Trails
+from .models import Trails, Reports
 
-class ReportsAdmin(admin.ModelAdmin):
-    # Define the list of fields to display in the admin interface
-    list_display = ('approvalStatus', 'date','groomer', 'trailName', 'report')
-    
-    # Add search functionality for specific fields
-    search_fields = ('approvalStatus', 'date','groomer', 'trailName', 'report')
+class ReportsInline(admin.TabularInline):
+    model = Reports
+    extra = 1  # Number of empty report forms to display
 
-    # Add filters for the age and breed fields in the sidebar
-    list_filter = ('approvalStatus', 'date','groomer', 'trailName', 'report')
-
-    # Define which fields can be clicked to view the details page
-    list_display_links = ('trailName',)
-
-    # Define how fields are displayed when editing a Report instance
-    fields = ('approvalStatus', 'date','groomer', 'trailName', 'report')
-
-# Register the model and admin class
-admin.site.register(Reports, ReportsAdmin)
-
+@admin.register(Trails)
 class TrailsAdmin(admin.ModelAdmin):
-    # Define the list of fields to display in the admin interface
-    list_display = ('trailName', 'location', 'rating')
-    
-    # Add search functionality for specific fields
-    search_fields = ('trailName', 'location', 'rating')
+    list_display = ('trailName', 'location', 'rating')  # Fields to display in the list view
+    search_fields = ('trailName', 'location')  # Fields to search
+    inlines = [ReportsInline]  # Inline reports in the trails admin page
 
-    # Add filters for the age and breed fields in the sidebar
-    list_filter = ('trailName', 'location', 'rating')
-
-    # Define which fields can be clicked to view the details page
-    list_display_links = ('trailName',)
-
-    # Define how fields are displayed when editing a Report instance
-    fields = ('trailName', 'location', 'rating')
-
-# Register the model and admin class
-admin.site.register(Trails, TrailsAdmin)
-
-
+@admin.register(Reports)
+class ReportsAdmin(admin.ModelAdmin):
+    list_display = ('groomer', 'trail', 'date', 'approvalStatus')  # Fields to display in the list view
+    list_filter = ('approvalStatus', 'trail')  # Filters to apply on the list view
+    search_fields = ('groomer', 'trail__trailName')  # Search fields
+    list_editable = ('approvalStatus',)  # Editable fields in list view

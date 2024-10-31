@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Approval Management</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Approval Management</h1>
+        
+        <h2>Change Approval Status</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="report_id">Select Report:</label>
+            <select name="report_id">
+                {% for report in reports %}
+                    <option value="{{ report.id }}">
+                        {{ report.trail.trailName }} - {{ report.date }} - {% if report.approvalStatus %}Approved{% else %}Not Approved{% endif %}
+                    </option>
+                {% endfor %}
+            </select>
+            
+            <div>
+                {{ form.approvalStatus.label_tag }}
+                {{ form.approvalStatus }}
+            </div>
+            <button type="submit">Change Approval Status</button>
+        </form>
+        
+        <p><a href="{% url 'homepage' %}">Back to Homepage</a></p>
+    </div>
+</body>
+</html>
