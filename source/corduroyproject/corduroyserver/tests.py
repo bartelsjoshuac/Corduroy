@@ -68,3 +68,6 @@ class TrailsAndReportsModelTest(TestCase):
             Reports.objects.get(id=report_id)
         # Ensure the Trail still exists
         self.assertTrue(Trails.objects.filter(id=self.trail.id).exists())
+
+   def test_fail_on_purpose(self):
+        self.assertEqual(1, 0, "Intentional failure to test CI pipeline")
