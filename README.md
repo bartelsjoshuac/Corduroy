@@ -20,7 +20,11 @@ tar -xf Source code.tar.gz
 First time to create the superuser for Django Admin
 - docker compose up  -d
 - docker compose exec web bash  
-- python manage.py createsuperuser  // Follow the prompts
+- python manage.py createsuperuser  // Follow the prompts  
+- python manage.py populate_users // Create groomy (groomer account) and corduroyadmin(admin account) and groomers and admins groups  
+- python manage.py populate_data // Populates some sample data  
+- Login as root/password and create at least one trail 
+
 
 Normally
 - docker compose up -d
@@ -28,9 +32,6 @@ Normally
 Access the web interface:  
 - http://localhost:8000/  
 
-Create Two Groups
-- Groomers          // For access to submit grooming reports
-- Reports Admin     // For access to approve and modify reports
 
 ## License
 The MIT License (MIT)

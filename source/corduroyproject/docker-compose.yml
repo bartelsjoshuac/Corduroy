@@ -16,9 +16,11 @@ services:
     # This will pass the start command (and do the migration) at statup time, vs using CMD in the dockerfile for the web app itself.
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     # Run this from the command line after starting the container to set a root password (iteractive)
-    
-  # docker compose up -d
-    # docker-compose exec web bash
+
+  # Run manually to setup the admin each time I trash the DB  
+  # docker compose up -d  // Run in backgroun so I can use the same terminal
+  # docker-compose exec web bash
+  # python manage.py createsuperuser
  
 
 

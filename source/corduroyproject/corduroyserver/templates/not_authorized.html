@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Access Denied</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Access Denied</h1>
+        <p>Sorry, you do not have permission to access this page.</p>
+        
+        <p>If you believe this is an error, please contact an administrator.</p>
+        
+        <p><a href="{% url 'homepage' %}">Back to Homepage</a></p>
+    </div>
+</body>
+</html>

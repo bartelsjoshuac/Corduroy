@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trails Admin</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Trails Admin</h1>
+
+        <h2>Add a New Trail</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Trail</button>
+        </form>
+
+
+        <h2>Existing Trails</h2>
+        {% if trails %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Trail Name</th>
+                        <th>Location</th>
+                        <th>Rating</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trail in trails %}
+                        <tr>
+                            <td>{{ trail.trailName }}</td>
+                            <td>{{ trail.location }}</td>
+                            <td>{{ trail.rating }}</td>
+                            <td>
+                                <form method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="delete" value="{{ trail.id }}">
+                                    <button type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No trails available.</p>
+        {% endif %}
+        
+        <p><a href="{% url 'homepage' %}">Back to Homepage</a></p>
+    </div>
+</body>
+</html>
+

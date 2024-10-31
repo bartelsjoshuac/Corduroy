@@ -1,229 +1,87 @@
-# Standard stuff I need, or I think I need
-from django.shortcuts import render
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import DjangoObjectPermissions
-from rest_framework.viewsets import ModelViewSet
-from rest_framework import mixins, viewsets
+from .models import Trails, Reports
+from .serializers import TrailsSerializer, ReportsSerializer
+from .forms import ReportForm, TrailForm, ReportApprovalForm
 
-### Stuff I added for authentcation
-### For authentication
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.views.generic import TemplateView
-from django.shortcuts import redirect
-
-# My stuff
-from .models import Reports
-from .models import Trails 
-
-from corduroyserver.serializers import ReportsSerializer
-from corduroyserver.serializers import ReportsAdminSerializer
-from corduroyserver.serializers import TrailsSerializer
-
-#### Require auth for groomers and report admins
-class GroupRequiredMixin(UserPassesTestMixin):
-    group_name = None  
-
-    def test_func(self):
-        return self.request.user.is_authenticated and self.request.user.groups.filter(name=self.group_name).exists()
-
-    def handle_no_permission(self):
-        return redirect('/admin/login/')  
-
-
-########################### Reports #######################################
-class ReportsViewSet(viewsets.ModelViewSet):
-    serializer_class = ReportsSerializer
-    queryset = Reports.objects.all()
-    
-# List all reports, will be used on public page
-    def list(self, request):
-        queryset = Reports.objects.all()
-        serializer = ReportsSerializer(queryset, many=True)
-        
-        context = {
-            'reports' : serializer.data
-        }
-        # Added context here
-        return render(request, 'reports.html', context)
-        return Response(serializer.data)
-
-# Create a new report, will be used on groomer page
-    def create(self, request):    
-        serializer = ReportsSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return render(request, 'success.html')
-        return Response(serializer.errors)
-
-# Retrive a single report (might not need this)
-    def retrieve(self, request, pk=None):
-        queryset = Reports.objects.all()
-        reports = get_object_or_404(queryset, pk=pk)
-        serializer = ReportsSerializer(reports)
-        return Response(serializer.data)
-    
-# Update a report, which will be needed by admin to approve or modify report but this view won't be used for this.
-    def update(self, request, pk=None):
-        queryset = Reports.objects.all()
-        reports = get_object_or_404(queryset, pk=pk)
-        serializer = ReportsSerializer(reports, data=request.data,partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return render(request, 'success.html', {'pk': pk})
-            return Response(serializer.data)
-        return Response(serializer.errors)
-    
-# Delete a report which we will not need now
-    def destroy(self, request, pk=None):
-        queryset = Reports.objects.all()
-        reports = get_object_or_404(queryset, pk=pk)
-        serializer = ReportsSerializer(reports)
-        reports.delete()
-        return Response({'Success': 'This deleted a report.'}, status=status.HTTP_200_OK)
-
-########################### ReportsAdmin #######################################
-
-class ReportsAdminViewSet(viewsets.ModelViewSet):
-####
-### With group check but I need a login page, and to serperate this into two view, or use attribute security
-#class ReportsAdminViewSet(GroupRequiredMixin, viewsets.ModelViewSet):
-####
-
-    group_name = 'ReportsAdmin'  or "Groomers"
-   
-   
-    serializer_class = ReportsSerializer
-    queryset = Reports.objects.all()
-    
-# List all reports, will be used on public page
-    def list(self, request):
-        queryset = Reports.objects.all()
-        serializer = ReportsAdminSerializer(queryset, many=True)
-        
-        context = {
-            'reports' : serializer.data
-        }
-        return render(request, 'reportsadmin.html', context)
-        return Response(serializer.data)
-
-# Create a new report, will be used on groomer page
-    def create(self, request):    
-        serializer = ReportsAdminSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return render(request, 'success.html')
-            return Response(serializer.data)
-        return Response(serializer.errors)
-
-# Retrive a single report (might not need this)
-    def retrieve(self, request, pk=None):
-        queryset = Reports.objects.all()
-        reports = get_object_or_404(queryset, pk=pk)
-        serializer = ReportsAdminSerializer(reports)
-        return Response(serializer.data)
-    
-# Update a report, which will be needed by admin to approve or modify report
-# Why is the pk not works for reportsadmin/#/ and giving me a template error
-    def update(self, request, pk=None):
-        queryset = Reports.objects.all()
-        reports = get_object_or_404(queryset, pk=pk)
-        #partial=True fixed my UPDATE!!!!
-        serializer = ReportsAdminSerializer(reports, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return render(request, 'success.html', {'pk': pk})
-        return Response(serializer.errors)
-    
-# Delete a report which we will not need now
-    def destroy(self, request, pk=None):
-        queryset = Reports.objects.all()
-        reports = get_object_or_404(queryset, pk=pk)
-        serializer = ReportsAdminSerializer(reports)
-        reports.delete()
-        return Response({'Success': 'This deleted a report.'}, status=status.HTTP_200_OK)
-
-########################### Trails #######################################
-#class TrailsViewSet(GroupRequiredMixin, viewsets.ModelViewSet):
-####
-    # No Groomers on the trails page
-    #group_name = 'ReportsAdmin'
-
+# API viewsets for Trails and Reports models. this should have been split out in its own app
 class TrailsViewSet(viewsets.ModelViewSet):
-    serializer_class = TrailsSerializer
     queryset = Trails.objects.all()
-    
-# List all Trails, will be used on public page
-    def list(self, request):
-        queryset = Trails.objects.all()
-        serializer = TrailsSerializer(queryset, many=True)
-        context = {
-            'trails' : serializer.data
-        }
-        return render(request, 'trails.html',context)
-        return Response(serializer.data)
+    serializer_class = TrailsSerializer
+
+class ReportsViewSet(viewsets.ModelViewSet):
+    queryset = Reports.objects.all()
+    serializer_class = ReportsSerializer
+
+# Homepage view to display approved reports
+def approved_reports_view(request):
+    # Only display reports to the public that have been approved.
+    approved_reports = Reports.objects.filter(approvalStatus=True).order_by('-date')
+    return render(request, 'index.html', {'approved_reports': approved_reports})
+
+# Groomer form
+@login_required
+def groomer_report_view(request):
+    if not request.user.groups.filter(name="groomers").exists():
+        return render(request, 'not_authorized.html')  
+
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            report = form.save(commit=False)
+            # Set groomer to the authenticated user
+            report.groomer = request.user.username
+            # Set the current date  
+            report.date = timezone.now().date()  
+            report.save()
+            return redirect('homepage')  
+    else:
+        form = ReportForm()
+
+    return render(request, 'groomer_report.html', {'form': form})
+
+# Admin form for trails
+@login_required
+def admin_trails_view(request):
+    # Ensure the user is in the 'admins' group
+    if not request.user.groups.filter(name="admins").exists():
+        return render(request, 'not_authorized.html') 
+
+    if request.method == 'POST':
+        if 'delete' in request.POST: 
+            trail_id = request.POST.get('delete')
+            trail = Trails.objects.filter(id=trail_id).first()
+            if trail:
+                trail.delete()
+        else:  
+            form = TrailForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('admin_trails')
+    else:
+        form = TrailForm()
+
+    trails = Trails.objects.all()  
+    return render(request, 'admin_trails.html', {'form': form, 'trails': trails})
+
+# Admin view for changing approval status of reports, restricted to admins group
+@login_required
+def admin_approval_view(request):
+    if not request.user.groups.filter(name="admins").exists():
+        return render(request, 'not_authorized.html')  
+
+    if request.method == 'POST':
+        report_id = request.POST.get('report_id')
+        report = get_object_or_404(Reports, id=report_id)
+        form = ReportApprovalForm(request.POST, instance=report)
         
-    
-# Create a new trail, will be used on groomer page
-    def create(self, request):    
-        serializer = TrailsSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-        return render(request, 'success.html')
-        return Response(serializer.errors)
+        if form.is_valid():
+            form.save()
+            return redirect('admin_approval')  
+    else:
+        reports = Reports.objects.all()
+        form = ReportApprovalForm()
 
-# Retrive a single trail (might not need this)
-    def retrieve(self, request, pk=None):
-        queryset = Trails.objects.all()
-        Trails = get_object_or_404(queryset, pk=pk)
-        serializer = Trailserializer(Trails)
-        return Response(serializer.data)
-    
-# Update a trail, which will be needed by admin to approve or modify trail
-    def update(self, request, pk=None):
-        queryset = Trails.objects.all()
-        Trails = get_object_or_404(queryset, pk=pk)
-        serializer = TrailsSerializer(Trails, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-        return render(request, 'success.html')
-        return Response(serializer.errors)
-    
-# Delete a trail which we will not need now
-    def destroy(self, request, pk=None):
-        queryset = Trails.objects.all()
-        Trails = get_object_or_404(queryset, pk=pk)
-        serializer = TrailsSerializer(Trails)
-        Trails.delete()
-        return Response({'Success': 'This deleted a trail.'}, status=status.HTTP_200_OK)
-
-
-
-# Define a home landing page for the app
-def index(request):
-    return render(request, 'index.html')
-
-# Define a page for groomers
-def groomers(request):
-    return render(request, 'groomers.html')
-
-# Define a page for reports
-def reports(request):
-    return render(request, 'reports.html')
-
-# Define a page for reports admins
-def reportsadmin(request):
-    return render(request, 'reportsadmin.html')
-
-# Define a page for trails admins
-def trailsadmin(request):
-    return render(request, 'trailsadmin.html')
-
-
-
+    return render(request, 'admin_approval.html', {'form': form, 'reports': reports})

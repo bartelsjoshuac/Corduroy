@@ -1,54 +1,11 @@
+# These are the base project urls, we will add ours in the server
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-
-
-### Pages
-from corduroyserver.views import index
-from corduroyserver.views import groomers
-from corduroyserver.views import reports
-from corduroyserver.views import reportsadmin
-from corduroyserver.views import trailsadmin
-
-# Reports
-from corduroyserver.views import ReportsViewSet
-from corduroyserver.views import ReportsAdminViewSet
-
-# Trails
-from corduroyserver.views import TrailsViewSet
-
-# The router stuff from one of the exercises
-from rest_framework.routers import DefaultRouter
-router = DefaultRouter()
-router.register(r'reports', ReportsViewSet, basename='reports')
-router.register(r'reportsadmin', ReportsAdminViewSet, basename='reportsadmin')
-router.register(r'trails', TrailsViewSet, basename='trails')
-
-
-###########  This is is good for admin and 
-# The normal Django admin,
-adminpattern = [
-    
-    path('admin/', admin.site.urls),
-]
-
-indexpattern = [
-    
-    path('', admin.site.urls),
-]
-
-# This combines my admin pattern (which must be an object???? with the router and it works)
-urlpatterns = router.urls + adminpattern
-
-# Seems to be needed to allow a get of static template as static html
 urlpatterns = [
-    path('', index, name='index'),
-    path('groomers.html', groomers, name='groomers'),
-    path('reports.html', reports, name='reports'),
- #   path('reportsadmin.html', reportsadmin, name='reportsadmin'),
-    path('trailsadmin.html', trailsadmin, name='trailsadmin'),
-    path('admin/', admin.site.urls),  
+    path('admin/', admin.site.urls),
+    path('', include('corduroyserver.urls')),  
 ]
 
-# Wow, this now works and is so sloppy, but given the time I spent on it....... Not about to mess with it ever.
-urlpatterns += router.urls
+
+

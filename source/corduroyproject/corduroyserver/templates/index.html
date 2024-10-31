@@ -1,38 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Corduroy - Groming</title>
-        {% load static %}    
-        <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
-
-    </head>
- <body>
-<H1>Welcome to Corduroy</H1> 
-<h3>Colorado Snowmobile Trail Grooming Reports</h3>
-
-<br>Public functions<br><br>
-<a href="http://localhost:8000/reports">Current Reports</a>  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-<a href="http://localhost:8000/trails">Current Trail List</a>
-
-<hr>
-<br>Admin functions<br>
-<a href="http://localhost:8000/groomers.html">Groomer Admin</a> &nbsp;<a href="http://localhost:8000/reportsadmin/">Reports Admin</a> &nbsp;<a href="http://localhost:8000/trailsadmin.html">Trails Admin</a> &nbsp;
-
-<br>
-<hr>
-<br>
-<img src="{% static 'corduroyserver/sled.png' %}">
-<br>Recent Updates:
-<li>Added CSS for mobile and dark look</li>
-<li>Added sled image since I can't seem to get other things working/li>
-<li> Report admin approval is working except not generating the success page</li>
-
-Current Limitations:
-<li>No feedback on the reports admin on submit</li>
-<li>I would like to incoorperate the trials list into the index.html, which means the index would be a template of the reports view, filtered to approved?</li>
-    <li> Need primary foreign key relationship, similiar to what I missed in the dog/breed view exercise< but it is not working so switched it back as it really messed this up doing it after the fact.
-<li>Authentication for admin functions not working so I disabled it</li>
-<li>Complete test cases AND CI when I get the other three functionalies working</li>
-
+<head>
+    <meta charset="UTF-8">
+    <title>Approved Reports</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
+</head>
+<body>
+<h1>Welcome to Corduroy</h1>
+<h3>Home to Colorado Snowmobile Trail Grooming Reports</h3>
+    <div class="container">
+        <h1>Current Reports</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Trail Name</th>
+                    <th>Location</th>
+                    <th>Groomer</th>
+                    <th>Date</th>
+                    <th>Report</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for report in approved_reports %}
+                    <tr>
+                        <td>{{ report.trail.trailName }}</td>
+                        <td>{{ report.trail.location }}</td>
+                        <td>{{ report.groomer }}</td>
+                        <td>{{ report.date }}</td>
+                        <td>{{ report.report }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5">No approved reports available at the moment.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <br>
+    <p>Admin Functions:</p>
+    <a href="{% url 'groomer_report_page' %}">Enter New Trail Report (Groomers)</a> &nbsp <a href="{% url 'admin_trails' %}">Manage Trails (Admins)</a> &nbsp <a href="{% url 'admin_approval' %}">Approve Pending Reports (Admins)</a>
+</body>
+</html>
