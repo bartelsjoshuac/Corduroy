@@ -21,7 +21,7 @@ First time to create the superuser for Django Admin
 - docker compose up  -d  // Starts the webserver and database  
 - docker compose exec web bash   // Starts a shell in the container  
 - python manage.py createsuperuser  // Follow the prompts to create a user called root with a password of password   
-- python manage.py populate_users // Create groomy (groomey account) and corduroyadmin(admin account) and groomers and admins groups  
+- python manage.py populate_users // Create groomy (groomy account) and corduroyadmin(admin account) and groomers and admins groups  
 - python manage.py populate_data // Populates some sample data  
 
 NOTES:   
@@ -34,7 +34,8 @@ Normally
 - docker compose up -d
 
 Access the web interface:  
-- http://localhost:8000/  
+- Corduroy Interface http://localhost:8000/  
+- Django Admin Interface http://localhost:8000/  
 
 
 ## License
