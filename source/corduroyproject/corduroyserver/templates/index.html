@@ -41,6 +41,17 @@
     
     <br>
     <p>Admin Functions:</p>
-    <a href="{% url 'groomer_report_page' %}">Enter New Trail Report (Groomers)</a> &nbsp <a href="{% url 'admin_trails' %}">Manage Trails (Admins)</a> &nbsp <a href="{% url 'admin_approval' %}">Approve Pending Reports (Admins)</a>
+    <a href="{% url 'groomer_report_page' %}">Enter New Trail Report (Groomers)</a> &nbsp 
+    <a href="{% url 'admin_trails' %}">Manage Trails (Admins)</a> &nbsp 
+    <a href="{% url 'admin_approval' %}">Approve Pending Reports (Admins)</a>
+    {% if user.is_authenticated %}
+    <p>Logged in as: {{ user.username }} &nbsp
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+{% endif %}
+
+
 </body>
 </html>

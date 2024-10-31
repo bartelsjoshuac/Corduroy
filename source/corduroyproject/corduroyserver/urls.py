@@ -19,7 +19,9 @@ router.register(r'reports', ReportsViewSet)
 
 # Define URL patterns
 urlpatterns = [
-    path('login/', auth_views.LoginView.as_view(), name='login'),
+    #path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('', approved_reports_view, name='homepage'),  
     path('groomer-report/add/', groomer_report_view, name='groomer_report_page'),  
     path('admin-trails/', admin_trails_view, name='admin_trails'),  
