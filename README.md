@@ -18,12 +18,16 @@ tar -xf Source code.tar.gz
 
 ## Getting Started
 First time to create the superuser for Django Admin
-- docker compose up  -d
-- docker compose exec web bash  
-- python manage.py createsuperuser  // Follow the prompts  
-- python manage.py populate_users // Create groomy (groomer account) and corduroyadmin(admin account) and groomers and admins groups  
+- docker compose up  -d  // Starts the webserver and database  
+- docker compose exec web bash   // Starts a shell in the container  
+- python manage.py createsuperuser  // Follow the prompts to create a user called root with a password of password   
+- python manage.py populate_users // Create groomy (groomey account) and corduroyadmin(admin account) and groomers and admins groups  
 - python manage.py populate_data // Populates some sample data  
-- Login as root/password and create at least one trail 
+
+NOTES:   
+- Login as root/password for admin access and all functions
+- Login as groomy/password for access to create new grooming reports  
+- Login as admin to approve reports or add/delete trails  
 
 
 Normally
