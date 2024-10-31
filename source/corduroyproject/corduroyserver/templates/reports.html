@@ -15,7 +15,7 @@ List of Trail Reports <br><br>
     <td><strong>ID</strong></td><td><strong>Date</strong></td> <td><strong>Trail Name</strong></strong></td> <td><b><strong>Current Conditions</strong></td>
 {% for report in reports %}
     <!--This prints only approved reports,   -->
-    {% if report.approvalStatus == True %}
+    {% if report.approvalStatus != False %}
     <tr>
         <td>{{ report.id }} </td><td>{{ report.date }} </td> <td>{{ report.trailName }}</td> <td>{{ report.report }}</td>
     </tr>

@@ -26,13 +26,12 @@
             </tr>
 
         <!--
-        This is not secure.  When I enable auth I will change to.
-        <input type="hidden" name="groomer" id="groomer" value={{ user.username }}>
-        Then use Django security so that a member of the groomer group can not update the groomer attribute
-        The approval status won't need to be set since it has a default and a groomer does not have permissions to it
+        I need to get the groomer from the logged in ID
         -->
         <input type="hidden" name="groomer" id="groomer" value="Mr Plow">
-        <input type="hidden" name="approvalStatus" id="approvalStatus">
+        <!-- Bad idea 
+        <input type="hidden" name="approvalStatus" id="approvalStatus" value="false">
+        -->
         <input type="hidden" name="date" id="date" value="{% now "Y-m-d" %}">
         </table>
       
