@@ -130,7 +130,7 @@ class ReportsAdminViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
     
 # Update a report, which will be needed by admin to approve or modify report
-# Why is the pk not works for reportsadmin/#/
+# Why is the pk not works for reportsadmin/#/ and giving me a template error
     def update(self, request, pk=None):
         queryset = Reports.objects.all()
         reports = get_object_or_404(queryset, pk=pk)

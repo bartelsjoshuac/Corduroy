@@ -45,7 +45,7 @@ urlpatterns = [
     path('', index, name='index'),
     path('groomers.html', groomers, name='groomers'),
     path('reports.html', reports, name='reports'),
-    path('reportsadmin.html', reportsadmin, name='reportsadmin'),
+ #   path('reportsadmin.html', reportsadmin, name='reportsadmin'),
     path('trailsadmin.html', trailsadmin, name='trailsadmin'),
     path('admin/', admin.site.urls),  
 ]
