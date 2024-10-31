@@ -16,6 +16,7 @@
             <td><strong> ID</strong>
             <td><strong>Approved</strong></td>
             <td><strong>Date</strong</td>
+            <td><strong>Trail Name</strong</td>
             <td><strong>Groomer</strong></td>
             <td><b><strong>Report</strong></td>
         </tr>      
@@ -27,6 +28,7 @@
                 <!--If already approved, AKA true check the box.  Note that this can be used to unapprove or unpublish a report as well-->
                 <td><input type="checkbox" name="approvalStatus" id="approvalStat"value="{{ report.report }}" {% if report.approvalStatus == 1 %} checked {% endif %}>
                 <td>{{ report.date }} </td>
+                <td>{{ report.trailName }}</td>
                 <td>{{ report.groomer }}</td>
                 <td><input type="text" name="report" id="report"value="{{ report.report }}"> </td> 
                 </td>

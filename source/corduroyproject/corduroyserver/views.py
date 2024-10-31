@@ -60,7 +60,6 @@ class ReportsViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             serializer.save()
             return render(request, 'success.html')
-            return Response(serializer.data)
         return Response(serializer.errors)
 
 # Retrive a single report (might not need this)
@@ -70,14 +69,14 @@ class ReportsViewSet(viewsets.ModelViewSet):
         serializer = ReportsSerializer(reports)
         return Response(serializer.data)
     
-# Update a report, which will be needed by admin to approve or modify report
+# Update a report, which will be needed by admin to approve or modify report but this view won't be used for this.
     def update(self, request, pk=None):
         queryset = Reports.objects.all()
         reports = get_object_or_404(queryset, pk=pk)
-        serializer = ReportsSerializer(reports, data=request.data)
+        serializer = ReportsSerializer(reports, data=request.data,partial=True)
         if serializer.is_valid():
             serializer.save()
-            return render(request, 'success.html')
+            return render(request, 'success.html', {'pk': pk})
             return Response(serializer.data)
         return Response(serializer.errors)
     
@@ -135,11 +134,11 @@ class ReportsAdminViewSet(viewsets.ModelViewSet):
     def update(self, request, pk=None):
         queryset = Reports.objects.all()
         reports = get_object_or_404(queryset, pk=pk)
-        serializer = ReportsAdminSerializer(reports, data=request.data)
+        #partial=True fixed my UPDATE!!!!
+        serializer = ReportsAdminSerializer(reports, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return render(request, 'success.html')
-            return Response(serializer.data)
+            return render(request, 'success.html', {'pk': pk})
         return Response(serializer.errors)
     
 # Delete a report which we will not need now
@@ -176,8 +175,7 @@ class TrailsViewSet(viewsets.ModelViewSet):
         serializer = TrailsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return render(request, 'success.html')
-            return Response(serializer.data)
+        return render(request, 'success.html')
         return Response(serializer.errors)
 
 # Retrive a single trail (might not need this)
@@ -194,7 +192,7 @@ class TrailsViewSet(viewsets.ModelViewSet):
         serializer = TrailsSerializer(Trails, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+        return render(request, 'success.html')
         return Response(serializer.errors)
     
 # Delete a trail which we will not need now
