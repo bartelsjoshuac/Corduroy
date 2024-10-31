@@ -30,7 +30,7 @@
             <form id="updateForm_{{ report.id }}">
                 <td>{{ report.id }}</td>
                 <td>
-                    <input type="checkbox" name="approvalStatus" id="approvalStatus_{{ report.id }}" value="1" {% if report.approvalStatus == 1 %} checked {% endif %}>
+                    <input type="checkbox" name="approvalStatus" id="approvalStatus_{{ report.id }}" value="True" {% if report.approvalStatus == True %} checked {% endif %}>
                     <label for="approvalStatus_{{ report.id }}">Approved</label>
                 </td>
                 <td>{{ report.date }}</td>
@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
          I really dunno anymore--> 
      
 
-        
+     <p> NOTE: Submit button gives no feedback yet, but works</p>   
 
                
         
