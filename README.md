@@ -40,8 +40,10 @@ Access the web interface:
 - Django Admin Interface http://localhost:8000/admin    
 
 ## Samples  
-[Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png)
-[Groomers](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png)
+[Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
+[Groomers Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png) &nbsp;&nbsp;&nbsp;
+[Trails Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png) &nbsp;&nbsp;&nbsp;
+[Approval Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png) &nbsp;&nbsp;&nbsp;
 
 
 ## License
