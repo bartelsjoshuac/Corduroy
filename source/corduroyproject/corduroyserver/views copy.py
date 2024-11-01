@@ -65,8 +65,6 @@ def admin_trails_view(request):
             trail = Trails.objects.filter(id=trail_id).first()
             if trail:
                 trail.delete()
-            # Ensure form is initialized after deletion to avoid UnboundLocalError
-            form = TrailForm()
         else:  
             form = TrailForm(request.POST)
             if form.is_valid():
@@ -77,7 +75,6 @@ def admin_trails_view(request):
 
     trails = Trails.objects.all()  
     return render(request, 'admin_trails.html', {'form': form, 'trails': trails})
-
 
 # Admin view for changing approval status of reports, restricted to admins group
 @login_required

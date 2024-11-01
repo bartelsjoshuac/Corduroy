@@ -18,8 +18,24 @@
             {% csrf_token %}
             <table>
                 <tr>
+                    <!-- Location will not appear unless there is at least one trail define in that location -->
+                    <td><label for="location">Location:</label></td>
+                    <td>
+                        <select id="location" name="location" onchange="updateTrails()">
+                            <option value="">Select Location</option>
+                            {% for location in trails_by_location.keys %}
+                                <option value="{{ location }}">{{ location }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td><label for="id_trail">Trail Name:</label></td>
-                    <td>{{ form.trail }}</td>
+                    <td>
+                        <select id="id_trail" name="trail">
+                            <option value="">Select Trail</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td><label for="id_report">Report:</label></td>
@@ -35,5 +51,28 @@
         
         <p><a href="{% url 'homepage' %}">Back to Home</a></p>
     </div>
+
+    <script>
+        const trailsByLocation = {{ trails_by_location|safe }};
+        
+        function updateTrails() {
+            const location = document.getElementById('location').value;
+            const trailSelect = document.getElementById('id_trail');
+
+            // Clear existing options
+            trailSelect.innerHTML = '<option value="">Select Trail</option>';
+
+            // Populate trails based on selected location
+            if (trailsByLocation[location]) {
+                trailsByLocation[location].forEach(trail => {
+                    const option = document.createElement('option');
+                    option.value = trail.id;
+                    option.textContent = trail.name;
+                    trailSelect.appendChild(option);
+                });
+            }
+        }
+    </script>
 </body>
 </html>
+

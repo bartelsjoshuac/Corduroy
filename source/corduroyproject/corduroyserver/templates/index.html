@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Approved Reports</title>
-    <!-- For static content. -->
     {% load static %}
+    <link rel="icon" href="{% static 'corduroyserver/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
+    <style>
+        /* CSS to center the image */
+        .homepage-image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%; /* Adjust width as needed */
+        }
+    </style>
 </head>
 <body>
 <h1>Welcome to Corduroy</h1>
@@ -23,7 +32,6 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- The view is doing the filter on approvalStatus vs. doing it in here as I started with. -->
                 {% for report in approved_reports %}
                     <tr>
                         <td>{{ report.trail.trailName }}</td>
@@ -32,7 +40,6 @@
                         <td>{{ report.date }}</td>
                         <td>{{ report.report }}</td>
                     </tr>
-                <!-- You have to do something here or it fails. -->
                 {% empty %}
                     <tr>
                         <td colspan="5">No approved reports.</td>
@@ -45,21 +52,20 @@
     <br>
     <p>Admin Functions:</p>
    
-    <!-- These come from the app urls.py vs. being static links. -->
     <a href="{% url 'groomer_report_page' %}">Enter New Trail Report (Groomers)</a> &nbsp 
     <a href="{% url 'admin_trails' %}">Manage Trails (Admins)</a> &nbsp 
     <a href="{% url 'admin_approval' %}">Approve Pending Reports (Admins)</a>
    
-    <!-- Logout-->
-    <!-- This have to be a POST or you get security messages about a GET and the view does not implement a get-->
     {% if user.is_authenticated %}
     <p>Logged in as: {{ user.username }} &nbsp
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Logout</button>
     </form>
-{% endif %}
-<img src="{% static 'corduroyserver/sled.png' %}" alt="Blue sled" class="homepage-image">
+    {% endif %}
+
+    <!-- Centered image -->
+    <img src="{% static 'corduroyserver/sled.png' %}" alt="Blue sled" class="homepage-image">
 
 </body>
 </html>

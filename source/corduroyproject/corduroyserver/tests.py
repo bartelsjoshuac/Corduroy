@@ -1,3 +1,5 @@
+# These aren't working I dunno need to look at it more  Maybe because the ci.yml Github mnade doesn't do postgres?
+
 from django.test import TestCase
 from .models import Trails, Reports
 from django.utils import timezone
@@ -69,5 +71,5 @@ class TrailsAndReportsModelTest(TestCase):
         # Ensure the Trail still exists
         self.assertTrue(Trails.objects.filter(id=self.trail.id).exists())
 
-   def test_fail_on_purpose(self):
-        self.assertEqual(1, 0, "Intentional failure to test CI pipeline")
+   #def test_fail_on_purpose(self):
+   #     self.assertEqual(1, 0, "Intentional failure to test CI pipeline")

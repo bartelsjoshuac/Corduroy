@@ -30,7 +30,7 @@ urlpatterns = [
     path('admin-trails/', admin_trails_view, name='admin_trails'),  
     # Admin approval view
     path('admin-approval/', admin_approval_view, name='admin_approval'),  
-    
-    #path('api/', include(router.urls)),  
+    # API
+    path('api/', include(router.urls)),  
 ]
 
