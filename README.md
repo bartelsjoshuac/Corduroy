@@ -27,9 +27,7 @@ First time to create the superuser for Django Admin
 - python manage.py populate_data // Populates some sample data  
 
 NOTES:   
-- Login as root/password for admin access and all functions
-- Login as groomy/password for access to create new grooming reports  
-- Login as admin to approve reports or add/delete trails  
+- On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random.  
 
 
 Normall execution after Getting Stated
@@ -37,13 +35,18 @@ Normall execution after Getting Stated
 
 Access the web interface:  
 - Corduroy Interface http://localhost:8000/  
-- Django Admin Interface http://localhost:8000/admin    
+- Django Admin Interface http://localhost:8000/admin   
+
+NOTES:   
+- Login as root/password for admin access and all functions and the Django admin
+- Login as groomy/password for access to create new grooming reports  
+- Login as admin to approve reports or add/delete trails  
 
 ## Samples  
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
 [Groomers Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png) &nbsp;&nbsp;&nbsp;
-[Trails Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png) &nbsp;&nbsp;&nbsp;
-[Approval Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png) &nbsp;&nbsp;&nbsp;
+[Trails Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/trailsadmin.png) &nbsp;&nbsp;&nbsp;
+[Approval Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/admin.png) &nbsp;&nbsp;&nbsp;
 
 
 ## License
