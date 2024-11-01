@@ -1,3 +1,4 @@
+# This was added late by messing around in Github and not really working.  Well it is generating errors in github and strange behavior
 on:
     push:
         branches: [ main ]
