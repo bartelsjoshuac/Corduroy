@@ -14,7 +14,9 @@ Prerequisites
 - Python 3.11.9  // All Python requirements will be pulled  
 - PostgresSQL // Pulled from Dockerhub  
 
-tar -xf Source code.tar.gz  
+tar -xzvf Source code.tar.gz  
+or  
+unzip Source code.zip 
 
 ## Getting Started
 First time to create the superuser for Django Admin
@@ -30,13 +32,15 @@ NOTES:
 - Login as admin to approve reports or add/delete trails  
 
 
-Normally
+Normall execution after Getting Stated
 - docker compose up -d
 
 Access the web interface:  
 - Corduroy Interface http://localhost:8000/  
-- Django Admin Interface http://localhost:8000/  
+- Django Admin Interface http://localhost:8000/admin    
 
+## Samples  
+![Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png)  
 
 ## License
 The MIT License (MIT)
