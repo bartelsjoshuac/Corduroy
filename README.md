@@ -40,7 +40,7 @@ Access the web interface:
 - Django Admin Interface http://localhost:8000/admin    
 
 ## Samples  
-![Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png)  
+![Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/samples.md)  
 
 ## License
 The MIT License (MIT)
