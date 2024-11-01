@@ -13,6 +13,7 @@ class ReportForm(forms.ModelForm):
         self.fields['trail'].queryset = self.fields['trail'].queryset.order_by('trailName')
 
 # Trails admin form
+# I need to find a way to set the rating to a default since I can't in the template now
 class TrailForm(forms.ModelForm):
     class Meta:
         model = Trails
