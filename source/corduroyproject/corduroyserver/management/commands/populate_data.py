@@ -1,5 +1,9 @@
+# This should be run after the populat_user.py or we run into data integrity issues.
+#  It creates two trails and two reports, one is approved already (which is not the default in the model) and one is not approved
+
 from django.core.management.base import BaseCommand
 from corduroyserver.models import Trails, Reports
+# For the date.now() 
 from django.utils import timezone
 
 class Command(BaseCommand):

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Approved Reports</title>
+    <!-- For static content. -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
 </head>
@@ -22,6 +23,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- The view is doing the filter on approvalStatus vs. doing it in here as I started with. -->
                 {% for report in approved_reports %}
                     <tr>
                         <td>{{ report.trail.trailName }}</td>
@@ -30,9 +32,10 @@
                         <td>{{ report.date }}</td>
                         <td>{{ report.report }}</td>
                     </tr>
+                <!-- You have to do something here or it fails. -->
                 {% empty %}
                     <tr>
-                        <td colspan="5">No approved reports available at the moment.</td>
+                        <td colspan="5">No approved reports.</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -41,10 +44,14 @@
     
     <br>
     <p>Admin Functions:</p>
+   
+    <!-- These come from the app urls.py vs. being static links. -->
     <a href="{% url 'groomer_report_page' %}">Enter New Trail Report (Groomers)</a> &nbsp 
     <a href="{% url 'admin_trails' %}">Manage Trails (Admins)</a> &nbsp 
     <a href="{% url 'admin_approval' %}">Approve Pending Reports (Admins)</a>
-   <!--Logout-->
+   
+    <!-- Logout-->
+    <!-- This have to be a POST or you get security messages about a GET and the view does not implement a get-->
     {% if user.is_authenticated %}
     <p>Logged in as: {{ user.username }} &nbsp
     <form action="{% url 'logout' %}" method="post">
@@ -52,7 +59,7 @@
         <button type="submit">Logout</button>
     </form>
 {% endif %}
-<img src="{% static 'corduroyserver/sled.png' %}" alt="Homepage Image" class="homepage-image">
+<img src="{% static 'corduroyserver/sled.png' %}" alt="Blue sled" class="homepage-image">
 
 </body>
 </html>

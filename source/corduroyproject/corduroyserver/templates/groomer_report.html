@@ -16,18 +16,24 @@
         
         <form method="post">
             {% csrf_token %}
-            <div>
-                <label for="id_trail">Trail Name:</label>
-                {{ form.trail }}
-            </div>
-            <div>
-                <label for="id_report">Report:</label>
-                {{ form.report }}
-            </div>
-            <button type="submit">Submit Report</button>
+            <table>
+                <tr>
+                    <td><label for="id_trail">Trail Name:</label></td>
+                    <td>{{ form.trail }}</td>
+                </tr>
+                <tr>
+                    <td><label for="id_report">Report:</label></td>
+                    <td>{{ form.report }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Submit Report</button>
+                    </td>
+                </tr>
+            </table>
         </form>
         
-        <p><a href="{% url 'homepage' %}">Back to Approved Reports</a></p>
+        <p><a href="{% url 'homepage' %}">Back to Home</a></p>
     </div>
 </body>
 </html>

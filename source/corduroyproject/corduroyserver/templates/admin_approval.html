@@ -13,23 +13,33 @@
         <h2>Change Approval Status</h2>
         <form method="post">
             {% csrf_token %}
-            <label for="report_id">Select Report:</label>
-            <select name="report_id">
-                {% for report in reports %}
-                    <option value="{{ report.id }}">
-                        {{ report.trail.trailName }} - {{ report.date }} - {% if report.approvalStatus %}Approved{% else %}Not Approved{% endif %}
-                    </option>
-                {% endfor %}
-            </select>
-            
-            <div>
-                {{ form.approvalStatus.label_tag }}
-                {{ form.approvalStatus }}
-            </div>
-            <button type="submit">Change Approval Status</button>
+            <table>
+                <tr>
+                    <td><label for="report_id">Select Report:</label></td>
+                    <td>
+                        <select name="report_id">
+                            {% for report in reports %}
+                                <option value="{{ report.id }}">
+                                    {{ report.trail.trailName }} - {{ report.date }} - 
+                                    {% if report.approvalStatus %}Approved{% else %}Not Approved{% endif %}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ form.approvalStatus.label_tag }}</td>
+                    <td>{{ form.approvalStatus }} (blank to unapprove)</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Update Approval Status</button>
+                    </td>
+                </tr>
+            </table>
         </form>
         
-        <p><a href="{% url 'homepage' %}">Back to Homepage</a></p>
+        <p><a href="{% url 'homepage' %}">Back to Home</a></p>
     </div>
 </body>
 </html>

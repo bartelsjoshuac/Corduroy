@@ -13,10 +13,20 @@
         <h2>Add a New Trail</h2>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Add Trail</button>
+            <table>
+                {% for field in form %}
+                    <tr>
+                        <td>{{ field.label_tag }}</td>
+                        <td>{{ field }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Add Trail</button>
+                    </td>
+                </tr>
+            </table>
         </form>
-
 
         <h2>Existing Trails</h2>
         {% if trails %}
@@ -49,9 +59,6 @@
         {% else %}
             <p>No trails available.</p>
         {% endif %}
+        <p><a href="{% url 'homepage' %}">Back to Home</a></p>
         
-        <p><a href="{% url 'homepage' %}">Back to Homepage</a></p>
-    </div>
-</body>
-</html>
-
+      

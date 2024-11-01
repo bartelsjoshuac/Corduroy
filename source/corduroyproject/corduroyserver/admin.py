@@ -1,3 +1,4 @@
+# I did not change anyting here as the defaults were sufficient 
 from django.contrib import admin
 from .models import Trails, Reports
 

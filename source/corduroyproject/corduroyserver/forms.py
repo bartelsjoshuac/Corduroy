@@ -1,7 +1,7 @@
 from django import forms
 from .models import Reports, Trails
 
-# Groomer form
+# Groomer and trail list form
 class ReportForm(forms.ModelForm):
     class Meta:
         model = Reports
@@ -11,7 +11,7 @@ class ReportForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['trail'].queryset = self.fields['trail'].queryset.order_by('trailName')
 
-# Trail admin form
+# Trails admin form
 class TrailForm(forms.ModelForm):
     class Meta:
         model = Trails
