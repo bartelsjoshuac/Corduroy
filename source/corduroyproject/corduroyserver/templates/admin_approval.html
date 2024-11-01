@@ -30,7 +30,8 @@
                 </tr>
                 <tr>
                     <td>{{ form.approvalStatus.label_tag }}</td>
-                    <td>{{ form.approvalStatus }} (blank to un-approve)</td>
+                    <!-- Some browsers may render this backwards with CSS for some reason-->
+                    <td>{{ form.approvalStatus }} (unchecked to un-approve)</td>
                 </tr>
                 <tr>
                     <td colspan="2">
