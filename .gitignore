@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
 # Keeps giving me troubles on OSX so maybe it will fix it
 __pycache__/
+*.pyc
