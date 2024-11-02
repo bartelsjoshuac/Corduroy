@@ -1,4 +1,3 @@
-# Auto detect text files and perform LF normalization
-# Keeps giving me troubles on OSX so maybe it will fix it
+# Keeps giving me troubles on OSX so maybe it will fix it.  Keeps git hub from thinking origin is newer and erasing your work
 __pycache__/
 *.pyc
