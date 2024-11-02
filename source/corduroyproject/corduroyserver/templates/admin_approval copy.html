@@ -1,3 +1,4 @@
+<!-- Per my use case I said admins can also modify actual report txt but I did not implement it, although the view supports modifying anything int he model-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +11,16 @@
     <div class="container">
         <h1>Pending Reports Admin</h1>
         
-        <h2>Change Approval Status and View Report Text</h2>
+        <h2>Change Approval Status</h2>
         <form method="post">
             {% csrf_token %}
             <table>
                 <tr>
                     <td><label for="report_id">Select Report:</label></td>
                     <td>
-                        <select name="report_id" id="report_id" onchange="updateReportText()">
+                        <select name="report_id">
                             {% for report in reports %}
-                                <option value="{{ report.id }}" data-text="{{ report.report|escapejs }}">
+                                <option value="{{ report.id }}">
                                     {{ report.trail.trailName }} - {{ report.date }} - 
                                     {% if report.approvalStatus %}Approved{% else %}Not Approved{% endif %}
                                 </option>
@@ -29,14 +30,8 @@
                 </tr>
                 <tr>
                     <td>{{ form.approvalStatus.label_tag }}</td>
+                    <!-- Some browsers may render this backwards with CSS for some reason-->
                     <td>{{ form.approvalStatus }} (unchecked to un-approve)</td>
-                </tr>
-                <!-- Display the selected report's text in a read-only textarea -->
-                <tr>
-                    <td><label for="report_text">Report Text(read only):</label></td>
-                    <td>
-                        <textarea id="report_text" rows="4" cols="50" readonly></textarea>
-                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -48,18 +43,5 @@
         
         <p><a href="{% url 'homepage' %}">Back to Home</a></p>
     </div>
-
-    <script>
-        // JavaScript to update the report text textarea when a new report is selected
-        function updateReportText() {
-            const reportSelect = document.getElementById("report_id");
-            const selectedOption = reportSelect.options[reportSelect.selectedIndex];
-            const reportText = selectedOption.getAttribute("data-text") || "";
-            document.getElementById("report_text").value = reportText;
-        }
-
-        // Initialize the textarea with the first report's text when the page loads
-        document.addEventListener("DOMContentLoaded", updateReportText);
-    </script>
 </body>
 </html>
