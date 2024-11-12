@@ -25,6 +25,7 @@ class Reports(models.Model):
     # If a trail is deleted, all reports will be deleted for that trail to maintain integrity
     trail = models.ForeignKey(Trails, related_name='reports', on_delete=models.CASCADE)  
     report = models.TextField()  
-
+    # Don't get the date form the form
     def __str__(self):
         return f'Report for {self.trail.trailName} on {self.date}'
+ 

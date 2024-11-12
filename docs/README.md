@@ -6,22 +6,29 @@
 3. As an **admin**, I want to be able to **view/edit and approve/publish reports** from groomers so that **snowmobilers can view them.**   
 
 ## Acceptance criteria
-1.  All reports contain all three attributes from groomers.  
-2.  The report must contain the date/time, groomer's ID(name).  
-3.  All reports contain at a minimum the date/time, trail name, and a yes/no on grooming.  
+1. The homepage will only display the most recent approved two reports for a trail.  
+2. Users will not be required to register or authenticate to view reports.  
+3. All reports contain the date, name of the trail, and at least 10 characters in "report" (current conditions) vs. groomed/non-groomed (not acceptible).  
+4. The admin approval must display the date, groomer's ID(name).  The date and time shall auto populate to current time and the groomer name will come from the authenticated user (groomer).  These values can not be chosen by the user.  
+5. The application should dynamically resize and be mobile friendy, eliminating the need for a mobile app.  
+6. Reports come from approved groomers, and have further been approved by an approval admin before being published and not from unvetted users.  
 
-## Mis-user stories
-1.  Snowmobilers (non-registered users) should not be able to submit reports or create trails  
-2.  Groomers must submit a minimum of all fields with the conditions being 4+ chars.    
-3.  Admins must not be able to change the date of trail name of the submission when approving.  
-4.  Only Admins can change the approved attribute
+## Mis-user stories  
+1. A groomer approves their own report.  
+2. A groomer modifies a trail (difficulty, location, etc.)  
+3. An admin approver admin deletes a report without approving or dis-approving (data loss).  
+4. An admin approver creates a report and approves it (their own report).  
+5. A non authenticated user (snowmobiler) creates a trail or report, or approves a report.
+6. A groomer enters HTML or inapproriate chars in the report field.  
 
 ## Mitigation  
-1.  Only authenticated user can submit or publish reports and they will be members of groups with access to the appropriate views
-2.  Error checking in models of date, and char limits
-3.  Seperate this attribute from the view so that only the groomer has access
-4.  Security on the view
-
+1. Groomers and admins are members of different groups and not given access to the same views.  
+2. Create multiple views for the same model.  
+3. Use Django user and groups provided framework to secure views.  
+4. Views will support only the functions required (Create, Update, Delete).  
+5. When doing group verification on the view call (in the template), insure that an admin (not admin approver) has not added the same user to both groups and handle exception.  
+6. Data validation on the models, with appropriate exception handling to insure acceptence criteria on data is met and that groomer understand the error.
+7. Set date and groomerID on the view and not in the html form via hidden fields.  
 
 # Diagrams  
 
