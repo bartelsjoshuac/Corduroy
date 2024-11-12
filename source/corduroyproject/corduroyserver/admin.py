@@ -1,4 +1,4 @@
-# I did not change anyting here as the defaults were sufficient 
+# I did not change anyting here as the defaults were sufficient since I only use the admin and this have everthing I need for troubleshooting
 from django.contrib import admin
 from .models import Trails, Reports
 

@@ -23,6 +23,7 @@ class Reports(models.Model):
     date = models.DateField(auto_now_add=True)  
     groomer = models.CharField(max_length=100)  
     # If a trail is deleted, all reports will be deleted for that trail to maintain integrity
+    # If I don't handle it this way, then when end up with reports that have no trail ID
     trail = models.ForeignKey(Trails, related_name='reports', on_delete=models.CASCADE)  
     report = models.TextField()  
     # Don't get the date form the form

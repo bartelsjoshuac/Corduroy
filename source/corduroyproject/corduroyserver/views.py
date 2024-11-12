@@ -6,7 +6,7 @@ from .models import Trails, Reports
 from .serializers import TrailsSerializer, ReportsSerializer
 from .forms import ReportForm, TrailForm, ReportApprovalForm
 
-# API viewsets for Trails and Reports models. this should have been split out in its own app
+# API viewsets for Trails and Reports models.
 class TrailsViewSet(viewsets.ModelViewSet):
     queryset = Trails.objects.all()
     serializer_class = TrailsSerializer

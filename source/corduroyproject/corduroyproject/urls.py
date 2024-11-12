@@ -1,4 +1,4 @@
-# These are the base project urls like the admin, we will add ours in the server
+# These are the base project urls like the admin, we will add ours in the server via the final line
 from django.contrib import admin
 from django.urls import path, include
 

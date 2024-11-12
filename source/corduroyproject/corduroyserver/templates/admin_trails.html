@@ -49,6 +49,7 @@
                             <td>
                                 <form method="post" style="display:inline;">
                                     {% csrf_token %}
+                                    <!-- Another place where I don't feel this is a secure way to do this and I need to handle it in the view-->
                                     <input type="hidden" name="delete" value="{{ trail.id }}">
                                     <button type="submit">Delete</button>
                                 </form>

@@ -18,7 +18,10 @@
             {% csrf_token %}
             <table>
                 <tr>
-                    <!-- Location will not appear unless there is at least one trail define in that location -->
+                    <!-- Location will not appear unless there is at least one trail defined in that location.
+                     I am not sure the best practive to handle exceptions for required default data, shipp with sample data, or 
+                     handle exception in the code.  
+                      -->
                     <td><label for="location">Location:</label></td>
                     <td>
                         <select id="location" name="location" onchange="updateTrails()">
@@ -46,23 +49,21 @@
                         <button type="submit">Submit Report</button>
                     </td>
                 </tr>
+                <!-- Removed the groomerID and the date as hidden fields to be taken from the request and handled by the view, but does that mean someone could still POST those attribute
+                value pairs since the view handles them, so this is an area where I am not sure how secure this is. 
+                -->
             </table>
         </form>
-        
         <p><a href="{% url 'homepage' %}">Back to Home</a></p>
     </div>
 
+    <!--Need security added-->
     <script>
         const trailsByLocation = {{ trails_by_location|safe }};
-        
         function updateTrails() {
             const location = document.getElementById('location').value;
-            const trailSelect = document.getElementById('id_trail');
-
-            // Clear existing options
+            const trailSelect = document.getElementById('id_trail');s
             trailSelect.innerHTML = '<option value="">Select Trail</option>';
-
-            // Populate trails based on selected location
             if (trailsByLocation[location]) {
                 trailsByLocation[location].forEach(trail => {
                     const option = document.createElement('option');

@@ -19,7 +19,7 @@ class TrailForm(forms.ModelForm):
         model = Trails
         fields = ['trailName', 'location', 'rating']  
 
-# Admin admin form for approvals
+# Admin admin-form for approvals
 class ReportApprovalForm(forms.ModelForm):
     class Meta:
         model = Reports
