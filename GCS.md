@@ -11,12 +11,12 @@
 
 ## Setting up your Compute Engine for Docker
 1. Connect to your install *gcloud compute ssh corduroy-vm* //Note you need to have a default SSH client installed like PuTTY  
-2. Switching to the new SSH terminal update the package listing *sudo apt update*  
-3. Install Docker *sudo apt install -y docker.io*  
-4. Get Docker Compose *sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose*  
-5. Change permissions *sudo chmod +x /usr/local/bin/docker-compose*  
-6. Add yourself to the Docker Group *sudo usermod -aG docker $USER*  
-7. Refresh the shell *newgrp docker*  
+2. Switching to the new SSH terminal update the package listing: *sudo apt update*  
+3. Install Docker: *sudo apt install -y docker.io*  
+4. Get Docker Compose: *sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose*  
+5. Change permissions: *sudo chmod +x /usr/local/bin/docker-compose*  
+6. Add yourself to the Docker Group: *sudo usermod -aG docker $USER*  
+7. Refresh the shell: *newgrp docker*  
 
 ## Setting up Coduroy
 1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source*    corduroy-vm:.* // As an alternative tranfer the zip or tar image and extract it remotely.    
