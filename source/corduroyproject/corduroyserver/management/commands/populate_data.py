@@ -11,31 +11,47 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Create sample Trails
+
         trail1, created = Trails.objects.get_or_create(
             trailName="Shrine Pass",
             location="Front Range",
-            rating=3
+            rating=1
         )
         trail2, created = Trails.objects.get_or_create(
             trailName="Owl Creek Road",
             location="San Juans",
-            rating=4
+            rating=2
         )
-
+        trail3, created = Trails.objects.get_or_create(
+            trailName="Sunlight",
+            location="Grand Mesa",
+            rating=3
+        )
+        trail4, created = Trails.objects.get_or_create(
+            trailName="Lake Loop",
+            location="Grand Lake",
+            rating=3
+        )
+        trail5, created = Trails.objects.get_or_create(
+            trailName="Snowy Mountains FSA",
+            location="Other",
+            rating=7
+        )
         # Create sample Reports
+        
         Reports.objects.get_or_create(
             approvalStatus=True,
             date=timezone.now().date(),
             groomer="groomy",
             trail=trail1,
-            report="The shrine looks good."
+            report="Initial Trail Creation by admin."
         )
         Reports.objects.get_or_create(
             approvalStatus=False,
             date=timezone.now().date(),
             groomer="groomy",
             trail=trail2,
-            report="More owls than ever"
+            report="Initial Trail Creation by admin"
         )
 
         self.stdout.write(self.style.SUCCESS('Sample data populated successfully'))

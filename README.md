@@ -14,9 +14,10 @@ The application will be written in Python using the Django framework with a Post
 
 ### *** NEW - now with instructions for running on GCS ***
 For hosting on Google Cloud with a Compute Engine follow these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
+
 NOTES:  
-- This assumes some familiarty with GCS and GCS Compute Engines  
-- This can take a very long time to build on micro or mini compute instances
+- This assumes some familiarty with GCS and GCS Compute Engines.  
+- This can take a very long time to build on micro or mini compute instances.  
 
 ## Prerequisites  
 - Docker verison 27
