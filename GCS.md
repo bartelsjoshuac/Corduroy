@@ -21,6 +21,9 @@
 2. Return to the SSH Engine *gcloud compute ssh corduroy-vm*.  
 3. Navigate to */source/corduroyproject*.    
 4. Start the container *docker-compose up -d*  // This will take a long time the first time.  
+5. Start a shell and create the Django SuperUser *docker-compose exec web bash*.  
+6. Populate the demo user *python manage.py populate_users*  
+7. Populate some sample data *python manage.py populate_data*  
 
 
 
