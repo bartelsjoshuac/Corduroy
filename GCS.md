@@ -18,7 +18,12 @@
 6. Add yourself to the Docker Group: *sudo usermod -aG docker $USER*  
 7. Refresh the shell: *sudo newgrp docker*  
 
-## Setting up Coduroy
+## Setting up Coduroy (using Git)
+1. Clone the repository: *git clone https://github.com/bartelsjoshuac/Corduroy*  
+2. *cd /Corduroy/source/corduroyproject*  
+3. Proceed from Step 4 below
+
+## Setting up Coduroy (manually for development as it is faster)
 1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* 
 3. Navigate to */source/corduroyproject*  
 4. Start the container: *docker-compose up -d*  // This will take a long time the first time.  
@@ -28,14 +33,13 @@
 8. Populate some sample data: *python manage.py populate_data*  
 9. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000
 
-NOTE: This will be updated to do a git pull request when I complete final coding, but it is to timely and cumbersome to develop local, push, pull docker-compose and test do to the time it takes GCS to build.  
-
 ## Going back to GCS  
 1. Set your project *gcloud config set project corduroy-project3*  
 2. List your instances and addresses: *gcloud compute instances list*  // See if your EXTERNAL_IP changed  
 3. Open a SSH window to your computer engine: *gcloud compute ssh corduroy-vm*
 4. Return to your work.  
 
+NOTE: You will need to setup billing for the project after leaving the GCS console API, even with a free tier
 
 
 

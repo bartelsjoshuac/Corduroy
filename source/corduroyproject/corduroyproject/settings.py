@@ -123,7 +123,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 '''
 
-# Much better, but less secuure, made my testing easier
+# Much better, but less secuure, made my testing easier, but not secure
+# Be nice to change this dynamically after deploy so we can build and deploy with a weak policy and then enforce a strong one
 AUTH_PASSWORD_VALIDATORS = []
 
 
@@ -158,3 +159,9 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 # This is required for GCS so clients from the internet can access it.
 ALLOWED_HOSTS = ['*']
+
+# Set inactive timeout for Django session
+SESSION_COOKIE_AGE = 1800 
+
+# Use transient vs. persistant cookies
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
