@@ -46,6 +46,9 @@ NOTES:
 - Login as groomy/password for access to create new grooming reports  
 - Login as admin to approve reports or add/delete trails  
 
+
+For hosting on Google Cloud with a Compute Engine  these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
+
 ## Samples  
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
 [Groomers Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png) &nbsp;&nbsp;&nbsp;

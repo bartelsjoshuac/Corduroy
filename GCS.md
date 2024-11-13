@@ -19,8 +19,8 @@
 ## Setting up Coduroy
 1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* // As an alternative tranfer the zip or tar image and extract it remotely.    
 2. Return to the SSH Engine *gcloud compute ssh corduroy-vm*.  
-3. Navigate to */source/corduroyproject*  
-4. Start the container *docker-compose up -d*  // This will take a long time the first time
+3. Navigate to */source/corduroyproject*.    
+4. Start the container *docker-compose up -d*  // This will take a long time the first time.  
 
 
 
