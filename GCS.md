@@ -21,7 +21,7 @@
 ## Setting up Coduroy (using Git)
 1. Clone the repository: *git clone https://github.com/bartelsjoshuac/Corduroy*  
 2. *cd /Corduroy/source/corduroyproject*  
-3. Proceed from Step 4 below
+3. Proceed from Step 3 below
 
 ## Setting up Coduroy (manually for development as it is faster)
 1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* 
