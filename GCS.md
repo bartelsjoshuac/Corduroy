@@ -22,10 +22,11 @@
 1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* 
 3. Navigate to */source/corduroyproject*  
 4. Start the container: *docker-compose up -d*  // This will take a long time the first time.  
-5. Start a shell and create the Django SuperUser: *docker-compose exec web bash*.  
-6. Populate the demo user: *python manage.py populate_users*  
-7. Populate some sample data: *python manage.py populate_data*  
-8. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000  
+5. Start a shell: *docker-compose exec web bash*
+6. create the Django SuperUser: *python manage.py createsuperuser*  
+7. Populate the demo user: *python manage.py populate_users*  
+8. Populate some sample data: *python manage.py populate_data*  
+9. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000  
 
 ## Going back to GCS  
 1. gcloud init //Select your project
