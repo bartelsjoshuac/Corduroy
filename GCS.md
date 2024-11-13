@@ -5,7 +5,9 @@
 2. Open a Google Cloud SDK Shell.   
 3. Create a new project *gcloud projects create corduroy-project*  
 4. Install the API *gcloud services enable compute.googleapis.com*  
-5. Create a micro instance *gcloud compute instances create corduroy-vm --machine-type=e2-micro  --image-family=debian-11 --image-project=debian-cloud --tags=http-server,https-server*   
+5. Create a micro instance *gcloud compute instances create corduroy-vm --machine-type=e2-micro  --image-family=debian-11 --image-project=debian-cloud --tags=http-server,https-server* 
+6. Open the firewall to allow access to port 8000 *gcloud compute firewall-rules create allow-port-8000 --allow tcp:8000 --source-ranges 0.0.0.0/0 --target-tags http-server*.  
+7. Find your *EXTERNAL_IP* as you will use this to access your server
 
 ## Setting up your Compute Engine for Docker
 1. Connect to your install *gcloud compute ssh corduroy-vm* //Note you need to have a default SSH client installed like PuTTY  
@@ -24,6 +26,8 @@
 5. Start a shell and create the Django SuperUser *docker-compose exec web bash*.  
 6. Populate the demo user *python manage.py populate_users*  
 7. Populate some sample data *python manage.py populate_data*  
+
+
 
 
 

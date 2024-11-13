@@ -156,3 +156,5 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'  
 
+# This is required for GCS so clients from the internet can access it.
+ALLOWED_HOSTS = ['*']
