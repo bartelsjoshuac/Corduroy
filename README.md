@@ -13,7 +13,8 @@ The application will be written in Python using the Django framework with a Post
 ## Installation
 
 ### *** NEW - now with instructions for running on GCS ***
-For hosting on Google Cloud with a Compute Engine  these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
+For hosting on Google Cloud with a Compute Engine follow these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
+NOTE:  This assumes some familiarty with GCS and GCS Compute Engines
 
 ## Prerequisites  
 - Docker verison 27
@@ -31,6 +32,7 @@ First time to create the superuser for Django Admin
 
 NOTES:   
 - On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random.  
+- There are subtle differences between unix and windows commands you will need to familize yourself with.  
 
 
 Normall execution after Getting Stated
@@ -40,7 +42,7 @@ Access the web interface:
 - Corduroy Interface http://localhost:8000/  
 - Django Admin Interface http://localhost:8000/admin   
 
-NOTES:   
+NOTES (for testing):   
 - Login as root/password for admin access and all functions and the Django admin
 - Login as groomy/password for access to create new grooming reports  
 - Login as admin to approve reports or add/delete trails  
