@@ -42,7 +42,10 @@
                 </tr>
                 <tr>
                     <td><label for="id_report">Report:</label></td>
-                    <td>{{ form.report }}</td>
+                    <!--Django doc says it can handle escaping input for XSS for me automatically 
+                    Is escaping needed for none text inputs????
+                    -->
+                    <td>{{ form.report|escape  }}</td>
                 </tr>
                 <tr>
                     <td colspan="2">

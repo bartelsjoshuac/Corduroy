@@ -18,7 +18,10 @@
                 {% for field in form %}
                     <tr>
                         <td>{{ field.label_tag }}</td>
-                        <td>{{ field }}</td>
+                    <!--Django doc says it can handle escaping input for XSS for me automatically 
+                    Is escaping needed for none text inputs????
+                    -->
+                    <td>{{ field|escape  }}</td>
                     </tr>
                 {% endfor %}
                 <tr>
