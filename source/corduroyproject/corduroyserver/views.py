@@ -22,22 +22,46 @@ def approved_reports_view(request):
     approved_reports = Reports.objects.filter(approvalStatus=True).order_by('-date')
     return render(request, 'index.html', {'approved_reports': approved_reports})
 
-# Groomer form
 @login_required
 def groomer_report_view(request):
+    # Check if the user is in the "groomers" group
     if not request.user.groups.filter(name="groomers").exists():
-        return render(request, 'not_authorized.html')  
+        return render(request, 'not_authorized.html')
 
     if request.method == 'POST':
         form = ReportForm(request.POST)
         if form.is_valid():
             report = form.save(commit=False)
-            report.groomer = request.user.username  
-            report.date = timezone.now().date() 
+            # Set the groomer to the authenticated user
+            report.groomer = request.user.username
+            # Set the current date
+            report.date = timezone.now().date()
             report.save()
-            return redirect('homepage')  
+            return redirect('homepage')
     else:
         form = ReportForm()
+
+    # Group trails by location for the select list
+    trails_by_location = {}
+    trails = Trails.objects.all()
+
+    if not trails.exists():
+        # If there are no trails, handle the case gracefully
+        return render(request, 'no_trails.html')
+
+    for trail in trails:
+        location = trail.location
+        if location not in trails_by_location:
+            trails_by_location[location] = []
+        trails_by_location[location].append({'id': trail.id, 'name': trail.trailName})
+
+    # Pass the form and trails data to the template
+    context = {
+        'form': form,
+        'trails_by_location': trails_by_location,
+    }
+
+    return render(request, 'groomer_report.html', context)
 
     # Group trails by location for the select list
     trails_by_location = {}
