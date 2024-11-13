@@ -16,11 +16,10 @@
 4. Get Docker Compose: *sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose*  
 5. Change permissions: *sudo chmod +x /usr/local/bin/docker-compose*  
 6. Add yourself to the Docker Group: *sudo usermod -aG docker $USER*  
-7. Refresh the shell: *newgrp docker*  
+7. Refresh the shell: *sudo newgrp docker*  
 
 ## Setting up Coduroy
-1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source*    corduroy-vm:.* // As an alternative tranfer the zip or tar image and extract it remotely.    
-2. Return to the SSH Engine *gcloud compute ssh corduroy-vm*.  
+1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* 
 3. Navigate to */source/corduroyproject*  
 4. Start the container *docker-compose up -d*  // This will take a long time the first time.  
 5. Start a shell and create the Django SuperUser *docker-compose exec web bash*.  
@@ -30,7 +29,7 @@
 
 ## Going back to GCS  
 1. gcloud compute instances list // Follow prompts to reconnect
-2. 
+2. 34.46.186.3
 
 
 
