@@ -17,10 +17,7 @@ Prerequisites
 - Docker verison 27
 - Python 3.11.9  // All Python requirements will be pulled  (see requirements.txt for details)
 - PostgresSQL 17 // Pulled from Dockerhub  
-
-tar -xzvf Source code.tar.gz  
-or  
-unzip Source code.zip 
+- tar -xzvf Source code.tar.gz or  unzip Source code.zip  
 
 ## Getting Started
 First time to create the superuser for Django Admin
@@ -47,7 +44,7 @@ NOTES:
 - Login as admin to approve reports or add/delete trails  
 
 
-For hosting on Google Cloud with a Compute Engine  these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
+For hosting on Google Cloud with a Compute Engine  these [instructions(]https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
 
 ## Samples  
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
