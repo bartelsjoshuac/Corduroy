@@ -14,12 +14,12 @@
 2. Switching to the new SSH terminal update the package listing *sudo apt update*  
 3. Install Docker *sudo apt install -y docker.io*  
 4. Get Docker Compose *sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose*  
-5. Fix it up *sudo chmod +x /usr/local/bin/docker-compose*  
+5. Change permissions *sudo chmod +x /usr/local/bin/docker-compose*  
 6. Add yourself to the Docker Group *sudo usermod -aG docker $USER*  
 7. Refresh the shell *newgrp docker*  
 
 ## Setting up Coduroy
-1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* // As an alternative tranfer the zip or tar image and extract it remotely.    
+1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source*    corduroy-vm:.* // As an alternative tranfer the zip or tar image and extract it remotely.    
 2. Return to the SSH Engine *gcloud compute ssh corduroy-vm*.  
 3. Navigate to */source/corduroyproject*.    
 4. Start the container *docker-compose up -d*  // This will take a long time the first time.  
@@ -28,6 +28,9 @@
 7. Populate some sample data *python manage.py populate_data*.  
 8. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000  
 
+## Going back to GCS  
+1. gcloud compute instances list // Follow prompts to reconnect
+2. 
 
 
 

@@ -9,9 +9,7 @@ In 2023/24 several clubs attempted to adapt an existing application and service 
 Corduroy aims to create a simnple interface for these "groomers" to enter their reports directly via a website (or app), allow a CSAA admin to approve and/or modify/approve the report before publishing it for the general public to view in an equally simple website(app).  
 
 The application will be written in Python using the Django framework with a PostgreSQL database and run as a Docker container.  The user interface will be mobile friendly HTML.
-
-
-
+# NEW
 ## Installation
 For hosting on Google Cloud with a Compute Engine  these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
 
