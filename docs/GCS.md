@@ -1,0 +1,27 @@
+# Google Computer Deployment Steps  
+
+## Create GCS Project and Compute Engine  
+1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/?hl=en)  
+2. Open a Google Cloud SDK Shell.   
+3. Create a new project *gcloud projects create corduroy-project*  
+4. Install the API *gcloud services enable compute.googleapis.com*  
+5. Create a micro instance *gcloud compute instances create corduroy-vm --machine-type=e2-micro  --image-family=debian-11 --image-project=debian-cloud --tags=http-server,https-server*   
+
+## Setting up your Compute Engine for Docker
+1. Connect to your install *gcloud compute ssh corduroy-vm* //Note you need to have a default SSH client installed like PuTTY  
+2. Switching to the new SSH terminal update the package listing *sudo apt update*  
+3. Install Docker *sudo apt install -y docker.io*  
+4. Get Docker Compose *sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose*  
+5. Fix it up *sudo chmod +x /usr/local/bin/docker-compose*  
+6. Add yourself to the Docker Group *sudo usermod -aG docker $USER*  
+7. Refresh the shell *newgrp docker*  
+
+## Setting up Coduroy
+1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* // As an alternative tranfer the zip or tar image and extract it remotely.    
+2. Return to the SSH Engine *gcloud compute ssh corduroy-vm*.  
+3. Navigate to */source/corduroyproject*  
+4. Start the container *docker-compose up -d*  // This will take a long time the first time
+
+
+
+
