@@ -1,4 +1,4 @@
-# Google Computer Deployment Steps  
+# Google Cloud (Compute Engine) Deployment Steps w/Docker
 
 ## Create GCS Project and Compute Engine  
 1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/?hl=en)  
