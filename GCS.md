@@ -26,7 +26,9 @@
 6. create the Django SuperUser: *python manage.py createsuperuser*  
 7. Populate the demo user: *python manage.py populate_users*  
 8. Populate some sample data: *python manage.py populate_data*  
-9. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000  
+9. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000
+
+NOTE: This will be updated to do a git pull request when I complete final coding, but it is to timely and cumbersome to develop local, push, pull docker-compose and test do to the time it takes GCS to build.  
 
 ## Going back to GCS  
 1. Set your project *gcloud config set project corduroy-project3*  
