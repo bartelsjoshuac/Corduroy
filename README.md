@@ -12,7 +12,7 @@ The application will be written in Python using the Django framework with a Post
 
 ## Installation
 
-### **NEW**
+### *** NEW ***
 For hosting on Google Cloud with a Compute Engine  these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
 
 Prerequisites  
