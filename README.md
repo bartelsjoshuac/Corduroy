@@ -15,7 +15,7 @@ The application will be written in Python using the Django framework with a Post
 ### *** NEW - now with instructions for running on GCS ***
 For hosting on Google Cloud with a Compute Engine  these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
 
-Prerequisites  
+## Prerequisites  
 - Docker verison 27
 - Python 3.11.9  // All Python requirements will be pulled  (see requirements.txt for details)
 - PostgresSQL 17 // Pulled from Dockerhub  
