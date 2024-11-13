@@ -29,9 +29,10 @@
 9. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000  
 
 ## Going back to GCS  
-1. gcloud init //Select your project
-2. gcloud compute instances list  // Follow prompts to reconnect to your project  
-3. Note your EXTERNAL_IP as it may have changed. 34.46.186.3
+1. Set your project *gcloud config set project corduroy-project3*  
+2. List your instances and addresses: *gcloud compute instances list*  // See if your EXTERNAL_IP changed  
+3. Open a SSH window to your computer engine: *gcloud compute ssh corduroy-vm*
+4. Return to your work.  
 
 
 
