@@ -44,7 +44,7 @@ NOTES:
 - Login as admin to approve reports or add/delete trails  
 
 
-For hosting on Google Cloud with a Compute Engine  these [instructions(]https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
+For hosting on Google Cloud with a Compute Engine  these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
 
 ## Samples  
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
