@@ -36,6 +36,7 @@ First time to create the superuser for Django Admin
 NOTES:   
 - On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random.  
 - There are subtle differences between unix and windows commands you will need to familize yourself with.  
+- There are several security settings in settings.py you may wish to play with, as certain features have been enabled for the sake of testing, and a few others were enabled for the sake of testing if they work (timeouts)
 
 
 Normall execution after Getting Stated
