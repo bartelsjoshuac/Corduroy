@@ -1,6 +1,6 @@
 # Google Cloud (Compute Engine) Deployment Steps w/Docker
 
-## Create GCS Project and Compute Engine  
+## Create GCS Project and Compute Engine with Billing  
 1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/?hl=en)  
 2. Open a Google Cloud SDK Shell.   
 3. Create a new project: *gcloud projects create corduroy-project*  
