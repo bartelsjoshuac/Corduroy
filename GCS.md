@@ -21,7 +21,7 @@
 ## Setting up Coduroy (using Git)
 1. Clone the repository: *git clone https://github.com/bartelsjoshuac/Corduroy*  
 2. *cd /Corduroy/source/corduroyproject*  
-3. Proceed from Step 3 below
+3. Proceed from Step 3 below.  
 
 ## Setting up Coduroy (manually for development as it is faster)
 1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* 
@@ -39,7 +39,7 @@
 3. Open a SSH window to your computer engine: *gcloud compute ssh corduroy-vm*
 4. Return to your work.  
 
-NOTE: You will need to setup billing for the project after leaving the GCS console API, even with a free tier
+NOTE: You will need to setup billing for the project after leaving the GCS console API, even with a free tier or you will have issues reconnecting.
 
 
 
