@@ -36,7 +36,7 @@
 ## Going back to GCS  
 1. Set your project *gcloud config set project corduroy-project3*  
 2. List your instances and addresses: *gcloud compute instances list*  // See if your EXTERNAL_IP changed  
-3. Open a SSH window to your computer engine: *gcloud compute ssh corduroy-vm*
+3. Open a SSH window to your computer engine: *gcloud compute ssh corduroy-vm* // You can also start a SSH session from the console.  
 4. Return to your work.  
 
 NOTE: You will need to setup billing for the project after leaving the GCS console API, even with a free tier or you will have issues reconnecting.
