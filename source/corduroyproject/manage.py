@@ -1,3 +1,5 @@
+
+# This all came from Django defaults
 import os
 import sys
 

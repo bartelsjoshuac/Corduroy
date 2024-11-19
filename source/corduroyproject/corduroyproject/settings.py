@@ -16,22 +16,11 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# I have no idea where this came from
 SECRET_KEY = 'django-insecure-%)fu@_2t7v-w79m25s&8a&v!0)-qlcje+1#d&&!1oq3(&=nf=w'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# This should be turned off for production
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
-
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -40,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Our app
+    # This is my API and the only non-default app 
     'corduroyserver',
 ]
 
@@ -54,13 +43,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# My API URLs file
 ROOT_URLCONF = 'corduroyproject.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        #'DIRS': [],
-        # Place to store our html templates
         'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -76,7 +64,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'corduroyproject.wsgi.application'
 
-
+# The old SQLlite DB default config, before I switched to PostGreSQL
 # Database (default)
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
@@ -87,7 +75,7 @@ WSGI_APPLICATION = 'corduroyproject.wsgi.application'
 #    }
 #}
 
-# Using to postgres
+# My new PostGreSQL database instance config
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -99,12 +87,11 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
-
 # This was driving me insane in testing as there is no override in the GUI like there is in the command line createsuperuser
+
+# This should be re-enabled for a production enviroment and it just the defaults
 '''
 AUTH_PASSWORD_VALIDATORS = [
     # Makes testing much easier, although insecure
@@ -132,11 +119,8 @@ AUTH_PASSWORD_VALIDATORS = []
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -147,21 +131,19 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Added for login logout functionality
+# Added for login/logout functionality and won't be needed with Ember
 LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'  
 
-# This is required for GCS so clients from the internet can access it.
+# This is required for GCS so clients from the internet can access it.  But should be restricted to just the Ember client
+# Since no one but the client should call the API.
 ALLOWED_HOSTS = ['*']
 
-# Set inactive timeout for Django session
+# Set inactive timeout for Django session.  I set this as it seemed to be unlimited by default
 SESSION_COOKIE_AGE = 1800 
 
-# Use transient vs. persistant cookies
+# Use transient vs. persistant cookies so that I am not always logged in.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
