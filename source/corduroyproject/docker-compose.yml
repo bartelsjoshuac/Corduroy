@@ -1,47 +1,29 @@
 version: '3.8'
 
 services:
-  web:
+  # Django Backend (corduroyserver)
+  corduroyserver:
     build: .
     ports:
-      - "8000:8000"          
+      - "8000:8000"  # Expose Django app on port 8000
     volumes:
-    ### Set the working directory to the app and copy files there
-      - .:/app
-    # This is questinable if it works, as all it makes sure is that the DB is running, not that it is listening on a port.
+      - .:/app  # Mount the current directory for live reloading
     depends_on:
-      - db
-    ### This is needed to insure that the web can restart and connect to the DN      
-    restart: always         
-    # This will pass the start command (and do the migration) at statup time, vs using CMD in the dockerfile for the web app itself.
+      - corduroydb  # Ensure the database is running before Django starts
+    restart: always
     command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    # Run this from the command line after starting the container to set a root password (iteractive)
 
-  # Run manually to setup the admin each time I trash the DB  
-  # docker compose up -d  // Run in backgroun so I can use the same terminal
-  # docker-compose exec web bash
-  # python manage.py createsuperuser
- 
-
-
- # This builds a new postgres DB each time but using the persistant volume
-  db:
+  # Postgres Database
+  corduroydb:
     image: postgres
     ports:
-      - "5432:5432"   
+      - "5432:5432"  # Expose Postgres on port 5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: corduroydb
     volumes:
-    # This is apparently just the standard so that it will persist the data.
-      - db-data:/var/lib/postgresql/data
- 
+      - db-data:/var/lib/postgresql/data  # Persist Postgres data across restarts
+
 volumes:
-  db-data:  # What is here?  This takes the top level folder and appends db-data to it, so dogserver_db-data 
-
-     
-
-        
-
-      
+  db-data:  # Persistent volume for Postgres data
