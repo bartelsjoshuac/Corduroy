@@ -1,4 +1,7 @@
 # This was added late by messing around in Github and not really working.  Well it is generating errors in github and strange behavior
+
+# Screw Git and it's genious ideas
+
 on:
     push:
         branches: [ main ]
