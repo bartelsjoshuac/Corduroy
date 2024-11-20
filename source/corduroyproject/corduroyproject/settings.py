@@ -139,10 +139,10 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'  
 
 # This is required for GCS so clients from the internet can access it.  But should be restricted to just the Ember client
-# Since no one but the client should call the API.
+# Since no one but the client should call the API, AKA in our case the internal IP or UP range of the GCS host, which is dynamic :-(
 ALLOWED_HOSTS = ['*']
 
-# Set inactive timeout for Django session.  I set this as it seemed to be unlimited by default
+# Set inactive timeout for Django session.  I set this as it seemed to be unlimited by default (update it is 14 days)
 SESSION_COOKIE_AGE = 1800 
 
 # Use transient vs. persistant cookies so that I am not always logged in.
