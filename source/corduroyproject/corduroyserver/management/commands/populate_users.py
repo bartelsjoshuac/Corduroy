@@ -44,6 +44,7 @@ class Command(BaseCommand):
             user2.groups.add(admins_group)
             user2.save()
 
+        # This account is only used for testing lack of access to functions that require group access
         user3, created = User.objects.get_or_create(username='nobody', email='nobody@example.com')
         if created:
             user3.set_password('password')
