@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Approval Admin</title>
     {% load static %}
+    <link rel="icon" href="{% static 'corduroyserver/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
     <style>
@@ -12,25 +13,27 @@
             color: #555;
             border: 1px solid #ddd;
             padding: 10px;
-            width: 100%;
+            width: 100%; /* Ensure it takes full width of its container */
+            box-sizing: border-box; /* Include padding and border in width calculation */
+            resize: none; /* Disable resizing */
+        }
+        td textarea {
+            max-width: 100%; /* Prevent it from exceeding the table cell width */
         }
         .success-message {
-    background-color: #ffffff; /* White background */
-    color: #004085; /* Blue text */
-    padding: 10px;
-    border: 1px solid #28a745 !important; /* Green border with priority */
-    border-radius: 5px;
-    margin-bottom: 10px;
-    display: block; /* Default display */
-    opacity: 0; /* Start invisible */
-}
-.success-message.show {
-    opacity: 1; /* Fully visible when shown */
-    transition: opacity 0.5s ease-in-out; /* Smooth fade-in and fade-out */
-}
-
-
-
+            background-color: #ffffff; /* White background */
+            color: #004085; /* Blue text */
+            padding: 10px;
+            border: 1px solid #28a745 !important; /* Green border with priority */
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: block; /* Default display */
+            opacity: 0; /* Start invisible */
+        }
+        .success-message.show {
+            opacity: 1; /* Fully visible when shown */
+            transition: opacity 0.5s ease-in-out; /* Smooth fade-in and fade-out */
+        }
     </style>
 </head>
 <body>
@@ -43,13 +46,10 @@
             x-transition.opacity.duration.500ms
             class="success-message"
             x-bind:style="{ opacity: showSuccess ? 1 : 0 }"
-            style="display: block; border: 2px solid red;"
         >
             Report approval status updated successfully.
         </div>
-<!--
-        <button @click="showSuccess = true">Test Success Message</button>
--->    
+
         <h2>Change Approval Status and View Report Text</h2>
         <form method="post" @submit.prevent="updateApproval">
             {% csrf_token %}
@@ -157,11 +157,9 @@
                                 this.reportText = 'No pending reports available.';
                                 this.approvalStatus = false;
                             }
-                            console.log("Success triggered. Setting showSuccess to true.");
                             this.showSuccess = true;
 
                             setTimeout(() => {
-                                console.log("Hiding success message.");
                                 this.showSuccess = false;
                             }, 3000); // Hide after 3 seconds
                         })
