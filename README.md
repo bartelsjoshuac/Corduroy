@@ -8,7 +8,7 @@ In 2023/24 several clubs attempted to adapt an existing application and service 
 
 Corduroy aims to create a simnple interface for these "groomers" to enter their reports directly via a website (or app), allow a CSAA admin to approve and/or modify/approve the report before publishing it for the general public to view in an equally simple website(app).  
 
-The application is written in Python using the Django framework with a PostgreSQL database and runs as a Docker container with just two images (more on that later).  The user interface is mobile friendly HTML eliminating the need for a mobile application.
+The application is written in Python using the Django framework with a PostgreSQL database and runs as a Docker container with just two images (more on that later).  The user interface is mobile friendly HTML and JavaScript utilizing Alpine.JS as the client side framework.  
 
 Project 1 was built of the same concepts we learned in Django with the DogAPI and using all Django code.
 
