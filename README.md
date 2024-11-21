@@ -46,20 +46,21 @@ NOTES:
 
 ## Prerequisites  
 - Docker verison 27
-- Python 3.11.9  // All Python requirements will be pulled  (see requirements.txt for details)
-- PostgresSQL 17 // Pulled from Dockerhub  
+- Python 3.11.9  // All Python requirements will be pulled  (see requirements.txt for details).  
+- PostgresSQL 17 // Pulled from Dockerhub.
+- Alpine.js //Included in HTML.  
 - tar -xzvf Source code.tar.gz or  unzip Source code.zip  
 
 ## Getting Started
-First time to create the superuser for Django Admin
-- docker compose up  -d  // Starts the webserver and database  
-- docker compose exec web bash   // Starts a shell in the container  
-- python manage.py createsuperuser  // Follow the prompts to create a user called root with a password of password   
-- python manage.py populate_users // Create groomy (groomy account) and corduroyadmin(admin account) and groomers and admins groups  
-- python manage.py populate_data // Populates some sample data  
+First time creation of the Django Admin superuser to view raw data.  
+- docker compose up  -d  // Starts the webserver and database.  
+- docker compose exec web bash   // Starts a shell in the container.  
+- python manage.py createsuperuser  // Follow the prompts to create a user called root with a password of password.  
+- python manage.py populate_users // Create groomy (groomy account) and corduroyadmin(admin account) and groomers and admins groups.  
+- python manage.py populate_data // Populates some sample data.  
 
 NOTES:   
-- On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random.  
+- On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random. 
 - There are subtle differences between unix and windows commands you will need to familize yourself with.  
 - There are several security settings that were disabled to make testing much easier, and to make a deployable application for submission.  Comments are available where these changes were made so that they can be reverted to at 
 least defaults or a more secure settings.  Examples include password policies, timeouts, etc.
@@ -69,12 +70,12 @@ Normal execution after Getting Stated
 
 Access the web interface:  
 - Corduroy Interface http://localhost:8000/  
-- Django Admin Interface http://localhost:8000/admin   
+- Django Admin Interface http://localhost:8000/admin  
 
 NOTES (for testing):   
 - Login as root/password for admin access and all functions and the Django admin
 - Login as groomy/password for access to create new grooming reports  
-- Login as admin to approve reports or add/delete trails    
+- Login as admin to approve reports or add/delete trails  
 
 ## Samples (from Project 1 submission phase before use Alpine)  
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
