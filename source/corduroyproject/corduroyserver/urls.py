@@ -40,3 +40,5 @@ urlpatterns = [
     # API viewsets
     path('api/', include(router.urls)),
 ]
+
+# I think I have some redundancy in there that could yet be cleaned up.

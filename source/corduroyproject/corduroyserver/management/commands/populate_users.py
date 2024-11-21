@@ -1,7 +1,8 @@
 # This create two groups, one for admins (admins) and one for groomers (groomers)
 # It creates two users, groomy and admin and adds them to the obvious associated group
 # It also assumes you used root in your createsuper command and adds root to both groups as otherwise even root can not get to the pages
-# - This is likely a more elegant way to determine who the superuser proglamatically and add them
+# This is likely a more elegant way to determine who the superuser proglamatically and add them however
+# It is intended for deploying the application in a demonstration only
 
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User, Group, Permission

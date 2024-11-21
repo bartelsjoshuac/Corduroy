@@ -73,9 +73,9 @@ Access the web interface:
 - Django Admin Interface http://localhost:8000/admin  
 
 NOTES (for testing):   
-- Login as root/password for admin access and all functions and the Django admin
-- Login as groomy/password for access to create new grooming reports  
-- Login as admin to approve reports or add/delete trails  
+- Login as root/password for admin access and all functions and the Django admin including raw data.  
+- Login as groomy/password for access to create new grooming reports.  
+- Login as admin to approve reports or add/delete trails.  You may wish to create new trails first unless you want to only work with the limited sample data. 
 
 ## Samples (from Project 1 submission phase before use Alpine)  
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;

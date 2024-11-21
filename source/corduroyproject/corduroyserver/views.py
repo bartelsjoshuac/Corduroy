@@ -23,9 +23,8 @@ class ReportsViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['patch'])
     def update_approval(self, request, pk=None):
-        """
-        Custom action to update the approval status of a report.
-        """
+
+        # Updates the approval status only for a report
         report = self.get_object()
         approval_status = request.data.get('approvalStatus')
         if approval_status is not None:
@@ -35,20 +34,15 @@ class ReportsViewSet(viewsets.ModelViewSet):
         return Response({'error': 'Invalid data'}, status=status.HTTP_400_BAD_REQUEST)
 
     def create(self, request, *args, **kwargs):
-        """
-        Custom create method to handle groomer report submissions.
-        Auto-populates groomer, date, and approvalStatus fields.
-        """
+        # Handle the new groomer reports with the auto date and authenticated user as the groomer that submitted the report
         data = request.data.copy()
-
-        # Check required fields
         if 'trail' not in data or 'report' not in data:
             return Response({'error': 'Missing required fields: trail or report'}, status=status.HTTP_400_BAD_REQUEST)
 
         # Add additional fields
         data['groomer'] = request.user.username  # Set groomer to logged-in user
         data['approvalStatus'] = False  # Default approval status
-        data['date'] = timezone.now().date()  # Current date
+        data['date'] = timezone.now().date()  # Current date, would be nice to add time with the date?
 
         # Serialize and save
         serializer = self.get_serializer(data=data)
@@ -57,22 +51,18 @@ class ReportsViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-# API endpoint to serve approved reports for dynamic front-end
+# API endpoint to serve approved reports for Alpine in JSON vs HTML
 def approved_reports_view(request):
-    """
-    Returns JSON response with approved reports for dynamic rendering.
-    """
     if request.method == 'GET':
         reports = Reports.objects.filter(approvalStatus=True).select_related('trail').order_by('-date')
         serializer = ReportsSerializer(reports, many=True)
         return JsonResponse(serializer.data, safe=False)
 
 
-# Homepage view for server-side rendering (optional)
+# Homepage view for server-side rendering in Alpine
 def homepage_view(request):
     approved_reports = Reports.objects.filter(approvalStatus=True).order_by('-date')
     return render(request, 'index.html', {'approved_reports': approved_reports})
-
 
 @login_required
 def groomer_report_view(request):
@@ -139,9 +129,6 @@ def admin_trails_view(request):
 
 @login_required
 def admin_approval_view(request):
-    """
-    Admin view for approving or rejecting reports.
-    """
     if not request.user.groups.filter(name="admins").exists():
         return render(request, 'not_authorized.html')
 
@@ -162,3 +149,5 @@ def admin_approval_view(request):
         'form': form,
         'reports': reports,
     })
+
+# Again there is some redundancy in here to clean up, leftover from the dogapi days and Django
