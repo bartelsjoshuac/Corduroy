@@ -5,37 +5,37 @@
     <title>Approval Admin</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container" x-data="approvalAdmin()" x-init="initializeReports()">
         <h1>Pending Reports Admin</h1>
         
         <h2>Change Approval Status and View Report Text</h2>
-        <form method="post">
+        <form method="post" @submit.prevent="updateApproval">
             {% csrf_token %}
             <table>
                 <tr>
                     <td><label for="report_id">Select Report:</label></td>
                     <td>
-                        <select name="report_id" id="report_id" onchange="updateReportText()">
-                            {% for report in reports %}
-                                <option value="{{ report.id }}" data-text="{{ report.report|escapejs }}">
-                                    {{ report.trail.trailName }} - {{ report.date }} - 
-                                    {% if report.approvalStatus %}Approved{% else %}Not Approved{% endif %}
-                                </option>
-                            {% endfor %}
+                        <select id="report_id" name="report_id" x-model="selectedReportId" @change="updateReportText()">
+                            <option value="">Select a Report</option>
+                            <template x-for="report in reports" :key="report.id">
+                                <option :value="report.id" x-text="`${report.trail.trailName} - ${report.date} - ${report.approvalStatus ? 'Approved' : 'Not Approved'}`"></option>
+                            </template>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>{{ form.approvalStatus.label_tag }}</td>
-                    <td>{{ form.approvalStatus }} (unchecked to un-approve)</td>
-                </tr>
-                <!-- Display the selected report's text in a read-only textarea.  However I doubt this is a secure way to do this, so hopefully I can do something in the view??? -->
-                <tr>
-                    <td><label for="report_text">Report Text(read only):</label></td>
+                    <td>Approval Status:</td>
                     <td>
-                        <textarea id="report_text" rows="4" cols="50" readonly></textarea>
+                        <input type="checkbox" id="approvalStatus" x-model="approvalStatus"> (unchecked to un-approve)
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="report_text">Report Text (read only):</label></td>
+                    <td>
+                        <textarea id="report_text" rows="4" cols="50" readonly x-text="reportText"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -50,16 +50,64 @@
     </div>
 
     <script>
-        // JavaScript to update the report text textarea when a new report is selected
-        function updateReportText() {
-            const reportSelect = document.getElementById("report_id");
-            const selectedOption = reportSelect.options[reportSelect.selectedIndex];
-            const reportText = selectedOption.getAttribute("data-text") || "";
-            document.getElementById("report_text").value = reportText;
-        }
+        function approvalAdmin() {
+            return {
+                reports: [], // List of reports fetched from the backend
+                selectedReportId: '', // Currently selected report ID
+                approvalStatus: false, // Approval status for the selected report
+                reportText: '', // Text of the selected report
 
-        // Initialize the textarea with the first report's text when the page loads
-        document.addEventListener("DOMContentLoaded", updateReportText);
+                initializeReports() {
+                    // Fetch the reports data from the backend
+                    fetch('/api/reports/')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.reports = data.filter(report => !report.approvalStatus); // Only show pending reports
+                            if (this.reports.length > 0) {
+                                this.selectedReportId = this.reports[0].id; // Auto-select the first report
+                                this.updateReportText();
+                            }
+                        });
+                },
+
+                updateReportText() {
+                    // Update the report text and approval status based on the selected report
+                    const selectedReport = this.reports.find(report => report.id === this.selectedReportId);
+                    if (selectedReport) {
+                        this.reportText = selectedReport.report;
+                        this.approvalStatus = selectedReport.approvalStatus;
+                    } else {
+                        this.reportText = '';
+                        this.approvalStatus = false;
+                    }
+                },
+
+                updateApproval() {
+                    // Send the updated approval status to the backend
+                    fetch(`/api/reports/${this.selectedReportId}/`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}', // CSRF token for security
+                        },
+                        body: JSON.stringify({ approvalStatus: this.approvalStatus }),
+                    })
+                        .then(response => {
+                            if (!response.ok) throw new Error('Failed to update approval status');
+                            return response.json();
+                        })
+                        .then(updatedReport => {
+                            // Update the local reports list
+                            const index = this.reports.findIndex(report => report.id === updatedReport.id);
+                            if (index !== -1) {
+                                this.reports.splice(index, 1, updatedReport);
+                            }
+                            alert('Approval status updated successfully.');
+                        })
+                        .catch(error => console.error(error));
+                },
+            };
+        }
     </script>
 </body>
 </html>
