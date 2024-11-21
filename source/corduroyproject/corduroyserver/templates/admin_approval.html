@@ -6,11 +6,45 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
+    <style>
+        textarea[readonly] {
+            background-color: #f5f5f5;
+            color: #555;
+            border: 1px solid #ddd;
+            padding: 10px;
+            width: 100%;
+        }
+        .success-message {
+            background-color: #ffffff; /* White background */
+            color: #004085; /* Blue text */
+            padding: 10px;
+            border: 1px solid #b8daff; /* Light blue border */
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: block; /* Default display */
+            opacity: 0; /* Default opacity for debugging */
+}
+
+
+    </style>
 </head>
 <body>
     <div class="container" x-data="approvalAdmin()" x-init="initializeReports()">
         <h1>Pending Reports Admin</h1>
-        
+
+        <!-- Success message -->
+        <div
+            x-show="showSuccess"
+            x-transition.opacity.duration.500ms
+            class="success-message"
+            x-bind:style="{ opacity: showSuccess ? 1 : 0 }"
+            style="display: block; border: 2px solid red;"
+        >
+            Report approval status updated successfully.
+        </div>
+<!--
+        <button @click="showSuccess = true">Test Success Message</button>
+-->    
         <h2>Change Approval Status and View Report Text</h2>
         <form method="post" @submit.prevent="updateApproval">
             {% csrf_token %}
@@ -21,7 +55,7 @@
                         <select id="report_id" name="report_id" x-model="selectedReportId" @change="updateReportText()">
                             <option value="">Select a Report</option>
                             <template x-for="report in reports" :key="report.id">
-                                <option :value="report.id" x-text="`${report.trail.trailName} - ${report.date} - ${report.approvalStatus ? 'Approved' : 'Not Approved'}`"></option>
+                                <option :value="report.id" x-text="`${report.trail_name} - ${report.date} - ${report.approvalStatus ? 'Approved' : 'Not Approved'}`"></option>
                             </template>
                         </select>
                     </td>
@@ -35,16 +69,19 @@
                 <tr>
                     <td><label for="report_text">Report Text (read only):</label></td>
                     <td>
-                        <textarea id="report_text" rows="4" cols="50" readonly x-text="reportText"></textarea>
+                        <textarea id="report_text" rows="4" readonly x-text="reportText"></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <button type="submit">Update Approval Status</button>
+                        <button type="submit" :disabled="!selectedReportId">Update Approval Status</button>
                     </td>
                 </tr>
             </table>
         </form>
+
+        <!-- Message for no pending reports -->
+        <p x-show="reports.length === 0">No pending reports available.</p>
         
         <p><a href="{% url 'homepage' %}">Back to Home</a></p>
     </div>
@@ -56,9 +93,9 @@
                 selectedReportId: '', // Currently selected report ID
                 approvalStatus: false, // Approval status for the selected report
                 reportText: '', // Text of the selected report
+                showSuccess: false, // Controls visibility of the success message
 
                 initializeReports() {
-                    // Fetch the reports data from the backend
                     fetch('/api/reports/')
                         .then(response => response.json())
                         .then(data => {
@@ -66,13 +103,20 @@
                             if (this.reports.length > 0) {
                                 this.selectedReportId = this.reports[0].id; // Auto-select the first report
                                 this.updateReportText();
+                            } else {
+                                this.selectedReportId = '';
+                                this.reportText = 'No pending reports available.';
+                                this.approvalStatus = false;
                             }
+                        })
+                        .catch(error => {
+                            console.error("Failed to fetch reports:", error);
+                            alert('Failed to load reports. Please refresh the page.');
                         });
                 },
 
                 updateReportText() {
-                    // Update the report text and approval status based on the selected report
-                    const selectedReport = this.reports.find(report => report.id === this.selectedReportId);
+                    const selectedReport = this.reports.find(report => report.id === parseInt(this.selectedReportId));
                     if (selectedReport) {
                         this.reportText = selectedReport.report;
                         this.approvalStatus = selectedReport.approvalStatus;
@@ -83,12 +127,11 @@
                 },
 
                 updateApproval() {
-                    // Send the updated approval status to the backend
                     fetch(`/api/reports/${this.selectedReportId}/`, {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json',
-                            'X-CSRFToken': '{{ csrf_token }}', // CSRF token for security
+                            'X-CSRFToken': '{{ csrf_token }}',
                         },
                         body: JSON.stringify({ approvalStatus: this.approvalStatus }),
                     })
@@ -97,14 +140,30 @@
                             return response.json();
                         })
                         .then(updatedReport => {
-                            // Update the local reports list
                             const index = this.reports.findIndex(report => report.id === updatedReport.id);
                             if (index !== -1) {
-                                this.reports.splice(index, 1, updatedReport);
+                                this.reports.splice(index, 1);
                             }
-                            alert('Approval status updated successfully.');
+                            if (this.reports.length > 0) {
+                                this.selectedReportId = this.reports[0].id;
+                                this.updateReportText();
+                            } else {
+                                this.selectedReportId = '';
+                                this.reportText = 'No pending reports available.';
+                                this.approvalStatus = false;
+                            }
+                            console.log("Success triggered. Setting showSuccess to true.");
+                            this.showSuccess = true;
+
+                            setTimeout(() => {
+                                console.log("Hiding success message.");
+                                this.showSuccess = false;
+                            }, 3000); // Hide after 3 seconds
                         })
-                        .catch(error => console.error(error));
+                        .catch(error => {
+                            console.error("Approval update failed:", error);
+                            alert('Failed to update approval status. Please try again.');
+                        });
                 },
             };
         }
