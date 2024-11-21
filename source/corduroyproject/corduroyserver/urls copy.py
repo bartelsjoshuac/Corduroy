@@ -20,10 +20,10 @@ router.register(r'reports', ReportsViewSet)
 urlpatterns = [
     # Authentication
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),  # Redirect logout to homepage
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
-    # Homepage view
-    path('', homepage_view, name='homepage'),
+    # Homepage view.  This was needed to render a page with Alpine on / vs /index.html only as it was spitting out JSON page instead of using the template.
+    path('', homepage_view, name='homepage'),  
 
     # API endpoint for approved reports
     path('approved-reports/', approved_reports_view, name='approved_reports'),  # JSON API endpoint for reports
