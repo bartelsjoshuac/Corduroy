@@ -5,6 +5,7 @@
     <title>Groomer Admin</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -14,25 +15,28 @@
             <p class="error">Please correct the errors below:</p>
         {% endif %}
 
-        <form method="post">
+        <form method="post" x-data="groomerForm()" x-init="initializeTrails()">
             {% csrf_token %}
             <table>
                 <tr>
                     <td><label for="location">Location:</label></td>
                     <td>
-                        <select id="location" name="location" onchange="updateTrails()">
+                        <select id="location" name="location" x-model="selectedLocation" @change="updateTrails()">
                             <option value="">Select Location</option>
-                            {% for location in trails_by_location.keys %}
-                                <option value="{{ location }}">{{ location }}</option>
-                            {% endfor %}
+                            <template x-for="(trails, location) in trailsByLocation" :key="location">
+                                <option :value="location" x-text="location"></option>
+                            </template>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td><label for="id_trail">Trail Name:</label></td>
                     <td>
-                        <select id="id_trail" name="trail">
+                        <select id="id_trail" name="trail" x-model="selectedTrail">
                             <option value="">Select Trail</option>
+                            <template x-for="trail in filteredTrails" :key="trail.id">
+                                <option :value="trail.id" x-text="trail.name"></option>
+                            </template>
                         </select>
                     </td>
                 </tr>
@@ -51,35 +55,33 @@
         <p><a href="{% url 'homepage' %}">Back to Home</a></p>
     </div>
 
-    <!-- JavaScript to handle dropdown update -->
     <script>
-        // Define the trails_by_location object directly from the Django context variable
-        const trailsByLocation = {
-            {% for location, trails in trails_by_location.items %}
-                "{{ location }}": [
-                    {% for trail in trails %}
-                        { id: "{{ trail.id }}", name: "{{ trail.name }}" },
-                    {% endfor %}
-                ],
-            {% endfor %}
-        };
+        function groomerForm() {
+            return {
+                trailsByLocation: {}, // Loaded from the backend
+                selectedLocation: '', // Currently selected location
+                selectedTrail: '', // Currently selected trail
+                filteredTrails: [], // Trails for the selected location
 
-        function updateTrails() {
-            const location = document.getElementById('location').value;
-            const trailSelect = document.getElementById('id_trail');
+                initializeTrails() {
+                    // Populate trailsByLocation from the Django context
+                    this.trailsByLocation = {
+                        {% for location, trails in trails_by_location.items %}
+                            "{{ location }}": [
+                                {% for trail in trails %}
+                                    { id: "{{ trail.id }}", name: "{{ trail.name }}" },
+                                {% endfor %}
+                            ],
+                        {% endfor %}
+                    };
+                },
 
-            // Clear the existing options
-            trailSelect.innerHTML = '<option value="">Select Trail</option>';
-
-            // Populate the trail dropdown based on the selected location
-            if (trailsByLocation[location]) {
-                trailsByLocation[location].forEach(trail => {
-                    const option = document.createElement('option');
-                    option.value = trail.id;
-                    option.textContent = trail.name;
-                    trailSelect.appendChild(option);
-                });
-            }
+                updateTrails() {
+                    // Update the trails based on the selected location
+                    this.filteredTrails = this.trailsByLocation[this.selectedLocation] || [];
+                    this.selectedTrail = ''; // Reset the selected trail
+                },
+            };
         }
     </script>
 </body>

@@ -37,7 +37,7 @@
             <tbody>
                 <template x-for="report in reports" :key="report.id">
                     <tr>
-                        <!-- Alpine use this field format -->
+                        <!-- Alpine uses this field format -->
                         <td x-text="report.trail_name"></td>
                         <td x-text="report.location"></td>
                         <td x-text="report.groomer"></td>
@@ -60,6 +60,7 @@
         {% if user.is_authenticated %}
         <p>Logged in as: {{ user.username }}</p>
         <form action="{% url 'logout' %}" method="post">
+            <!-- Need in very form, and easy to miss-->
             {% csrf_token %}
             <button type="submit">Logout</button>
         </form>
