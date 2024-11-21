@@ -6,22 +6,25 @@
     {% load static %}
     <link rel="icon" href="{% static 'corduroyserver/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
-    <style>
-
-        .homepage-image {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%; 
-        }
-    </style>
+    <!--use Alpine.js to render our approved trail reports-->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
 </head>
 <body>
-<h1>Welcome to Corduroy</h1>
-<h3>Home of Colorado Snowmobile Trail Grooming Reports</h3>
-    <div class="container">
+    <header>
+        <h1>Welcome to Corduroy</h1>
+        <h3>Home of Colorado Snowmobile Trail Grooming Reports</h3>
+    </header>
+
+    <div class="container" x-data="{ reports: [], loading: true }" x-init="
+        fetch('/approved-reports/')
+            .then(response => response.json())
+            .then(data => { reports = data; loading = false; });
+    ">
         <h1>Current Reports</h1>
-        <table>
+        <!-- Cool Alpine trick if there is a lot of data, however this also appears if there are NO reports, which should never happen but would be more
+         user friendly to also trap that-->
+        <p class="loading-message" x-show="loading">Loading reports...</p>
+        <table x-show="!loading && reports.length > 0">
             <thead>
                 <tr>
                     <th>Trail Name</th>
@@ -32,40 +35,38 @@
                 </tr>
             </thead>
             <tbody>
-                {% for report in approved_reports %}
+                <template x-for="report in reports" :key="report.id">
                     <tr>
-                        <td>{{ report.trail.trailName }}</td>
-                        <td>{{ report.trail.location }}</td>
-                        <td>{{ report.groomer }}</td>
-                        <td>{{ report.date }}</td>
-                        <td>{{ report.report }}</td>
+                        <!-- Alpine use this field format -->
+                        <td x-text="report.trail_name"></td>
+                        <td x-text="report.location"></td>
+                        <td x-text="report.groomer"></td>
+                        <td x-text="new Date(report.date).toLocaleDateString()"></td>
+                        <td x-text="report.report"></td>
                     </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="5">No approved reports.</td>
-                    </tr>
-                {% endfor %}
+                </template>
             </tbody>
         </table>
+        <p class="empty-message" x-show="!loading && reports.length === 0">No approved reports found.</p>
     </div>
-    
-    <br>
-    <p>Admin Functions:</p>
-   
-    <a href="{% url 'groomer_report_page' %}">Enter Report (Groomers)</a> &nbsp 
-    <a href="{% url 'admin_trails' %}">Manage Trails (Admins)</a> &nbsp 
-    <a href="{% url 'admin_approval' %}">Approve Pending Reports (Admins)</a>
-   
-    {% if user.is_authenticated %}
-    <p>Logged in as: {{ user.username }} &nbsp
-    <form action="{% url 'logout' %}" method="post">
-        {% csrf_token %}
-        <button type="submit">Logout</button>
-    </form>
-    {% endif %}
+
+    <footer>
+        <br>
+        <p>Admin Functions:</p>
+        <a href="{% url 'groomer_report_page' %}">Enter Report (Groomers)</a> &nbsp;
+        <a href="{% url 'admin_trails' %}">Manage Trails (Admins)</a> &nbsp;
+        <a href="{% url 'admin_approval' %}">Approve Pending Reports (Admins)</a>
+
+        {% if user.is_authenticated %}
+        <p>Logged in as: {{ user.username }}</p>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+        {% endif %}
+    </footer>
 
     <!-- Centered image -->
     <img src="{% static 'corduroyserver/sled.png' %}" alt="Blue sled" class="homepage-image">
-
 </body>
 </html>

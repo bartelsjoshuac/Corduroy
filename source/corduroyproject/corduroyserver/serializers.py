@@ -7,6 +7,10 @@ class TrailsSerializer(serializers.ModelSerializer):
         fields = ['id', 'trailName', 'location', 'rating']
 
 class ReportsSerializer(serializers.ModelSerializer):
+    # Include trail details from the related Trails model
+    trail_name = serializers.CharField(source='trail.trailName')
+    location = serializers.CharField(source='trail.location')
+
     class Meta:
         model = Reports
-        fields = ['id', 'approvalStatus', 'date', 'groomer', 'trail', 'report']
+        fields = ['id', 'approvalStatus', 'date', 'groomer', 'trail', 'trail_name', 'location', 'report']
