@@ -91,7 +91,9 @@ def groomer_report_view(request):
 
 @login_required
 def admin_trails_view(request):
-    # Ensure the user is in the admins group
+    """
+    Admin view for managing trails.
+    """
     if not request.user.groups.filter(name="admins").exists():
         return render(request, 'not_authorized.html')
 
