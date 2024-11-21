@@ -10,6 +10,7 @@ Corduroy aims to create a simnple interface for these "groomers" to enter their 
 
 The application is written in Python using the Django framework with a PostgreSQL database and runs as a Docker container with just two images (more on that later).  The user interface is mobile friendly HTML and JavaScript utilizing Alpine.JS as the client side framework.  
 
+## Project Details
 Project 1 was built of the same concepts we learned in Django with the DogAPI and using all Django code.
 
 For project 2 started to re-design in Ember, as Ember is what I did in the client side lab exercise.  That exercise was difficult, even with step-by-step instruction as Ember is not something you just master overnight or in one exercise.  Ember is extremely large (60k files and 325mb) before you write a single line of code.  I don't know the reason for this, other than it seems to have every possible feature you could ever need (that I did not).  Ember was also broke mid project with the release of a bad Beta 6 as the LTS version (which can be corrected by forcing 5.8 as 6 was still broke as of 11/27).  Ember made commits extremely time consuming, and build times were extremely long with Ember.  You have to rebuild for every change which meant changing a single line of code would need 10 minutes to test, even on a 16 core machine.  Dynamic testing was possible (like in the lab) outside of Docker, that required running Django outside of Docker as well as PostGres, which added to the setup and took a step backwards from the deployment methodology.
@@ -24,13 +25,15 @@ I was semi-familiar with jQuery, as I see jQuery used in nearly every applicatio
 2. Create nice dynamic informational and error message, like if you forgot to select a trail rating, etc.  Without having to submit the form and wait for the server.
 3. Display a feedback message inline with the page in a nice format, vs. submit and wait, AKA tradditional web design.  Again asteically pleasing user feedback.
 
-Alpine.js also did not require a seperate application server or docker image, it worked with my existing Django templates, with significant modifications, but ones I could understand, something I had a very difficult time doing with Ember and React.  In less than 8 hours, I was able to get 3 templates working semi-nice with Alpine and reusing a significant amount of code between them.
+Alpine allowed the project to maintain a compact footprint.  Project 1 had a 4 MB code base, Project 2 (with Alpine) increased that to just 16 MB.  The complete sever and client produced a 1.6 GB server/client and a 600MB database.  Contrasting that to Ember, before development, Ember produced a 325MB code base and a 7 GB docker image.  This is likely because of Ember and React's node.js requirement.
 
-Lastly, the very name Alpine.js was very fitting to my Coduroy Snowmobile trail report application for the high alpine areas of the Rocky Mountains.  As a side note, the name Corduroy was dereived from the corduroy pants look left in the surface of the snow after a mechanized snow groomer passes over it.  The term is shared among skiers and snowmobilers alike as a similiar machine is used to produce both.
+Alpine.js also did not require a seperate application server or docker image, it worked with my existing Django templates, with significant modifications, but ones I could understand, something I had a very difficult time doing with Ember and React.  In less than 8 hours, I was able to get my templates and existing working semi-nice with Alpine and reusing a significant amount of code between them.
 
-ChatGPT was used to do some of the heavy lifting and repeitive work to incorperate Alpine into my Django templates.  Most of its use was in debugging features as I tried to make the application more dynamic.  For example I found I would frequently break an entire template, spend a very lone time trying to find an obscure typo that Django allowed, but caused a form to not submit or not save the data.  Correlating the developer console errors in the browser with the Javascript can be very time consuming and ChatGPT can often spot the simplest of errors instantly when provided the code and the console error.  It is also very good when you ask it to take code that should be working, but is not and all you want it to do is pack it full of debug statements so that you can then run it see where the problem lies.  Simiilary, you can then have it remove all those debug statements once it is working, without the risk of breaking something by accdident again.  I found myself manually adding debug statements, that they need to be manually debugged themselves, or removing debug statements from working code, only to have the absence of debugging statements again break the functionality, which is not only time consuming, but frusterating as well.
+Lastly, the very name Alpine.js was very fitting to my Coduroy Snowmobile trail report application for the high alpine areas of the Rocky Mountains, although that is merely coincidence.  As a side note, the name Corduroy was dereived from the corduroy pants look left in the surface of the snow after a mechanized snow groomer passes over it.  The term is shared among skiers and snowmobilers alike as a similiar machine is used to produce both.
 
-Lastly I went ahead and did the Google Cloud hosting as GCS was something I had basic knowledge of already, and quite frankly, I did that when Prject 2 was announced and before it was optional.  Once everything is working locally in Docker, deploying it with GCS is relatively straight forward if you understand GCS.  GCS of course no place to try and develop code as GCS cheaper VMs are extremely slow for building.
+ChatGPT was used to do some of the heavy lifting and repeitive work to incorperate Alpine into my Django templates. My CSS was courtesy of a CSS website for common simple and readable mobile friendly pages.  Most of ChatGPT's use was in debugging features as I tried to make the application more dynamic.  For example I found I would frequently break an entire template, spend a very lone time trying to find an obscure typo that Django allowed (because it does not care what you do in Javascript), but caused a form to not submit or not save the data.  Correlating the developer console errors in the browser with the Javascript can be very time consuming and ChatGPT can often spot the simplest of typos instantly when provided the code and the console error.  It is also very good when you ask it to take code that should be working, but is not and all you want it to do is pack it full of debug statements so that you can then run it see where the problem lies and fix it yourself in the case where you logic was just wrong.  Simiilary, you can then have it remove all those debug statements once it is working, without the risk of breaking something by accdident again.  I found myself manually adding debug statements, that they needed to be manually debugged themselves, or removing debug statements from working code, only to have the absence of debugging statements again break the functionality, which is not only time consuming, but frusterating as well.
+
+Lastly I went ahead and did the Google Cloud hosting as GCS was something I had basic knowledge of already, and quite frankly, I did that when Prject 2 was announced and before it was optional using just the Project 1 code base.  Once everything is working locally in Docker, deploying it with GCS is relatively straight forward if you understand GCS a little.  GCS of course is no place to try and develop code as GCS cheaper VMs are extremely slow for building.
 
 ## Installation
 
@@ -61,7 +64,7 @@ NOTES:
 - There are several security settings that were disabled to make testing much easier, and to make a deployable application for submission.  Comments are available where these changes were made so that they can be reverted to at 
 least defaults or a more secure settings.  Examples include password policies, timeouts, etc.
 
-Normall execution after Getting Stated
+Normal execution after Getting Stated
 - docker compose up -d
 
 Access the web interface:  
@@ -71,16 +74,13 @@ Access the web interface:
 NOTES (for testing):   
 - Login as root/password for admin access and all functions and the Django admin
 - Login as groomy/password for access to create new grooming reports  
-- Login as admin to approve reports or add/delete trails  
+- Login as admin to approve reports or add/delete trails    
 
-
-
-## Samples (from Project one submission phase before use Alpine)  
+## Samples (from Project 1 submission phase before use Alpine)  
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
 [Groomers Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png) &nbsp;&nbsp;&nbsp;
 [Trails Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/trailsadmin.png) &nbsp;&nbsp;&nbsp;
 [Approval Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/admin.png) &nbsp;&nbsp;&nbsp;
-
 
 ## License
 The MIT License (MIT)
