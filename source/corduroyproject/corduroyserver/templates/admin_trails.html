@@ -7,22 +7,22 @@
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
     <style>
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            border: 1px solid #c3e6cb;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            display: none;
-        }
-        .success-message.show {
-            display: block;
-        }
-        textarea[readonly], input {
-            padding: 8px;
-            margin: 5px 0;
-        }
+.success-message {
+    background-color: #ffffff; /* White background */
+    color: #004085; /* Blue text */
+    padding: 10px;
+    border: 1px solid #28a745 !important; /* Green border with priority */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: block; /* Default display */
+    opacity: 0; /* Start invisible */
+}
+.success-message.show {
+    opacity: 1; /* Fully visible when shown */
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-in and fade-out */
+}
+
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -44,9 +44,17 @@
         <h1>Trails Admin</h1>
 
         <!-- Success Message -->
-        <div x-show="showSuccess" x-transition.opacity.duration.500ms class="success-message">
+        <div
+            x-show="showSuccess"
+            x-transition.opacity.duration.500ms
+            class="success-message"
+            x-bind:style="{ opacity: showSuccess ? 1 : 0 }"
+            style="display: block; border: 2px solid red;"
+        >
             Trail added successfully.
         </div>
+
+        <button @click="showSuccess = true">Test Success Message</button>
 
         <h2>Add a New Trail</h2>
         <form @submit.prevent="addTrail">
@@ -143,8 +151,10 @@
                         .then(addedTrail => {
                             this.trails.push(addedTrail); // Add the new trail to the list
                             this.newTrail = { trailName: '', location: '', rating: 1 }; // Reset the form
+                            console.log("Trail added successfully. Showing success message.");
                             this.showSuccess = true; // Show the success message
                             setTimeout(() => {
+                                console.log("Hiding success message.");
                                 this.showSuccess = false; // Hide the message after 3 seconds
                             }, 3000);
                         })
