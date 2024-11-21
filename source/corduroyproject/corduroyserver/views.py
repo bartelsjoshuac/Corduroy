@@ -34,6 +34,28 @@ class ReportsViewSet(viewsets.ModelViewSet):
             return Response({'status': 'Approval status updated'}, status=status.HTTP_200_OK)
         return Response({'error': 'Invalid data'}, status=status.HTTP_400_BAD_REQUEST)
 
+    def create(self, request, *args, **kwargs):
+        """
+        Custom create method to handle groomer report submissions.
+        Auto-populates groomer, date, and approvalStatus fields.
+        """
+        data = request.data.copy()
+
+        # Check required fields
+        if 'trail' not in data or 'report' not in data:
+            return Response({'error': 'Missing required fields: trail or report'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Add additional fields
+        data['groomer'] = request.user.username  # Set groomer to logged-in user
+        data['approvalStatus'] = False  # Default approval status
+        data['date'] = timezone.now().date()  # Current date
+
+        # Serialize and save
+        serializer = self.get_serializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
 
 # API endpoint to serve approved reports for dynamic front-end
 def approved_reports_view(request):
@@ -67,9 +89,9 @@ def groomer_report_view(request):
             report.groomer = request.user.username
             report.date = timezone.now().date()
             report.save()
-            return redirect('homepage')
-    else:
-        form = ReportForm()
+            return JsonResponse({'message': 'Report submitted successfully!'}, status=201)
+        else:
+            return JsonResponse({'error': form.errors}, status=400)
 
     trails_by_location = {}
     trails = Trails.objects.all()
@@ -84,14 +106,15 @@ def groomer_report_view(request):
         trails_by_location[location].append({'id': trail.id, 'name': trail.trailName})
 
     return render(request, 'groomer_report.html', {
-        'form': form,
         'trails_by_location': trails_by_location,
     })
 
 
 @login_required
 def admin_trails_view(request):
-    # Ensure the user is in the admins group
+    """
+    Admin view for managing trails.
+    """
     if not request.user.groups.filter(name="admins").exists():
         return render(request, 'not_authorized.html')
 
