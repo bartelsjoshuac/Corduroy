@@ -48,8 +48,8 @@ NOTES:
 - Docker verison 27
 - Python 3.11.9  // All Python requirements will be pulled  (see requirements.txt for details).  
 - PostgresSQL 17 // Pulled from Dockerhub.
-- Alpine.js //Included in HTML.  
-- tar -xzvf Source code.tar.gz or  unzip Source code.zip  
+- Alpine.js // Included in HTML.  
+- tar -xzvf Source code.tar.gz or  unzip Source code.zip from releases 
 
 ## Getting Started
 First time creation of the Django Admin superuser to view raw data.  
@@ -77,7 +77,7 @@ NOTES (for testing):
 - Login as groomy/password for access to create new grooming reports.  
 - Login as admin to approve reports or add/delete trails.  You may wish to create new trails first unless you want to only work with the limited sample data. 
 
-## Samples (from Project 1 submission phase before use Alpine)  
+## Samples (from Project 1 submission phase before use of Alpine)  
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
 [Groomers Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png) &nbsp;&nbsp;&nbsp;
 [Trails Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/trailsadmin.png) &nbsp;&nbsp;&nbsp;
