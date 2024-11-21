@@ -11,15 +11,15 @@
             background-color: #ffffff; /* White background */
             color: #004085; /* Blue text */
             padding: 10px;
-            border: 1px solid #28a745; /* Green border */
+            border: 1px solid #28a745 !important; /* Green border */
             border-radius: 5px;
             margin-bottom: 10px;
-            display: none; /* Hidden by default */
+            display: block; /* Default display */
+            opacity: 0; /* Hidden by default */
         }
         .success-message.show {
-            display: block; /* Visible when success */
-            opacity: 1;
-            transition: opacity 0.5s ease-in-out;
+            opacity: 1; /* Fully visible when shown */
+            transition: opacity 0.5s ease-in-out; /* Smooth fade-in and fade-out */
         }
     </style>
 </head>
@@ -32,10 +32,15 @@
             x-show="showSuccess"
             x-transition.opacity.duration.500ms
             class="success-message"
+            x-bind:style="{ opacity: showSuccess ? 1 : 0 }"
         >
             Report submitted successfully.
         </div>
 
+        <!-- Debugging Button 
+        <button @click="showSuccess = true">Test Success Message</button>
+        -->
+        
         <form @submit.prevent="submitReport">
             {% csrf_token %}
             <table>
@@ -135,8 +140,10 @@
 
                             // Show success message
                             this.showSuccess = true;
+                            console.log('Success message displayed.');
                             setTimeout(() => {
                                 this.showSuccess = false; // Hide after 3 seconds
+                                console.log('Success message hidden.');
                             }, 3000);
                         })
                         .catch(error => {
