@@ -37,6 +37,8 @@ ChatGPT was used to do some of the heavy lifting and repeitive work to incorpera
 <img src="https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dogapi.webp" alt="DogApi goes wild" width="200" height="200">
 AI is far from perfect....  Close,but not perfect - https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dog-sled.jpg  
 
+&nsbp &nbsp
+
 For demo purposes I created python scripts that pre-populate the users, groups, etc, to test basic functionality.  Use of these is described in the Getting Stated Section.  I also created a script to pre-populate some data to play with, although it is possible to create create your own data, but the pre-populate deploys that all in a functioning demo that makes it look like the app has already been used by an admin and groomer.
 
 Lastly I went ahead and did the Google Cloud hosting as GCS was something I had basic knowledge of already, and quite frankly, I did that when Project 2 was announced and before it was optional using just the Project 1 code base.  Once everything is working locally in Docker, deploying it with GCS is relatively straight forward if you understand GCS a little.  GCS of course is no place to try and develop code as GCS mini VMs are extremely slow for building.
