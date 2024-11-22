@@ -1,6 +1,6 @@
 # Corduroy 
 <img src="https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dogapi.webp" alt="DogApi goes wild" width="200" height="200">
-Clearly AI can do everything.... - https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dog-sled.jpg)
+AI is far from perfect.... - https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dog-sled.jpg)
 
 
 ## Executive Summary 
