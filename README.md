@@ -41,7 +41,7 @@ AI is far from perfect....  Close, but not perfect.  I've lost the googles and I
 
 For demo purposes I created python scripts that pre-populate the users, groups, etc., to test basic functionality.  Use of these is described in the Getting Stated Section.  I also created a script to pre-populate some data to play with, although it is possible to create create your own data, but the pre-populate deploys that all in a functioning demo that makes it look like the app has already been used by an admin and groomer.
 
-Lastly I went ahead and did the Google Cloud hosting as GCS was something I had basic knowledge of already, and quite frankly, I did that when Project 2 was announced and before it was optional using just the Project 1 code base.  Once everything is working locally in Docker, deploying it with GCS is relatively straight forward if you understand GCS a little.  GCS of course is no place to try and develop code as GCS mini VMs are extremely slow for building.
+Lastly I went ahead and did the Google Cloud hosting as GCS was something I had basic knowledge of already, and quite frankly, I did that when Project 2 was announced and before it was optional using just the Project 1 code base.  Once everything is working locally in Docker, deploying it with GCS is relatively straight forward if you understand GCS a little.  GCS of course is no place to try and develop code as GCS mini VMs are extremely slow for building.  Details on this are noted in *** New sections at the end.  You can either build your own image to test, or use the running GCS image.
 
 ## Installation
 
