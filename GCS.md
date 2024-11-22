@@ -20,7 +20,7 @@
 
 ## Setting up Coduroy (using Git)
 1. Clone the repository: *git clone https://github.com/bartelsjoshuac/Corduroy*  
-2. *cd /Corduroy/source/corduroyproject*  
+2. *cd ~/Corduroy/source/corduroyproject*  
 3. Proceed from Step 3 below.  
 
 ## Setting up Coduroy (manually for development as it is faster)
