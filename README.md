@@ -53,8 +53,7 @@ NOTES:
 - Alpine.js // Included in HTML.  
 
 
-## Getting Started
-First time creation of the Django Admin superuser to view raw data.  
+## Getting Started  
 1. Download the latest release from GitHub and *tar -xzvf Source code.tar.gz* or  *unzip Source code.zip*  
 2. cd source/CorduroyProject  
 
