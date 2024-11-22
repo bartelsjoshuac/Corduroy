@@ -44,6 +44,9 @@ NOTES:
 - You will need to setup billing for the project after leaving the GCS console API, even with a free tier or you will have issues reconnecting.  
 - Your public and private IPs can change under a basic GCS plan, check that and make note of them and update accordingly.  For this reason, some security features were disabled in Django.  
 
+### *** Live GCS Demo instance ***
+ - As of project submission on 12/08/24 a running instance is available on GCS at http://1.1.1.1:8000.  This will remaining running through course completion, and can be restart at request if it is not available (out of education credits).  
+ - Use the same usernames, passwords a testing a local instance.  This site has the same test data but may have additional test data from verification.  
 
 
 

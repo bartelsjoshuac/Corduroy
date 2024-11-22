@@ -6,18 +6,18 @@ Currently the CSAA relies on these parties to email grooming information and rep
 
 In 2023/24 several clubs attempted to adapt an existing application and service called [GroomerTrack](https://www.groomertracker.com/), however it is cost prohibitive to both the club and the end user requring a financial obligation from each end. As a board member for the [Vail Pass Winter Recreation Area](https://www.facebook.com/profile.php?id=100039877668899), I helped evaluate this solution. This application is geared towards non-motorized users (cross county and skate skiing) and contains features unique to that activity, while lacking features desired by motorized users.  As a result it proved to be unpopular and is not currently planned for use by one of the largest organizations for 2024/25.
 
-Corduroy aims to create a simnple interface for these "groomers" to enter their reports directly via a website (or app), allow a CSAA admin to approve and/or modify/approve the report before publishing it for the general public to view in an equally simple website(app).  
+Corduroy aims to create a simple interface for these "groomers" to enter their reports directly via a website (or app), allow a CSAA admin to approve and/or modify/approve the report before publishing it for the general public to view in an equally simple website(app).  
 
 The application is written in Python using the Django framework with a PostgreSQL database and runs as a Docker container with just two images (more on that later).  The user interface is mobile friendly HTML and JavaScript utilizing Alpine.JS as the client side framework.  
 
 ## Project Details
 Project 1 was built of the same concepts we learned in Django with the DogAPI and using all Django code.
 
-For project 2 started to re-design in Ember, as Ember is what I did in the client side lab exercise.  Ember is extremely large (60k files and 325mb) before you write a single line of code.  Ember was also broke mid project with the release of a bad Beta 6 as the LTS version (which can be corrected by forcing 5.8 as 6 was still broke as of 11/27).  Ember made commits extremely time consuming, and build times were extremely long with Ember.  You have to rebuild for every change which meant changing a single line of code would need 10 minutes to test, even on a 16 core machine.  Dynamic testing was impossible (like in the lab) inside of Docker.  That required running Django outside of Docker as well as PostGres, which added to the setup and took a step backwards from the deployment methodology.  
+For project 2 started to re-design in Ember, as Ember is what I did in the client side lab exercise.  Ember is extremely large (60k files and 325mb) before you write a single line of code.  Ember was also broke mid project with the release of a bad Beta 6 as the LTS version (which can be corrected by forcing 5.8 as 6 was still broke as of 11/27).  Ember made commits extremely time consuming, and build times were extremely long with Ember.  You have to rebuild for every change which meant changing a single line of code would need 10 minutes to test, even on a 16 core machine.  Dynamic testing was impossible (like in the lab) inside of Docker.  That required running Django outside of Docker as well as PostGres, which added to the setup and took a step backwards from the deployment methodology. In general Ember was just to cumbersome and slow to work with for a project with this timeline. 
 
-So I tried React which I had limited familiarity with (aka none).  React, while not as cumbersome and large as Ember also proved to be very challenging and even more cumbersome to build as I was never ever to get the hot re-load to work properly in Docker (it works outside of Docker).  Even with a persistant volume it only kinda works in Docker, which is to say sometimes it reloads changes, sometimes it does not, which is more frusterating as it makes it very hard to know what you are actualy testing. Again I found myself waiting 5-10 minutes to test each change as I had to rebuild the React image with each code change to be certain I was testing the changes I had made.
+So I tried React which I had limited familiarity with (aka none).  React, while not as cumbersome and large as Ember also proved to be very challenging and even more cumbersome to build as I was never ever to get the hot re-load to work properly in Docker (it works outside of Docker).  Even with a persistant volume it only kind of works in Docker, which is to say sometimes it reloads changes, sometimes it does not, which is more frusterating as it makes it very hard to know what you are actualy testing. Again I found myself waiting 5-10 minutes to test each change as I had to rebuild the React image with each code change to be certain I was testing the changes I had made.
 
-I did two all night sessions with each framework and had far more frusteration than success. I took a step back to my working Project 1 code base and did some research on how to proceed as both Ember and React were looking like I would never get something working like it had in Django, let alone be astetically pleasing.  What I did do was learn a lot about the power of client side frameworks and specically Ember and React.
+I did two all night sessions with each framework and had far more frusteration than success. I took a step back to my working Project 1 code base and did some research on how to proceed as both Ember and React were looking like I would never get something working like it had in Django, let alone be astetically pleasing.  I had a significant time investment in Ember and React, with less to show for it than when I started.  What I did do was learn a lot about the power of client side frameworks and specically Ember and React.
 
 I was semi-familiar with jQuery but in the name only.  This led me to [Alpine.JS](https://alpinejs.dev/) which calls itself jQuery for the modern web.  After playing with some samples, I was able to determine that it would provide everything I needed for my simple application.  Specificaly it allowed me to do the following:  
 
@@ -25,21 +25,21 @@ I was semi-familiar with jQuery but in the name only.  This led me to [Alpine.JS
 2. Create nice, dynamic, informational error messages, like if you forgot to select a trail rating, etc.  Without having to submit the form and wait for the server to respond.
 3. Display a feedback messages inline with the page in a nice format, vs. submit and wait, AKA tradditional web design.  Again an asteically pleasing user feedback vs fire and forgot, or alert boxes.
 
-Alpine allowed the project to maintain a compact footprint.  For Project 1 had a 4 MB code base, Project 2 (with Alpine) increased that to just 16 MB.  The complete sever and client produced a 1.6 GB server/client and a 600MB database.  Contrasting that to Ember, before development, Ember produced a 325MB code base and a 7 GB docker image.  This is likely because of Ember and React's node.js requirement.
+Alpine allowed the project to maintain a compact footprint.  For Project 1 had a 4 MB code base, Project 2 (with Alpine) increased that to just 16 MB.  The complete sever and client produced a 1.6 GB server/client and a 600MB database.  Contrasting that to Ember, before development, Ember produced a 325MB code base and a 7 GB docker image.  This is likely because of Ember and React's node.js requirements.
 
-Alpine.js also did not require a seperate application server or Docker image, it worked with my existing Django templates, with relatively minor modifications, but ones I could understand, something I had a very difficult time doing with Ember and React.  In just two long evenings, I was able to get my templates and existing code working semi-nice with Alpine and reusing a significant amount of code between them.  This left a lot of work to still do, but the basic functionality of the app was all working per the use cases and I was left with the fun part.
+Alpine.js also did not require a seperate application server or Docker image, it worked with my existing Django templates, with relatively minor modifications, but ones I could understand, something I had a very difficult time doing with Ember and React.  In just two long evenings, I was able to get my templates and existing code working semi-nice with Alpine and reusing a significant amount of code between them.  This left a lot of work to still do, but the basic functionality of the app was all working per the use cases and I was left with the fun part.  This also allowed me to use many of the out of box Django security features to meet the project requirements.
 
 Lastly, the very name Alpine.js was very fitting to my Coduroy Snowmobile trail report application for the high alpine areas of the Rocky Mountains, although that is merely coincidence.  As a side note, the name Corduroy was dereived from the corduroy pants look left in the surface of the snow after a mechanized snow groomer passes over it.  The term is shared among skiers and snowmobilers alike as a similiar machine is used to produce both.
 
-ChatGPT was used to do some of the heavy lifting and repeitive work to incorperate Alpine into my Django templates. My CSS was courtesy of a CSS website for common simple and readable mobile friendly pages.  It was then customized a tad  Most of ChatGPT's use was in debugging features as I tried to make the application more dynamic.  For example I found I would frequently break an entire template, spend a very long time trying to find an obscure typo that Django allowed (because it does not care what you do in Javascript), but caused a form to not submit or not save the data.  Correlating the developer console errors in the browser with the Javascript can be very time consuming and ChatGPT can often spot the simplest of typos instantly when provided the code and the console error.  It is also very good when you ask it to take code that should be working, but is not and all you want it to do is pack it full of debug statements so that you can then run it see where the problem lies and fix it yourself in the case where your logic was just wrong.  Simiilary, you can then have it remove all those debug statements once it is working, without the risk of breaking something by accdident again.  I found myself manually adding debug statements, that then needed to be manually debugged themselves, or removing debug statements from working code, only to have the absence of debugging statements again break the functionality, which is not only time consuming, but frusterating as well.
+ChatGPT was used to do some of the heavy lifting and repeitive work to incorperate Alpine into my Django templates. My CSS was courtesy of a CSS website for common simple and readable mobile friendly pages.  It was then customized a tad  Most of ChatGPT's use was in debugging features as I tried to make the application more dynamic.  For example I found I would frequently break an entire template, spend a very long time trying to find an obscure typo that Django allowed (because it does not care what you do in Javascript), but caused a form to not submit or not save the data.  Correlating the developer console errors in the browser with the Javascript can be very time consuming and ChatGPT can often spot the simplest of typos instantly when provided the code and the console error.  It is also very good when you ask it to take code that should be working, but is not and all you want it to do is pack it full of debug statements so that you can then run it see where the problem lies and fix it yourself in the case where your logic was just wrong.  Similarly, you can then have it remove all those debug statements once it is working, without the risk of breaking something by accident again.  I found myself manually adding debug statements, that then needed to be manually debugged themselves, or removing debug statements from working code, only to have the absence of debugging statements again break the functionality, which is not only time consuming, but frustrating as well.
 
-For demo purposes I created python scripts that pre-populate the users, groups, etc, to test basic functionality.  Use of these is desribed in the Getting Stated Section.  I also created a script to pre-populate some data to play with, although it is possible to create create your own data, but the pre-populate deployes that all in a functioning demo that makes it look like the app has already been used by an admin and groomer.
+For demo purposes I created python scripts that pre-populate the users, groups, etc, to test basic functionality.  Use of these is described in the Getting Stated Section.  I also created a script to pre-populate some data to play with, although it is possible to create create your own data, but the pre-populate deploys that all in a functioning demo that makes it look like the app has already been used by an admin and groomer.
 
-Lastly I went ahead and did the Google Cloud hosting as GCS was something I had basic knowledge of already, and quite frankly, I did that when Prject 2 was announced and before it was optional using just the Project 1 code base.  Once everything is working locally in Docker, deploying it with GCS is relatively straight forward if you understand GCS a little.  GCS of course is no place to try and develop code as GCS mini VMs are extremely slow for building.
+Lastly I went ahead and did the Google Cloud hosting as GCS was something I had basic knowledge of already, and quite frankly, I did that when Project 2 was announced and before it was optional using just the Project 1 code base.  Once everything is working locally in Docker, deploying it with GCS is relatively straight forward if you understand GCS a little.  GCS of course is no place to try and develop code as GCS mini VMs are extremely slow for building.
 
 ## Installation
 
-### *** NEW - now with instructions for running on GCS ***
+### *** NEW - Specific instructions for running on GCS ***
 For hosting on Google Cloud with a Compute Engine follow these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
 
 NOTES:  
@@ -49,7 +49,7 @@ NOTES:
 ## Prerequisites  
 - Docker verison 27
 - Python 3.11.9  // All Python requirements will be pulled  (see requirements.txt for details).  
-- PostgresSQL 17 // Pulled from Dockerhub.
+- PostgresSQL 17 // Pulled from DockerHub.
 - Alpine.js // Included in HTML.  
 
 
@@ -72,7 +72,7 @@ NOTES:
 
 NOTES:   
 - On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random. 
-- There are subtle differences between unix and windows commands you will need to familize yourself with.  
+- There are subtle differences between Unix and windows commands you will need to familiarize yourself with.  
 - There are several security settings that were disabled to make testing much easier, and to make a deployable application for submission.  Comments are available where these changes were made so that they can be reverted to at 
 least defaults or a more secure settings.  Examples include password policies, timeouts, etc.
 
@@ -87,6 +87,12 @@ NOTES (for testing):
 - Login as root/password for admin access and all functions and the Django admin including raw data.  
 - Login as groomy/password for access to create new grooming reports.  
 - Login as admin to approve reports or add/delete trails.  You may wish to create new trails first unless you want to only work with the limited sample data. 
+
+### *** Live GCS Demo instance ***
+ - As of project submission on 12/08/24 a running instance is available on GCS at http://1.1.1.1:8000.  This will remaining running through course completion, and can be restart at request if it is not available (out of education credits).  
+ - Use the same usernames, passwords a testing a local instance.  This site has the same test data but may have additional test data from verification.  
+
+
 
 ## Samples (from Project 1 submission phase, before use of Alpine)  
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
