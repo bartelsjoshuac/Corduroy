@@ -71,7 +71,7 @@ NOTES:
 <-continue->
 
 3. *docker compose up  -d*  // Starts the webserver and database.  
-4. *docker compose exec corduroyserver bash*   // Starts a shell in the container.  
+4. *docker compose exec corduroyserver bash*   // Starts a shell in the container.  Not you need to "exit" the container shell to return to you local machine if needed later.  
 4. *python manage.py createsuperuser*  // Follow the prompts to create a user called root with a password of password.  
 6. *python manage.py populate_users* // Create groomy (groomy account) and admin(Corduroy admin account) and the groomers and admins groups.  
 7. *python manage.py populate_data* // Populates some sample data.  
