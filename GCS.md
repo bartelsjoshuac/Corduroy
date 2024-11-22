@@ -1,7 +1,7 @@
 # Google Cloud (Compute Engine) Deployment Steps w/Docker
 
 ## Create GCS Project and Compute Engine with Billing  
-1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/?hl=en)  
+1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/?hl=en) on your location machine
 2. Open a Google Cloud SDK Shell.   
 3. Create a new project: *gcloud projects create corduroy-project*  
 4. Install the API: *gcloud services enable compute.googleapis.com*  
@@ -14,7 +14,7 @@
 2. Switching to the new SSH terminal update the package listing: *sudo apt update*  
 3. Install Docker: *sudo apt install -y docker.io*  
 4. Get Docker Compose: *sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose*  
-5. Change permissions: *sudo chmod +x /usr/local/bin/docker-compose*  
+5. Change permissions the Docker Compose: *sudo chmod +x /usr/local/bin/docker-compose*  
 6. Add yourself to the Docker Group: *sudo usermod -aG docker $USER*  
 7. Refresh the shell: *sudo newgrp docker*  
 
@@ -24,8 +24,8 @@
 3. Proceed from Step 3 below.  
 
 ## Setting up Coduroy (manually for development as it is faster)
-1. Navigate to the /source directory and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* 
-3. Navigate to */source/corduroyproject*  
+1. Navigate to the /source directory locally and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* 
+3. Navigate to */source/corduroyproject* on your GCS image
 4. Start the container: *docker-compose up -d*  // This will take a long time the first time.  
 5. Start a shell: *docker-compose exec web bash*
 6. create the Django SuperUser: *python manage.py createsuperuser*  
@@ -39,7 +39,10 @@
 3. Open a SSH window to your computer engine: *gcloud compute ssh corduroy-vm* // You can also start a SSH session from the console.  
 4. Return to your work.  
 
-NOTE: You will need to setup billing for the project after leaving the GCS console API, even with a free tier or you will have issues reconnecting.
+NOTES:
+- You will need to setup billing for the project after leaving the GCS console API, even with a free tier or you will have issues reconnecting.  
+- Your public and private IPs can change under a basic GCS plan, check that and make note of them and update accordingly.  For this reason, some security features were disabled in Django.  
+
 
 
 
