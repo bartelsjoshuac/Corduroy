@@ -150,4 +150,10 @@ def admin_approval_view(request):
         'reports': reports,
     })
 
+
+# This view is inteded for an Ajax call so the new reports will appear in the homepage dynamically
+def check_new_reports(request):
+    has_new_reports = Report.objects.filter(approval_status=True).exists()
+    return JsonResponse({'new_reports': has_new_reports})
+
 # Again there is some redundancy in here to clean up, leftover from the dogapi days and Django
