@@ -38,7 +38,7 @@ ChatGPT was used to do some of the heavy lifting and repetitive work to incorpor
 AI is far from perfect....  In fact it is not even close. It gets the concept, but it gets key things wrong and you have to help it get it right, the same thing a human does when you debug code.   All I asked for was a cartoon drawing of my original picture.  AI lost the googles (a safety device) and the dog and sled are going the opposite direction.  Only the general idea is retained.  I tried to get AI to correct the direction, and it turned the dog around on the snowmobile so it was driving it backwards. ***face palm***.  I asked it to add the googles to that and it turned the dog back around again and took away my snowcat and replaced it with a snow plow which I never asked for.  In fact I had never used the word snow cat as it confused snowcat with a dog and cat (snowcat is the common name for a grooming machine)  I was originally just trying to get a cute picture to use in the app, which I eliminated, but decide to document this AI "experience as an example as I found my experience so interesting and so similar to what it can do with code. 
 
 What I started with.  
-<img src="https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dog-sled.jpg" alt="DogApi goes wild" width="200" height="200">
+<img src="https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dog-sled.jpg" alt="DogApi goes wild" width="300" height="200">
 
 
 
