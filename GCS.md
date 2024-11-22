@@ -2,7 +2,7 @@
 
 ## Create GCS Project and Compute Engine with Billing  
 1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/?hl=en) on your location machine
-2. Open a Google Cloud SDK Shell.   
+2. Open a Google Cloud SDK Shell.  
 3. Create a new project: *gcloud projects create corduroy-project*  
 4. Install the API: *gcloud services enable compute.googleapis.com*  
 5. Create a micro instance: *gcloud compute instances create corduroy-vm --machine-type=e2-micro  --image-family=debian-11 --image-project=debian-cloud --tags=http-server,https-server* 
@@ -45,7 +45,7 @@ NOTES:
 - Your public and private IPs can change under a basic GCS plan, check that and make note of them and update accordingly.  For this reason, some security features were disabled in Django to avoid constant updates.
 
 ### *** Live GCS Demo instance ***
- - As of project submission on 12/08/24 a running instance is available on GCS at http://1.1.1.1:8000.  This will remaining running through course completion, and can be restart at request if it is not available (out of education credits).  
+ - As of project submission on 12/08/24 a running instance is available on GCS at http://35.202.122.99:8000.  This will remaining running through course completion, and can be restart at request if it is not available (out of education credits).  
  - Use the same usernames, passwords a testing a local instance.  This site has the same test data but may have additional test data from verification.  
 
 
