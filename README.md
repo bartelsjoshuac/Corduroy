@@ -37,7 +37,7 @@ ChatGPT was used to do some of the heavy lifting and repeitive work to incorpera
 <img src="https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dogapi.webp" alt="DogApi goes wild" width="200" height="200">
 AI is far from perfect....  Close,but not perfect - https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dog-sled.jpg  
 
-&nsbp &nbsp
+.....  
 
 For demo purposes I created python scripts that pre-populate the users, groups, etc, to test basic functionality.  Use of these is described in the Getting Stated Section.  I also created a script to pre-populate some data to play with, although it is possible to create create your own data, but the pre-populate deploys that all in a functioning demo that makes it look like the app has already been used by an admin and groomer.
 
