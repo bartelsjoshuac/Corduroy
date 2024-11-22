@@ -79,7 +79,7 @@ NOTES (for testing):
 - Login as groomy/password for access to create new grooming reports.  
 - Login as admin to approve reports or add/delete trails.  You may wish to create new trails first unless you want to only work with the limited sample data. 
 
-## Samples (from Project 1 submission phase before use of Alpine)  
+## Samples (from Project 1 submission phase, before use of Alpine)  
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
 [Groomers Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/groomers.png) &nbsp;&nbsp;&nbsp;
 [Trails Admin ](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/trailsadmin.png) &nbsp;&nbsp;&nbsp;
