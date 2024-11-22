@@ -1,6 +1,6 @@
 # Corduroy 
 <img src="https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dogapi.webp" alt="DogApi goes wild" width="200" height="200">
-(Original)[https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dogapi.jpg]
+[Original](https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dogapi.jpg)
 
 
 ## Executive Summary 
