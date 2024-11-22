@@ -1,7 +1,4 @@
 # Corduroy 
-<img src="https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dogapi.webp" alt="DogApi goes wild" width="200" height="200">
-AI is far from perfect.... - https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dog-sled.jpg)
-
 
 ## Executive Summary 
 Corduroy is a website/app to collect and publish snowmobile trail condition reports (mainly grooming reports) in the state of Colorado. [Colorado Snowmobile Association (CSAA)](https://www.snowmobilecolo.com/content.aspx?page_id=1980&club_id=45117#search_results) maintains a website hosted by a provider (ClubExpress) who wrote it in ASP code.  Colorado snowmobile trails are groomed by a variety of clubs, private parties, and state/federal land managers, often using 3rd party contractors.  
@@ -36,6 +33,9 @@ Alpine.js also did not require a seperate application server or Docker image, it
 Lastly, the very name Alpine.js was very fitting to my Coduroy Snowmobile trail report application for the high alpine areas of the Rocky Mountains, although that is merely coincidence.  As a side note, the name Corduroy was dereived from the corduroy pants look left in the surface of the snow after a mechanized snow groomer passes over it.  The term is shared among skiers and snowmobilers alike as a similiar machine is used to produce both.
 
 ChatGPT was used to do some of the heavy lifting and repeitive work to incorperate Alpine into my Django templates. My CSS was courtesy of a CSS website for common simple and readable mobile friendly pages.  It was then customized a tad  Most of ChatGPT's use was in debugging features as I tried to make the application more dynamic.  For example I found I would frequently break an entire template, spend a very long time trying to find an obscure typo that Django allowed (because it does not care what you do in Javascript), but caused a form to not submit or not save the data.  Correlating the developer console errors in the browser with the Javascript can be very time consuming and ChatGPT can often spot the simplest of typos instantly when provided the code and the console error.  It is also very good when you ask it to take code that should be working, but is not and all you want it to do is pack it full of debug statements so that you can then run it see where the problem lies and fix it yourself in the case where your logic was just wrong.  Similarly, you can then have it remove all those debug statements once it is working, without the risk of breaking something by accident again.  I found myself manually adding debug statements, that then needed to be manually debugged themselves, or removing debug statements from working code, only to have the absence of debugging statements again break the functionality, which is not only time consuming, but frustrating as well.
+
+<img src="https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dogapi.webp" alt="DogApi goes wild" width="200" height="200">
+AI is far from perfect....  Close,but not perfect - https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dog-sled.jpg)
 
 For demo purposes I created python scripts that pre-populate the users, groups, etc, to test basic functionality.  Use of these is described in the Getting Stated Section.  I also created a script to pre-populate some data to play with, although it is possible to create create your own data, but the pre-populate deploys that all in a functioning demo that makes it look like the app has already been used by an admin and groomer.
 
