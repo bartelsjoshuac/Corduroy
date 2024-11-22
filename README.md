@@ -100,11 +100,11 @@ NOTES (for testing):
 5. Click on Approve Pending Reports and login again as admin/password (changing user context again).  You will see other data there that was loaded as sample data, but you will also see the new report for the new trail.  Make sure to check the approved box and submit the form. You can also approve sample data reports if desired.
 6.  Return to the homepage.  Now that your report is approved, it appears.  But you are still an admin.  You can logout and become a public user again and it also appears as expected.  
 
-### *** Live GCS Demo instance ***
- - As of project submission on 12/08/24 a running instance is available on GCS at http://35.202.122.99:8000. This will remaining running through course completion, and can be restarted at request if it is not available (I am out of education credits).  
+### *** NEW  - Live GCS Demo instance ***
+ - As of project submission on 12/02/24 a running instance is available on GCS at http://35.202.122.99:8000. This will remaining running through course completion, and can be restarted at request if it is not available (I am out of education credits so its costs real money to leave running).  
  - Use the same usernames, passwords as if testing as a local instance.  This site has the same test data but may have additional test data depending on how I left it.  Same code, same sample test scenario. You get the idea.
 
-### *** NEW - Specific instructions for running on GCS ***
+### *** NEW - Specific instructions for installing and running on GCS ***
 For hosting on Google Cloud with a Compute Engine follow these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
 
 ## Samples (from Project 1 submission phase, before use of Alpine - historical)   
