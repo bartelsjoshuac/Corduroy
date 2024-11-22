@@ -61,6 +61,8 @@ NOTES:
 
 1. Clone the repository: *git clone https://github.com/bartelsjoshuac/Corduroy*  
 2. *cd /Corduroy/source/corduroyproject*  
+
+
 3. *docker compose up  -d*  // Starts the webserver and database.  
 4. *docker compose exec web bash*   // Starts a shell in the container.  
 4. *python manage.py createsuperuser*  // Follow the prompts to create a user called root with a password of password.  
