@@ -61,11 +61,11 @@ NOTES:
 
 1. Clone the repository: *git clone https://github.com/bartelsjoshuac/Corduroy*  
 2. *cd /Corduroy/source/corduroyproject*  
-3. docker compose up  -d  // Starts the webserver and database.  
-4. docker compose exec web bash   // Starts a shell in the container.  
-4. python manage.py createsuperuser  // Follow the prompts to create a user called root with a password of password.  
-6. python manage.py populate_users // Create groomy (groomy account) and corduroyadmin(admin account) and groomers and admins groups.  
-7. python manage.py populate_data // Populates some sample data.  
+3. *docker compose up  -d*  // Starts the webserver and database.  
+4. *docker compose exec web bash*   // Starts a shell in the container.  
+4. *python manage.py createsuperuser*  // Follow the prompts to create a user called root with a password of password.  
+6. *python manage.py populate_users* // Create groomy (groomy account) and corduroyadmin(admin account) and groomers and admins groups.  
+7. *python manage.py populate_data* // Populates some sample data.  
 
 NOTES:   
 - On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random. 
@@ -74,11 +74,11 @@ NOTES:
 least defaults or a more secure settings.  Examples include password policies, timeouts, etc.
 
 Normal execution after Getting Stated
-- docker compose up -d
+- *docker compose up -d*
 
 Access the web interface:  
 - Corduroy Interface http://localhost:8000/  
-- Django Admin Interface http://localhost:8000/admin  
+- Django Admin Interface (root only) http://localhost:8000/admin  
 
 NOTES (for testing):   
 - Login as root/password for admin access and all functions and the Django admin including raw data.  
