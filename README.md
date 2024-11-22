@@ -51,15 +51,22 @@ NOTES:
 - Python 3.11.9  // All Python requirements will be pulled  (see requirements.txt for details).  
 - PostgresSQL 17 // Pulled from Dockerhub.
 - Alpine.js // Included in HTML.  
-- tar -xzvf Source code.tar.gz or  unzip Source code.zip from releases 
+
 
 ## Getting Started
 First time creation of the Django Admin superuser to view raw data.  
-- docker compose up  -d  // Starts the webserver and database.  
-- docker compose exec web bash   // Starts a shell in the container.  
-- python manage.py createsuperuser  // Follow the prompts to create a user called root with a password of password.  
-- python manage.py populate_users // Create groomy (groomy account) and corduroyadmin(admin account) and groomers and admins groups.  
-- python manage.py populate_data // Populates some sample data.  
+1. Download the latest release from GitHub and *tar -xzvf Source code.tar.gz* or  *unzip Source code.zip*  
+2. cd source/CorduroyProject  
+
+<-or->  
+
+1. Clone the repository: *git clone https://github.com/bartelsjoshuac/Corduroy*  
+2. *cd /Corduroy/source/corduroyproject*  
+3. docker compose up  -d  // Starts the webserver and database.  
+4. docker compose exec web bash   // Starts a shell in the container.  
+4. python manage.py createsuperuser  // Follow the prompts to create a user called root with a password of password.  
+6. python manage.py populate_users // Create groomy (groomy account) and corduroyadmin(admin account) and groomers and admins groups.  
+7. python manage.py populate_data // Populates some sample data.  
 
 NOTES:   
 - On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random. 
