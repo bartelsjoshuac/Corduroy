@@ -67,7 +67,7 @@ NOTES:
 3. *docker compose up  -d*  // Starts the webserver and database.  
 4. *docker compose exec web bash*   // Starts a shell in the container.  
 4. *python manage.py createsuperuser*  // Follow the prompts to create a user called root with a password of password.  
-6. *python manage.py populate_users* // Create groomy (groomy account) and corduroyadmin(admin account) and groomers and admins groups.  
+6. *python manage.py populate_users* // Create groomy (groomy account) and admin(Corduroy admin account) and the groomers and admins groups.  
 7. *python manage.py populate_data* // Populates some sample data.  
 
 NOTES:   
