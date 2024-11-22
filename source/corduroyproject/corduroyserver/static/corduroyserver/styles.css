@@ -87,4 +87,26 @@ For some reason they don't always get applied.  I tried the !important tag here 
             background-color: #cce5ff; 
             color: #004085; 
         }
+
+     /* Logout button  from tailwind (https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css) */
+     /* I did not want to include tailwind in the build process as I only wanted to use it for one thing  but it doesn't quite work like I wanted either*/
+     .logout-button {
+        background-color: #3b08f7; 
+        color: white;
+        font-weight: 600; 
+        padding: 10px 20px; 
+        border-radius: 8px; 
+        box-shadow: 0 4px 6px rgba(68, 4, 219, 0.1); 
+        border: none; 
+        cursor: pointer; 
+        transition: all 0.3s ease; 
+    }
+    .logout-button:hover {
+        background-color: #10fc08; 
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+    }
     
+    .logout-button:focus {
+        outline: none; 
+        box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5); 
+    }   
