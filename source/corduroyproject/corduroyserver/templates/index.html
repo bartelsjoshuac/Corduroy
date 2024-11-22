@@ -92,9 +92,11 @@ Yes, it is distracting as ever and only meets the authentically pleasing require
 
 The sled will stop if you click on it, but since I don't provide that information likely most people will have to live with the sled moving all the time which is well, distracting at best.
 
-With the <blink> tag depreciated, it was the best I could do
+With the <blink> tag depreciated, it was the best I could do.  Maybe people will thinking the moving sled indicates that the page is waiting for new approved reports to appear, as that was the original idea behind it...
+to make the homepage auto-refresh if a new report appeared.  I started to implement this and it went badly, was not part of the original use cases and well I ripped it out....  
 
-I wanted to use this as my status bar in a smaller form with a message or Adding Report, etc.....  But it turned out to be easier, and look nicer to just use a message.
+But the moving sled made the final cut for the reasons above.
+
 -->
 <div x-data="{ position: 0, running: true, interval: null }" x-init="
     interval = setInterval(() => { 
