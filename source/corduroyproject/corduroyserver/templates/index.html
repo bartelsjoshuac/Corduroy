@@ -1,12 +1,20 @@
+ <!-- 
+This file contains comments on the general use of Alpine that are not included in subsequent templates
+If in doubt about how something works in another template, refer to comments here for similar code
+ -->
+ 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Corduroy Home</title>
     {% load static %}
+    <!-- This is is browser favorite icon and needed in each template to prevent 404's -->
     <link rel="icon" href="{% static 'corduroyserver/favicon.ico' %}" type="image/x-icon">
+    <!-- The same stylesheet used in all templates -->
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
-    <!--use Alpine.js to render our approved trail reports-->
+    <!--This is the include for Alpine and needed in each template that makes use of Alpine -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
 </head>
 <body>
@@ -21,8 +29,7 @@
             .then(data => { reports = data; loading = false; });
     ">
         <h1>Current Reports</h1>
-        <!-- Cool Alpine trick if there is a lot of data, however this also appears if there are NO reports, which should never happen but would be more
-         user friendly to also trap that-->
+        <!-- Message display while Alpine loads data into the table.  This happens to be the reports where approvalStatus==True-->
         <p class="loading-message" x-show="loading">Loading reports...</p>
         <table x-show="!loading && reports.length > 0">
             <thead>
@@ -47,7 +54,8 @@
                 </template>
             </tbody>
         </table>
-        <p class="empty-message" x-show="!loading && reports.length === 0">No approved reports found.</p>
+        <!-- I fixed this through loading one approved report in the sample data, but this handles the situation where there is no approved reports -->
+        <p class="empty-message" x-show="!loading && reports.length === 0">No approved reports available.</p>
     </div>
 
     <footer>
@@ -60,14 +68,12 @@
         {% if user.is_authenticated %}
         <p>Logged in as: {{ user.username }}</p>
         <form action="{% url 'logout' %}" method="post">
-            <!-- Need in very form, and easy to miss-->
+            <!-- Needed in very form, and easy to miss-->
             {% csrf_token %}
             <button type="submit">Logout</button>
         </form>
         {% endif %}
     </footer>
-
-    <!-- Centered image -->
     <img src="{% static 'corduroyserver/sled.png' %}" alt="Blue sled" class="homepage-image">
 </body>
 </html>

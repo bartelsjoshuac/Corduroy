@@ -89,7 +89,7 @@ NOTES (for testing):
 - Login as admin to approve reports or add/delete trails.  You may wish to create new trails first unless you want to only work with the limited sample data. 
 
 ### *** Live GCS Demo instance ***
- - As of project submission on 12/08/24 a running instance is available on GCS at http://1.1.1.1:8000.  This will remaining running through course completion, and can be restart at request if it is not available (out of education credits).  
+ - As of project submission on 12/08/24 a running instance is available on GCS at http://1.1.1.1:8000.  This will remaining running through course completion, and can be restarted at request if it is not available (I am out of education credits).  
  - Use the same usernames, passwords a testing a local instance.  This site has the same test data but may have additional test data from verification.  
 
 

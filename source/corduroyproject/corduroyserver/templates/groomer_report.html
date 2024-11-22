@@ -7,20 +7,21 @@
     <link rel="icon" href="{% static 'corduroyserver/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
-    <style>
+    <!-- Why are there styles here that duplicate styles I tried to do in my styles.css, well see styles.css to learn more -->
+     <style>
         .success-message {
-            background-color: #ffffff; /* White background */
-            color: #004085; /* Blue text */
+            background-color: #ffffff; 
+            color: #004085; 
             padding: 10px;
-            border: 1px solid #28a745 !important; /* Green border */
+            border: 1px solid #28a745 !important; 
             border-radius: 5px;
             margin-bottom: 10px;
-            display: block; /* Default display */
-            opacity: 0; /* Hidden by default */
+            display: block; 
+            opacity: 0; /* Not visible */
         }
         .success-message.show {
-            opacity: 1; /* Fully visible when shown */
-            transition: opacity 0.5s ease-in-out; /* Smooth fade-in and fade-out */
+            opacity: 1; /* Visible  */
+            transition: opacity 0.5s ease-in-out; /* fade */
         }
     </style>
 </head>

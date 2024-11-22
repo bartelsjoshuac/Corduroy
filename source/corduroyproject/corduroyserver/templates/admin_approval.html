@@ -7,32 +7,33 @@
     <link rel="icon" href="{% static 'corduroyserver/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
-    <style>
+    <!-- Why are there styles here that duplicate styles I tried to do in my styles.css, well see styles.css to learn more -->
+     <style>
         textarea[readonly] {
             background-color: #f5f5f5;
             color: #555;
             border: 1px solid #ddd;
             padding: 10px;
-            width: 100%; /* Ensure it takes full width of its container */
-            box-sizing: border-box; /* Include padding and border in width calculation */
-            resize: none; /* Disable resizing */
+            width: 100%; 
+            box-sizing: border-box; 
+            resize: none; 
         }
         td textarea {
-            max-width: 100%; /* Prevent it from exceeding the table cell width */
+            max-width: 100%; 
         }
         .success-message {
-            background-color: #ffffff; /* White background */
-            color: #004085; /* Blue text */
+            background-color: #ffffff; 
+            color: #004085; 
             padding: 10px;
-            border: 1px solid #28a745 !important; /* Green border with priority */
+            border: 1px solid #28a745 !important; 
             border-radius: 5px;
             margin-bottom: 10px;
-            display: block; /* Default display */
-            opacity: 0; /* Start invisible */
+            display: block; 
+            opacity: 0; 
         }
         .success-message.show {
-            opacity: 1; /* Fully visible when shown */
-            transition: opacity 0.5s ease-in-out; /* Smooth fade-in and fade-out */
+            opacity: 1; 
+            transition: opacity 0.5s ease-in-out; 
         }
     </style>
 </head>
@@ -86,7 +87,7 @@
         </form>
 
         <!-- Message for no pending reports -->
-        <p x-show="reports.length === 0">No pending reports available.</p>
+        <p x-show="reports.length === 0">No pending reports pending approval.</p>
         
         <p><a href="{% url 'homepage' %}">Back to Home</a></p>
     </div>
@@ -95,10 +96,10 @@
         function approvalAdmin() {
             return {
                 reports: [], // List of reports fetched from the backend
-                selectedReportId: '', // Currently selected report ID
-                approvalStatus: false, // Approval status for the selected report
-                reportText: '', // Text of the selected report
-                showSuccess: false, // Controls visibility of the success message
+                selectedReportId: '', 
+                approvalStatus: false, 
+                reportText: '', 
+                showSuccess: false, // Don't show yet
 
                 initializeReports() {
                     fetch('/api/reports/')
@@ -161,7 +162,7 @@
 
                             setTimeout(() => {
                                 this.showSuccess = false;
-                            }, 3000); // Hide after 3 seconds
+                            }, 10000); // Again maybe too long, but makes it nice for testing.
                         })
                         .catch(error => {
                             console.error("Approval update failed:", error);

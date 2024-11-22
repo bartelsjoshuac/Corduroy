@@ -7,36 +7,37 @@
     <link rel="icon" href="{% static 'corduroyserver/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
-    <style>
+ <!-- Why are there styles here that duplicate styles I tried to do in my styles.css, well see styles.css to learn more -->
+ <style>
 .success-message {
-    background-color: #ffffff; /* White background */
-    color: #004085; /* Blue text */
+    background-color: #ffffff; 
+    color: #004085; 
     padding: 10px;
-    border: 1px solid #28a745 !important; /* Green border with priority */
+    border: 1px solid #28a745 !important; /* Is this really important, sometimes yes, sometimes no, depends how the browser is applying CSS I guess*/
     border-radius: 5px;
     margin-bottom: 10px;
-    display: block; /* Default display */
-    opacity: 0; /* Start invisible */
+    display: block; 
+    opacity: 0;  /* This is how we control visibility as it is always really there, but not visible unless we tell it to be */
 }
 .success-message.show {
-    opacity: 1; /* Fully visible when shown */
-    transition: opacity 0.5s ease-in-out; /* Smooth fade-in and fade-out */
+    opacity: 1; /* Now it is visible */
+    transition: opacity 0.5s ease-in-out; /* fade */
 }
 
 
         table {
             width: 100%;
             border-collapse: collapse;
-            border: 1px solid #004085; /* Blue border for the table */
+            border: 1px solid #004085; 
         }
         th, td {
             padding: 10px;
-            border: 1px solid #004085; /* Blue border for cells */
+            border: 1px solid #004085; 
             text-align: left;
         }
         th {
-            background-color: #cce5ff; /* Light blue background for header */
-            color: #004085; /* Blue text for header */
+            background-color: #cce5ff; 
+            color: #004085; 
         }
     </style>
 </head>
@@ -121,9 +122,9 @@
     <script>
         function trailAdmin() {
             return {
-                trails: [], // List of trails fetched from the server
+                trails: [], // Get existing trails
                 newTrail: { trailName: '', location: '', rating: 1 }, // New trail form data
-                showSuccess: false, // Controls visibility of the success message
+                showSuccess: false, // Don't display the success message yet
 
                 fetchTrails() {
                     fetch('/api/trails/')
@@ -152,18 +153,18 @@
                         .then(addedTrail => {
                             this.trails.push(addedTrail); // Add the new trail to the list
                             this.newTrail = { trailName: '', location: '', rating: 1 }; // Reset the form
-                            console.log("Trail added successfully. Showing success message.");
+                            //console.log("Trail added successfully. Showing success message.");
                             this.showSuccess = true; // Show the success message
                             setTimeout(() => {
-                                console.log("Hiding success message.");
-                                this.showSuccess = false; // Hide the message after 3 seconds
-                            }, 3000);
+                                //console.log("Hiding success message.");
+                                this.showSuccess = false; // Hide the message after 10 seconds, which maybe this should be shorter as it makes it looks like it takes 10 seconds to do the add where it really happens in an instant
+                            }, 10000);
                         })
                         .catch(error => {
                             console.error('Failed to add trail:', error);
                         });
                 },
-
+                // Deleting a trail deletes all reports for the trail, but this is handled by Django's models to maintain referential integrity
                 deleteTrail(trailId) {
                     fetch(`/api/trails/${trailId}/`, {
                         method: 'DELETE',

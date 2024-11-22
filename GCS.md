@@ -25,13 +25,13 @@
 
 ## Setting up Coduroy (manually for development as it is faster)
 1. Navigate to the /source directory locally and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* 
-3. Navigate to */source/corduroyproject* on your GCS image
-4. Start the container: *docker-compose up -d*  // This will take a long time the first time.  
-5. Start a shell: *docker-compose exec web bash*
-6. create the Django SuperUser: *python manage.py createsuperuser*  
-7. Populate the demo user: *python manage.py populate_users*  
-8. Populate some sample data: *python manage.py populate_data*  
-9. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000
+2. Navigate to */source/corduroyproject* on your GCS image.  
+3. Start the container: *docker-compose up -d*  // This will take a long time the first time.  
+4. Start a shell: *docker-compose exec web bash*
+5. create the Django SuperUser: *python manage.py createsuperuser*  
+6. Populate the demo user: *python manage.py populate_users*  
+7. Populate some sample data: *python manage.py populate_data*  
+8. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000
 
 ## Going back to GCS  
 1. Set your project *gcloud config set project corduroy-project3*  
@@ -41,8 +41,8 @@
 5. Return to your work.   
 
 NOTES:
-- You will need to setup billing for the project after leaving the GCS console API, even with a free tier or you will have issues reconnecting.  
-- Your public and private IPs can change under a basic GCS plan, check that and make note of them and update accordingly.  For this reason, some security features were disabled in Django.  
+- You will need to setup billing for the project after leaving the GCS console API, even with a free tier or you will have issues reconnecting. GCS now removes SSH access if billing is not configured. 
+- Your public and private IPs can change under a basic GCS plan, check that and make note of them and update accordingly.  For this reason, some security features were disabled in Django to avoid constant updates.
 
 ### *** Live GCS Demo instance ***
  - As of project submission on 12/08/24 a running instance is available on GCS at http://1.1.1.1:8000.  This will remaining running through course completion, and can be restart at request if it is not available (out of education credits).  

@@ -1,5 +1,6 @@
 /* This style sheet was generated for me because of issues with style sheets flipping true and false on booleans which still has me stumped */
 /* It is mobile friendly */
+/* I would give credit for it, but I've hacked it up so much now, it barely resembles where it came from so it may as well be mine */
 
 /* Base styles */
 body {
@@ -17,7 +18,7 @@ body {
 }
 
 h1, h2, h3 {
-    color: #3399ff; /* Blue color for headings */
+    color: #3399ff; 
 }
 
 /* Table styling */
@@ -28,7 +29,7 @@ table {
 }
 
 table, th, td {
-    border: 1px solid #3399ff; /* Blue border color */
+    border: 1px solid #3399ff; 
 }
 
 th, td {
@@ -36,7 +37,7 @@ th, td {
     text-align: left;
 }
 
-/* Responsive styling for smaller screens */
+/* Responsive styling for mobile screens */
 @media (max-width: 768px) {
     /* Adjust container width */
     .container {
@@ -48,4 +49,42 @@ th, td {
     th, td {
         font-size: 14px;
         padding: 8px;
-  
+    } 
+
+/* These are specific styles used by Alpine for the inline messages I moved out of the HTML templates to clean them up 
+For some reason they don't always get applied.  I tried the !important tag here and in them and well, you can only spend so many hours on something you can just duplicate in code and it works.
+*/
+
+.success-message {
+    background-color: #ffffff; 
+    color: #004085; 
+    padding: 10px;
+    border: 1px solid #28a745 !important; 
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: block; 
+    opacity: 0; 
+}
+
+/* I have this funny feeling this was left over from debugging and not needed */
+.success-message.show {
+    opacity: 1; 
+    transition: opacity 0.5s ease-in-out; 
+}
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #004085; 
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #004085; 
+            text-align: left;
+        }
+        th {
+            background-color: #cce5ff; 
+            color: #004085; 
+        }
+    
