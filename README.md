@@ -45,15 +45,13 @@ Lastly I went ahead and did the Google Cloud hosting as GCS was something I had 
 
 ## Installation
 
-### *** NEW - Specific instructions for running on GCS ***
-For hosting on Google Cloud with a Compute Engine follow these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
-
 NOTES:  
 - This assumes some familiarty with GCS and GCS Compute Engines.
 - This can take a very long time to build on micro or mini compute instances.  
 
 ## Prerequisites  
 - Docker verison 27
+- Docker Compose // If not included with your Docker install
 - Python 3.11.9  // All Python requirements will be pulled  (see requirements.txt for details).  
 - PostgresSQL 17 // Pulled from DockerHub.
 - Alpine.js // Included in HTML.  
@@ -104,7 +102,10 @@ NOTES (for testing):
 
 ### *** Live GCS Demo instance ***
  - As of project submission on 12/08/24 a running instance is available on GCS at http://35.202.122.99:8000. This will remaining running through course completion, and can be restarted at request if it is not available (I am out of education credits).  
- - Use the same usernames, passwords a testing as a local instance.  This site has the same test data but may have additional test data depending on how I left it.  Same code, same sample test scenario. You get the idea.
+ - Use the same usernames, passwords as if testing as a local instance.  This site has the same test data but may have additional test data depending on how I left it.  Same code, same sample test scenario. You get the idea.
+
+### *** NEW - Specific instructions for running on GCS ***
+For hosting on Google Cloud with a Compute Engine follow these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
 
 ## Samples (from Project 1 submission phase, before use of Alpine - historical)   
 [Homepage](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/samples/homepage.png) &nbsp;&nbsp;&nbsp;
