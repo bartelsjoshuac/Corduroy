@@ -1,5 +1,7 @@
 # Corduroy 
 <img src="https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/dogapi.webp" alt="DogApi goes wild" width="200" height="200">
+
+
 ## Executive Summary 
 Corduroy is a website/app to collect and publish snowmobile trail condition reports (mainly grooming reports) in the state of Colorado. [Colorado Snowmobile Association (CSAA)](https://www.snowmobilecolo.com/content.aspx?page_id=1980&club_id=45117#search_results) maintains a website hosted by a provider (ClubExpress) who wrote it in ASP code.  Colorado snowmobile trails are groomed by a variety of clubs, private parties, and state/federal land managers, often using 3rd party contractors.  
 
