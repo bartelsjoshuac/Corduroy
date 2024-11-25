@@ -23,7 +23,7 @@
 2. *cd ~/Corduroy/source/corduroyproject*  
 3. Proceed from Step 3 below.  
 
-## Setting up Coduroy (manually for development as it is faster)
+## Setting up Coduroy (with scp)
 1. Navigate to the /source directory locally and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* 
 2. Navigate to */source/corduroyproject* on your GCS image.  
 3. Start the container: *docker-compose up -d*  // This will take a long time the first time.  
