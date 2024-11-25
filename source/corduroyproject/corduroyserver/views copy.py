@@ -6,9 +6,6 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import JsonResponse
-from django.conf import settings
-import requests
-
 from .models import Trails, Reports
 from .serializers import TrailsSerializer, ReportsSerializer
 from .forms import ReportForm, TrailForm, ReportApprovalForm
@@ -26,6 +23,8 @@ class ReportsViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=['patch'])
     def update_approval(self, request, pk=None):
+
+        # Updates the approval status only for a report
         report = self.get_object()
         approval_status = request.data.get('approvalStatus')
         if approval_status is not None:
@@ -35,35 +34,41 @@ class ReportsViewSet(viewsets.ModelViewSet):
         return Response({'error': 'Invalid data'}, status=status.HTTP_400_BAD_REQUEST)
 
     def create(self, request, *args, **kwargs):
+        # Handle the new groomer reports with the auto date and authenticated user as the groomer that submitted the report
         data = request.data.copy()
         if 'trail' not in data or 'report' not in data:
             return Response({'error': 'Missing required fields: trail or report'}, status=status.HTTP_400_BAD_REQUEST)
 
-        data['groomer'] = request.user.username
-        data['approvalStatus'] = False
-        data['date'] = timezone.now().date()
+        # Add additional fields
+        data['groomer'] = request.user.username  # Set groomer to logged-in user
+        data['approvalStatus'] = False  # Default approval status
+        data['date'] = timezone.now().date()  # Current date, would be nice to add time with the date?
 
+        # Serialize and save
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-# View for fetching approved reports
+# API endpoint to serve approved reports for Alpine in JSON vs HTML
 def approved_reports_view(request):
-    reports = Reports.objects.filter(approvalStatus=True).select_related('trail').order_by('-date')
-    serializer = ReportsSerializer(reports, many=True)
-    return JsonResponse(serializer.data, safe=False)
+    if request.method == 'GET':
+        reports = Reports.objects.filter(approvalStatus=True).select_related('trail').order_by('-date')
+        serializer = ReportsSerializer(reports, many=True)
+        return JsonResponse(serializer.data, safe=False)
 
 
-# Homepage view
+# Homepage view for server-side rendering in Alpine
 def homepage_view(request):
     approved_reports = Reports.objects.filter(approvalStatus=True).order_by('-date')
     return render(request, 'index.html', {'approved_reports': approved_reports})
 
-
 @login_required
 def groomer_report_view(request):
+    """
+    View for groomers to enter reports.
+    """
     if not request.user.groups.filter(name="groomers").exists():
         return render(request, 'not_authorized.html')
 
@@ -75,7 +80,8 @@ def groomer_report_view(request):
             report.date = timezone.now().date()
             report.save()
             return JsonResponse({'message': 'Report submitted successfully!'}, status=201)
-        return JsonResponse({'error': form.errors}, status=400)
+        else:
+            return JsonResponse({'error': form.errors}, status=400)
 
     trails_by_location = {}
     trails = Trails.objects.all()
@@ -85,25 +91,37 @@ def groomer_report_view(request):
 
     for trail in trails:
         location = trail.location
-        trails_by_location.setdefault(location, []).append({'id': trail.id, 'name': trail.trailName})
+        if location not in trails_by_location:
+            trails_by_location[location] = []
+        trails_by_location[location].append({'id': trail.id, 'name': trail.trailName})
 
-    return render(request, 'groomer_report.html', {'trails_by_location': trails_by_location})
+    return render(request, 'groomer_report.html', {
+        'trails_by_location': trails_by_location,
+    })
 
 
 @login_required
 def admin_trails_view(request):
+    """
+    Admin view for managing trails.
+    """
     if not request.user.groups.filter(name="admins").exists():
         return render(request, 'not_authorized.html')
 
-    form = TrailForm(request.POST or None)
     if request.method == 'POST':
         if 'delete' in request.POST:
-            trail = Trails.objects.filter(id=request.POST.get('delete')).first()
+            trail_id = request.POST.get('delete')
+            trail = Trails.objects.filter(id=trail_id).first()
             if trail:
                 trail.delete()
-        elif form.is_valid():
-            form.save()
-            return redirect('admin_trails')
+            form = TrailForm()
+        else:
+            form = TrailForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('admin_trails')
+    else:
+        form = TrailForm()
 
     trails = Trails.objects.all()
     return render(request, 'admin_trails.html', {'form': form, 'trails': trails})
@@ -118,67 +136,27 @@ def admin_approval_view(request):
         report_id = request.POST.get('report_id')
         report = get_object_or_404(Reports, id=report_id)
         form = ReportApprovalForm(request.POST, instance=report)
+
         if form.is_valid():
             form.save()
             return redirect('admin_approval')
 
-    reports = Reports.objects.all()
-    form = ReportApprovalForm()
-    return render(request, 'admin_approval.html', {'form': form, 'reports': reports})
+    else:
+        reports = Reports.objects.all()
+        form = ReportApprovalForm()
+
+    return render(request, 'admin_approval.html', {
+        'form': form,
+        'reports': reports,
+    })
 
 
-# Ajax view for new reports
+# This view is inteded for an Ajax call so the new reports will appear in the homepage dynamically
 def check_new_reports(request):
-    has_new_reports = Reports.objects.filter(approvalStatus=True).exists()
+    has_new_reports = Report.objects.filter(approval_status=True).exists()
     return JsonResponse({'new_reports': has_new_reports})
 
 
-# Weather API integration
-import requests
-from django.http import JsonResponse
-from django.conf import settings
+# Again there is some redundancy in here to clean up, leftover from the dogapi days and Django
 
-def get_weather(request):
-    city = "Leadville"  # Central high alpine location
-    state = "CO"
-    country = "US"
-    api_key = settings.WEATHER_API_KEY
-    weather_url = f"http://api.openweathermap.org/data/2.5/weather?q={city},{state},{country}&appid={api_key}&units=imperial"
-    forecast_url = f"http://api.openweathermap.org/data/2.5/forecast?q={city},{state},{country}&appid={api_key}&units=imperial"
-
-    # Fetch current weather
-    weather_response = requests.get(weather_url)
-    if weather_response.status_code != 200:
-        return JsonResponse({'error': 'Could not fetch current weather data'}, status=500)
-
-    # Fetch weather forecast
-    forecast_response = requests.get(forecast_url)
-    if forecast_response.status_code != 200:
-        return JsonResponse({'error': 'Could not fetch weather forecast data'}, status=500)
-
-    weather_data = weather_response.json()
-    forecast_data = forecast_response.json()
-
-    # Extract required data
-    current_weather = {
-        'city': weather_data['name'],
-        'temperature': weather_data['main']['temp'], 
-        'description': weather_data['weather'][0]['description'],
-        'icon': weather_data['weather'][0]['icon'],
-    }
-
-    forecast = [
-        {
-            'date': item['dt_txt'],
-            'temperature': item['main']['temp'], 
-            'description': item['weather'][0]['description'],
-            'icon': item['weather'][0]['icon'],
-        }
-        for item in forecast_data['list'][:3]  
-    ]
-
-    return JsonResponse({'current': current_weather, 'forecast': forecast})
-
-
-   
 

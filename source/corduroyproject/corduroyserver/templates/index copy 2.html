@@ -16,30 +16,6 @@ If in doubt about how something works in another template, refer to comments her
     <link rel="stylesheet" href="{% static 'corduroyserver/styles.css' %}">
     <!--This is the include for Alpine and needed in each template that makes use of Alpine -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.0/dist/cdn.min.js" defer></script>
-    <!-- Need for this openweather API call to load the data from the view -->
-    <script>
-        function weatherData() {
-            return {
-                current: null,
-                forecast: [],
-                loading: true,
-                fetchWeather() {
-                    this.loading = true;
-                    fetch(`/get-weather/`)
-                        .then(response => response.json())
-                        .then(data => {
-                            this.current = data.current;
-                            this.forecast = data.forecast;
-                        })
-                        .catch(error => alert('Error fetching weather data.'))
-                        .finally(() => this.loading = false);
-                },
-                init() {
-                    this.fetchWeather();
-                }
-            };
-        }
-    </script>
 </head>
 <body>
     <header>
@@ -134,40 +110,6 @@ But the moving sled made the final cut for the reasons above.
         @click="running = !running"
         style="position: absolute; top: 50px; height: 100px; cursor: pointer;"
     />
-</div>
-
-
-<div x-data="weatherData()">
-    <div>
-        <template x-if="loading">
-            <p>Loading...</p>
-        </template>
-        <template x-if="!loading && current">
-            <div>
-                <!-- <h2 x-text="current.city"></h2> -->
-                <p>
-                    <img :src="'http://openweathermap.org/img/w/' + current.icon + '.png'" alt="Weather icon">
-                    <span x-text="current.temperature"></span>°F
-                    <span x-text="current.description"></span>
-                </p>
-            </div>
-        </template>
-        <!-- **** The forecast never works ***** 
-        <template x-if="!loading && forecast.length > 0">
-            <h3>Forecast</h3>
-            <ul>
-                <template x-for="period in forecast" :key="period.date">
-                    <li>
-                        <span x-text="period.date"></span>: 
-                        <span x-text="period.temperature"></span>°F 
-                        (<span x-text="period.description"></span>)
-                        <img :src="'http://openweathermap.org/img/w/' + period.icon + '.png'" alt="Forecast icon">
-                    </li>
-                </template>
-            </ul>
-        </template>
-        -->
-    </div>
 </div>
 
 </body>

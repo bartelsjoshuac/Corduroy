@@ -110,3 +110,62 @@ For some reason they don't always get applied.  I tried the !important tag here 
         outline: none; 
         box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5); 
     }   
+
+    <style>
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .header-text h1 {
+        margin: 0;
+        font-size: 2rem;
+    }
+
+    .header-text h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #555;
+    }
+
+    .weather-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .weather img {
+        height: 40px;
+        width: 40px;
+    }
+
+    .weather div {
+        text-align: right;
+    }
+
+    .weather span {
+        display: block;
+    }
+</style>
+
+<script>
+    function weatherData() {
+        return {
+            current: null,
+            loading: true,
+            fetchWeather() {
+                this.loading = true;
+                fetch('/get-weather/')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.current = data.current;
+                    })
+                    .catch(error => alert('Error fetching weather data.'))
+                    .finally(() => this.loading = false);
+            }
+        };
+    }
+</script>

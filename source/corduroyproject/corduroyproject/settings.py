@@ -118,3 +118,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # Optional: Allow credentials (if needed)
 # CORS_ALLOW_CREDENTIALS = True
+
+# API Key for my openweathermap.org
+DEFAULT_CITY = 'Leadville'
+WEATHER_API_KEY = '775a3ca55e1186cbff3ee2f53a69e19a'
