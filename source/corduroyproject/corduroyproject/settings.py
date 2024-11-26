@@ -96,8 +96,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication settings
 LOGIN_URL = '/login'
+
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/login/'
+
+#LOGOUT_REDIRECT_URL = '/login/'
+# Go to homepage instead
+LOGOUT_REDIRECT_URL = '/'
 
 # Allowed hosts required for GCS because if dyanmic IP's, unless you want to fix it all all the time.  Not secure as noted.
 ALLOWED_HOSTS = ['*']  # '*' allows all hosts, use caution in production

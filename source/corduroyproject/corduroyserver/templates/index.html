@@ -52,7 +52,8 @@ If in doubt about how something works in another template, refer to comments her
             <template x-if="loading">
                 <p>Loading...</p>
             </template>
-            <!-- Failure gradefully with an Is Loading message if the API key is invalid-->
+            <!-- Failure gradefully with an Is Loading message if the API key is invalid which it is
+             Not that I wanted to include SNOTEL data, but they don't have a API and the only way I could think to do it was an iframe which really does not demonstrate anything -->
             <template x-if="!loading && current">
                 <div>
                     <!-- <h2 x-text="current.city"></h2> -->
