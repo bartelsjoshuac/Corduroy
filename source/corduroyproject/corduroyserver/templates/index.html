@@ -44,15 +44,48 @@ If in doubt about how something works in another template, refer to comments her
 <body>
     <header>
         <h1>Welcome to Corduroy</h1>
-        <h3>Home of Colorado Snowmobile Trail Grooming Reports</h3>
+        <h4>Home of Colorado Snowmobile Trail Grooming Reports</h4>
+        <hr>
     </header>
-
+    <div x-data="weatherData()">
+        <div>
+            <template x-if="loading">
+                <p>Loading...</p>
+            </template>
+            <!-- Failure gradefully with an Is Loading message if the API key is invalid-->
+            <template x-if="!loading && current">
+                <div>
+                    <!-- <h2 x-text="current.city"></h2> -->
+                    <p> 
+                        <img :src="'http://openweathermap.org/img/w/' + current.icon + '.png'" alt="Weather icon">
+                        <span x-text="current.temperature"></span>°F
+                        <span x-text="current.description"></span>
+                    </p>
+                </div>
+            </template>
+            <!-- **** The forecast never works ***** 
+            <template x-if="!loading && forecast.length > 0">
+                <h3>Forecast</h3>
+                <ul>
+                    <template x-for="period in forecast" :key="period.date">
+                        <li>
+                            <span x-text="period.date"></span>: 
+                            <span x-text="period.temperature"></span>°F 
+                            (<span x-text="period.description"></span>)
+                            <img :src="'http://openweathermap.org/img/w/' + period.icon + '.png'" alt="Forecast icon">
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            -->
+        </div>
+    </div>
     <div class="container" x-data="{ reports: [], loading: true }" x-init="
         fetch('/approved-reports/')
             .then(response => response.json())
             .then(data => { reports = data; loading = false; });
     ">
-        <h1>Current Reports</h1>
+        <h3>Current Reports</h3>
         <!-- Message display while Alpine loads data into the table.  This happens to be the reports where approvalStatus==True-->
         <p class="loading-message" x-show="loading">Loading reports...</p>
         <table x-show="!loading && reports.length > 0">
@@ -134,40 +167,6 @@ But the moving sled made the final cut for the reasons above.
         @click="running = !running"
         style="position: absolute; top: 50px; height: 100px; cursor: pointer;"
     />
-</div>
-
-
-<div x-data="weatherData()">
-    <div>
-        <template x-if="loading">
-            <p>Loading...</p>
-        </template>
-        <template x-if="!loading && current">
-            <div>
-                <!-- <h2 x-text="current.city"></h2> -->
-                <p>
-                    <img :src="'http://openweathermap.org/img/w/' + current.icon + '.png'" alt="Weather icon">
-                    <span x-text="current.temperature"></span>°F
-                    <span x-text="current.description"></span>
-                </p>
-            </div>
-        </template>
-        <!-- **** The forecast never works ***** 
-        <template x-if="!loading && forecast.length > 0">
-            <h3>Forecast</h3>
-            <ul>
-                <template x-for="period in forecast" :key="period.date">
-                    <li>
-                        <span x-text="period.date"></span>: 
-                        <span x-text="period.temperature"></span>°F 
-                        (<span x-text="period.description"></span>)
-                        <img :src="'http://openweathermap.org/img/w/' + period.icon + '.png'" alt="Forecast icon">
-                    </li>
-                </template>
-            </ul>
-        </template>
-        -->
-    </div>
 </div>
 
 </body>

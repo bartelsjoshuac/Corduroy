@@ -133,7 +133,7 @@ def check_new_reports(request):
     return JsonResponse({'new_reports': has_new_reports})
 
 
-# Weather API integration
+# Weather API integration - Make sure API Key is in settings.py, but otherwise this fails gracefully
 import requests
 from django.http import JsonResponse
 from django.conf import settings
@@ -144,6 +144,7 @@ def get_weather(request):
     country = "US"
     api_key = settings.WEATHER_API_KEY
     weather_url = f"http://api.openweathermap.org/data/2.5/weather?q={city},{state},{country}&appid={api_key}&units=imperial"
+    # Not working
     forecast_url = f"http://api.openweathermap.org/data/2.5/forecast?q={city},{state},{country}&appid={api_key}&units=imperial"
 
     # Fetch current weather

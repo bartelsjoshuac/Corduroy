@@ -121,4 +121,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # API Key for my openweathermap.org
 DEFAULT_CITY = 'Leadville'
-WEATHER_API_KEY = '775a3ca55e1186cbff3ee2f53a69e19a'
+# Key is inactive because of security issues.
+# Key is not valid.  I need to get this out of my settings file and maybe into some better way for deployment
+WEATHER_API_KEY = 'my_key'
