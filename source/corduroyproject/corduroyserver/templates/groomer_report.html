@@ -88,15 +88,15 @@
     <script>
         function groomerForm() {
             return {
-                trailsByLocation: {}, // Loaded from the backend
-                selectedLocation: '', // Currently selected location
-                selectedTrail: '', // Currently selected trail
-                filteredTrails: [], // Trails for the selected location
-                reportText: '', // Text entered for the report
-                showSuccess: false, // Controls visibility of success message
+                trailsByLocation: {}, 
+                selectedLocation: '', 
+                selectedTrail: '', 
+                filteredTrails: [], 
+                reportText: '', 
+                showSuccess: false, 
 
                 initializeTrails() {
-                    console.log('Initializing trails...');
+                    //console.log('Initializing trails...');
                     this.trailsByLocation = {
                         {% for location, trails in trails_by_location.items %}
                             "{{ location }}": [
@@ -110,12 +110,11 @@
 
                 updateTrails() {
                     this.filteredTrails = this.trailsByLocation[this.selectedLocation] || [];
-                    this.selectedTrail = ''; // Reset the selected trail
+                    this.selectedTrail = ''; 
                 },
 
                 submitReport() {
-                    console.log('Submitting report...');
-                    // Prepare the data for submission
+                    //console.log('Submitting report...');
                     const reportData = {
                         trail: this.selectedTrail,
                         report: this.reportText,
@@ -144,8 +143,8 @@
                             this.showSuccess = true;
                             console.log('Success message displayed.');
                             setTimeout(() => {
-                                this.showSuccess = false; // Hide after 3 seconds
-                                console.log('Success message hidden.');
+                                this.showSuccess = false; 
+                                //console.log('Success message hidden.');
                             }, 3000);
                         })
                         .catch(error => {

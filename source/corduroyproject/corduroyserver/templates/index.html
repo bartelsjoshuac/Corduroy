@@ -1,6 +1,7 @@
  <!-- 
 This file contains comments on the general use of Alpine that are not included in subsequent templates
 If in doubt about how something works in another template, refer to comments here for similar code
+as I did not comment subsequent pages with as much detail on the use of Alpine
  -->
  
 
@@ -52,8 +53,13 @@ If in doubt about how something works in another template, refer to comments her
             <template x-if="loading">
                 <p>Loading...</p>
             </template>
-            <!-- Failure gradefully with an Is Loading message if the API key is invalid which it is
-             Not that I wanted to include SNOTEL data, but they don't have a API and the only way I could think to do it was an iframe which really does not demonstrate anything -->
+            <!-- Fail gracefully with an "Is Loading" message if the API key is invalid which it is becuase I could not find a way to make this easily deployable
+             Note that I wanted to include SNOTEL data, but they don't have a API and the only way I could think to do it was an iframe which really does not demonstrate anything
+             SNOTEL data is what people would be interested in vs. current public weather 
+             
+             SNOTEL data claims to be available via the AWDB Web Service (https://www.nrcs.usda.gov/wps/portal/wcc/home/dataAccessHelp/webService/webServiceTutorial) but I am not familiar with a WSDL, and I did not have 
+             time to get it working
+             -->
             <template x-if="!loading && current">
                 <div>
                     <!-- <h2 x-text="current.city"></h2> -->
@@ -89,6 +95,7 @@ If in doubt about how something works in another template, refer to comments her
         <h3>Current Reports</h3>
         <!-- Message display while Alpine loads data into the table.  This happens to be the reports where approvalStatus==True-->
         <p class="loading-message" x-show="loading">Loading reports...</p>
+        <!-- x-show is how we use the Alpine stuff -->
         <table x-show="!loading && reports.length > 0">
             <thead>
                 <tr>
@@ -148,7 +155,8 @@ animate any image without storing a bunch of GIFs in GIF, you can just tell it t
 
 Yes, it is distracting as ever and only meets the authentically pleasing requirement if it were still 1997.
 
-The sled will stop if you click on it, but since I don't provide that information likely most people will have to live with the sled moving all the time which is well, distracting at best.
+The sled will stop if you click on it, but since I don't provide that information likely most people will have to live with the sled moving all the time which is well, distracting at best.  It will also start moving again
+on its own after a long time, as if the day changes or something I never figured out. 
 
 With the <blink> tag depreciated, it was the best I could do.  Maybe people will thinking the moving sled indicates that the page is waiting for new approved reports to appear, as that was the original idea behind it...
 to make the homepage auto-refresh if a new report appeared.  I started to implement this and it went badly, was not part of the original use cases and well I ripped it out....  

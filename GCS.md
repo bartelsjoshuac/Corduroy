@@ -30,8 +30,9 @@
 4. Start a shell: *docker-compose exec corduroyserver bash*
 5. create the Django SuperUser: *python manage.py createsuperuser*  
 6. Populate the demo user: *python manage.py populate_users*  
-7. Populate some sample data: *python manage.py populate_data*  
-8. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000
+7. Populate some sample data: *python manage.py populate_data* 
+8. If you wish to have current weather data displayed, you need to manually insert a valie OpenWeatherMap.org API key at the end of the settings.py file.  If you contact the author, he might give you one :-)   
+9. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000
 
 ## Going back to GCS  
 1. Set your project *gcloud config set project corduroy-project3*  

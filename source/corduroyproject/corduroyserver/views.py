@@ -1,18 +1,28 @@
+# Note used anymore expect in debugging
 from django.shortcuts import render, redirect, get_object_or_404
+
+# Use for Login
 from django.contrib.auth.decorators import login_required
+
+# Used for default date
 from django.utils import timezone
+
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
-from django.http import JsonResponse
 from django.conf import settings
+
+# use for API reponses to Alpine
+from django.http import JsonResponse
+
+
+# Used for weather
 import requests
 
 from .models import Trails, Reports
 from .serializers import TrailsSerializer, ReportsSerializer
 from .forms import ReportForm, TrailForm, ReportApprovalForm
-
 
 # API viewsets for Trails and Reports models
 class TrailsViewSet(viewsets.ModelViewSet):
@@ -89,7 +99,7 @@ def groomer_report_view(request):
 
     return render(request, 'groomer_report.html', {'trails_by_location': trails_by_location})
 
-
+# Admin trail approval view
 @login_required
 def admin_trails_view(request):
     if not request.user.groups.filter(name="admins").exists():
@@ -133,11 +143,7 @@ def check_new_reports(request):
     return JsonResponse({'new_reports': has_new_reports})
 
 
-# Weather API integration - Make sure API Key is in settings.py, but otherwise this fails gracefully
-import requests
-from django.http import JsonResponse
-from django.conf import settings
-
+# Weather API integration - Make sure API Key is in settings.py, but otherwise this fails but is handled gracefully in the template
 def get_weather(request):
     city = "Leadville"  # Central high alpine location
     state = "CO"
