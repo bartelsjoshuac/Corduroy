@@ -115,20 +115,19 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 CORS_ALLOW_ALL_ORIGINS = True  
 
 # Optional: To allow specific origins instead - Does not work so hot with GCS and dynamic IP's
+# Probably need for security in a production enviroment
 # CORS_ALLOWED_ORIGINS = [
 #     'http://localhost:3000',
 #     'http://127.0.0.1:3000',
 # ]
-
-# Optional: Allow credentials (if needed)
 # CORS_ALLOW_CREDENTIALS = True
 
 # API Key for my openweathermap.org
 DEFAULT_CITY = 'Leadville'
 
 # Key is inactive because of security issues.
-# Key is not valid.  I need to get this out of my settings file and maybe into some better way for deployment
-# If you put a valid openweather API key in here this will work :-)
+# my_key is not valid.  I need to get this out of my settings file and maybe into some better way for deployment.
+# If you put a valid openweather API key in here this will work, otherwise it will handle it and not have weather :-)
 
 
 ###################################################################################################

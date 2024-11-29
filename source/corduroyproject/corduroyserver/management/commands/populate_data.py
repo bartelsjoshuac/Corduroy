@@ -1,6 +1,6 @@
 # This should be run after the populate_user.py or we run into data integrity issues.
-#  It creates two trails and two reports, one is approved already (which is not the default in the model) and one is not approved.
-#  It is intended for deploying the application in a demonstration only
+#  It creates some trails and some reports, two are approved already (which is not the default in the model) and the rest are not approved.  Giving someone change to play both user types.
+#  It is intended for deploying the application in a demonstration only.
 
 from django.core.management.base import BaseCommand
 from corduroyserver.models import Trails, Reports
@@ -47,7 +47,7 @@ class Command(BaseCommand):
             report="More Shrines than normal."
         )
         Reports.objects.get_or_create(
-            approvalStatus=False,
+            approvalStatus=True,
             date=timezone.now().date(),
             groomer="groomy",
             trail=trail2,

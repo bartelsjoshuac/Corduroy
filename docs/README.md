@@ -61,7 +61,3 @@ Django Component
 
 Postgres Component  
 ![Postgres Component](https://github.com/bartelsjoshuac/Corduroy/blob/main/docs/C4/postgresomponent-C4.png)  
-
-
-
-
