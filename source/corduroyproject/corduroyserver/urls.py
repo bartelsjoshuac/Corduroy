@@ -40,9 +40,9 @@ urlpatterns = [
     # Admin approval view
     path('admin-approval/', admin_approval_view, name='admin_approval'),
 
-    # Weather integration
+    # Weather integration - This will generate a 500 server error without the API key configured.
     path('get-weather/', get_weather, name='get_weather'),
 
-    # API viewsets
+    # API viewsets - not used
     path('api/', include(router.urls)),
 ]
