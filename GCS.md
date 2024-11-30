@@ -46,7 +46,7 @@ NOTES:
 - Your public and private IPs can change under a basic GCS plan, check that and make note of them and update accordingly.  For this reason, some security features were disabled in Django to avoid constant updates.
 
 ### *** Live GCS Demo instance ***
- - As of project submission on 12/08/24 a running instance is available on GCS at http://35.202.122.99:8000.  This will remaining running through course completion, and can be restart at request if it is not available (out of education credits).  
+ - As of project submission on 12/08/24 a running instance is available on GCS at http://35.202.122.99:8000.  This will remaining running through course completion, and can be restart at request if it is not available (out of education credits so it costs real money).  
  - Use the same usernames, passwords a testing a local instance.  This site has the same test data but may have additional test data from verification.  
 
 
