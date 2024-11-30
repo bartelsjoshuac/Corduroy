@@ -72,13 +72,13 @@ Lastly I went ahead and did the Google Cloud hosting as GCS was something I had 
 2. *cd /Corduroy/source/corduroyproject*  
 
 <-continue->
-
-3. *docker compose up  -d*  // Starts the webserver and database.  
-4. *docker compose exec corduroyserver bash*   // Starts a shell in the container.  Not you need to "exit" the container shell to return to you local machine if needed later.  
-4. *python manage.py createsuperuser*  // Follow the prompts to create a user called root with a password of password.  
-6. *python manage.py populate_users* // Create groomy (groomy account) and admin(Corduroy admin account) and the groomers and admins groups.  
-7. *python manage.py populate_data* // Populates some sample data.  
-8. If you wish to have current weather data displayed, you need to manually insert a valie OpenWeatherMap.org API key at the end of the settings.py file.  If you contact the author, he might give you one :-)  
+3. Run *docker compose build* to install everything from requirements.txt.   // This seems to occur automatically with the up command on Windows but not on *nix.
+4. *docker compose up  -d*  // Starts the webserver and database.  
+5. *docker compose exec corduroyserver bash*   // Starts a shell in the container.  Not you need to "exit" the container shell to return to you local machine if needed later.  
+6. *python manage.py createsuperuser*  // Follow the prompts to create a user called root with a password of password.  
+7. *python manage.py populate_users* // Create groomy (groomy account) and admin(Corduroy admin account) and the groomers and admins groups.  
+8. *python manage.py populate_data* // Populates some sample data.  
+9. If you wish to have current weather data displayed, you need to manually insert a valie OpenWeatherMap.org API key at the end of the settings.py file.  If you contact the author, he might give you one :-)  
 
 NOTES:   
 - On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random. 

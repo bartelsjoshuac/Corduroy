@@ -27,13 +27,14 @@
 ## Setting up Coduroy (with scp)
 1. Navigate to the /source directory locally and transfer your files to GCS *gcloud compute scp --recurse source corduroy-vm:.* 
 2. Navigate to */source/corduroyproject* on your GCS image.  
-3. Start the container: *docker-compose up -d*  // This will take a long time the first time.  
-4. Start a shell: *docker-compose exec corduroyserver bash*
-5. create the Django SuperUser: *python manage.py createsuperuser*  
-6. Populate the demo user: *python manage.py populate_users*  
-7. Populate some sample data: *python manage.py populate_data* 
-8. If you wish to have current weather data displayed, you need to manually insert a valid OpenWeatherMap.org API key at the end of the settings.py file.  If you contact the author, he might give you one :-)  
-9. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000
+3. Run *docker-compose build* to install everything from requirements.txt.  
+4. Start the container: *docker-compose up -d*  // This will take a long time the first time.  But you won't see it start because of the -d
+5. Start a shell: *docker-compose exec corduroyserver bash*  // If you try this before it is ready, you will get a warning to wait.  Just wait about 30 mins.
+6. create the Django SuperUser: *python manage.py createsuperuser*  
+7. Populate the demo user: *python manage.py populate_users*  
+8. Populate some sample data: *python manage.py populate_data* 
+9. If you wish to have current weather data displayed, you need to manually insert a valid OpenWeatherMap.org API key at the end of the settings.py file.  If you contact the author, he might give you one :-)  
+10. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000
 
 ## Going back to GCS  
 1. Set your project *gcloud config set project corduroy-project3*  
