@@ -11,12 +11,14 @@ Corduroy aims to create a simple interface for these "groomers" to enter their r
 
 This application is written in Python using the Django framework with a PostgreSQL database and runs as a Docker container with just two images (more on that later).  The user interface is mobile friendly HTML and JavaScript utilizing Alpine.JS as the client side framework.  While it is not complete, it is a good starting point.  
 
+I used Visual Studio code with several extensions; including ones for Draw.io, Python, Docker, GitHub, and a spell checker.  When I did the first assignment for this class, I was using vi :-).  
+
 ## Project Details
 Project 1 was built off the same concepts we learned in Django with the DogAPI and using all Django code.  
 
 For project 2 started to re-design in Ember, as Ember is what I did in the client side lab exercise.  Ember is extremely large (60k files and 325mb) before you write a single line of code.  Ember was also broke mid project with the release of a bad Beta 6 as the LTS version (which can be corrected by forcing 5.8 as 6 was still broke as of 11/27).  Ember made commits extremely time consuming, and build times were extremely long with Ember.  You have to rebuild for every change which meant changing a single line of code would need 10 minutes to test, even on a 16 core machine.  Dynamic testing was impossible (like in the lab) inside of Docker.  That required running Django outside of Docker as well as PostGres, which added to the setup and took a step backwards from the deployment methodology. In general Ember was just to cumbersome and slow to work with for a project with this timeline.  
 
-So I tried React which I had limited familiarity with (aka none).  React, while not as cumbersome and large as Ember also proved to be very challenging and even more cumbersome to build as I was never ever to get the hot re-load to work properly in Docker (it works outside of Docker).  Even with a persistent volume it only kind of works in Docker, which is to say sometimes it reloads changes, sometimes it does not, which is more frusterating as it makes it very hard to know what you are actually testing. Again I found myself waiting 5-10 minutes to test each change as I had to rebuild the React image with each code change to be certain I was testing the changes I had made.  
+So I tried React which I had limited familiarity with (aka none).  React, while not as cumbersome and large as Ember also proved to be very challenging and even more cumbersome to build as I was never ever to get the hot re-load to work properly in Docker (it works outside of Docker).  Even with a persistent volume it only kind of works in Docker, which is to say sometimes it reloads changes, sometimes it does not, which is more frustrating as it makes it very hard to know what you are actually testing. Again I found myself waiting 5-10 minutes to test each change as I had to rebuild the React image with each code change to be certain I was testing the changes I had made.  
 
 I did two very long (all night) sessions with each framework and had far more frustration than success. I took a step back to my working Project 1 code base and did some research on how to proceed as both Ember and React were looking like I would never get something working like it had in Django, let alone be ascetically pleasing.  I had a significant time investment in Ember and React, with less to show for it than when I started.  What I did do was learn a lot about the power of client side frameworks and specially Ember and React.
 
@@ -31,7 +33,7 @@ Alpine allowed the project to maintain a compact footprint.  For Project 1 had a
 
 Alpine.js also did not require a separate application server or Docker image, it worked with my existing Django templates, with relatively minor modifications, but ones I could understand, something I had a very difficult time doing with Ember and React.  In just two long evenings, I was able to get my templates and existing code working semi-nice with Alpine and reusing a significant amount of code between them.  This left a lot of work to still do, but the basic functionality of the app was all working per the use cases and I was left with the fun part.  This also allowed me to use many of the out of box Django security features to meet the project requirements.  
 
-Lastly, the very name Alpine.js was very fitting to my Corduroy Snowmobile trail report application for the high alpine areas of the Rocky Mountains, although that is merely coincidence.  As a side note, the name Corduroy was derived from the corduroy pants look left in the surface of the snow after a mechanized snow groomer passes over it.  The term is shared among skiers and snowmobilers alike as a similar machine is used to produce both.  
+Lastly, the very name Alpine.js was very fitting to my Corduroy Snowmobile trail report application for the high alpine areas of the Rocky Mountains, although that is merely coincidence.  As a side note, the name Corduroy was derived from the corduroy pants look left in the surface of the snow after a mechanized snow groomer passes over it.  The term is shared among skiers (both alpine and x-country) and snowmobilers alike as a similar machine is used to produce both.  
 
 ChatGPT was used to do some of the heavy lifting and repetitive work to incorporate Alpine into my Django templates. My CSS was courtesy of a CSS website for common simple and readable mobile friendly pages.  But then I also took some stuff from Tailwind I wanted.  It was then customized a tad more as it wasn't great and I always wanted to learn CSS. I let ChatGPT clean it up for me, which it did nicely.  Most of ChatGPT's use was in debugging features as I tried to make the application more dynamic and I kept breaking it.  For example I found I would frequently break an entire template, spend a very long time trying to find an obscure typo that Django allowed (because it does not care what you do in JavaScript), but caused a form to not submit or not save the data.  Correlating the developer console errors in the browser with the JavaScript can be very time consuming and ChatGPT can often spot the simplest of typos instantly when provided the code and the console error.  Just don't ask it to fix it as it will, while at the same time breaking other things it wasn't asked to touch.  It is also very good when you ask it to take code that should be working, but is not and all you want it to do is pack it full of debug statements (console.log()) so that you can then run it see where the problem lies and fix it yourself in the case where your logic was just wrong.  Similarly, you can then have it remove all those debug statements once it is working, without the risk of breaking something by accident again.  I found myself manually adding debug statements, that then needed to be manually debugged themselves, or removing debug statements from working code, only to have the absence of debugging statements again break the functionality, which is not only time consuming, but frustrating as well.  I also used it to clean up code, so that you don't import the same thing 5 times each time you decide to use it and did not look back.
 
@@ -50,10 +52,7 @@ The current weather works with a valid Openweather.org API key in settings.py, b
 Lastly I went ahead and did the Google Cloud hosting as GCS was something I had basic knowledge of already, and quite frankly, I did that when Project 2 was announced and before it was optional using just the Project 1 code base.  Once everything is working locally in Docker, deploying it with GCS is relatively straight forward if you understand GCS a little.  GCS of course is no place to try and develop code as GCS mini VMs are extremely slow for building.  Details on this are noted in *** New  sections at the end.  You can either build your own image to test, or use the running GCS image.
 
 ## Installation
-
-NOTES:  
-- This assumes some familiarty with GCS and GCS Compute Engines.
-- This can take a very long time to build on micro or mini compute instances.  
+- Follow the getting started  
 
 ## Prerequisites  
 - Docker verison 27
@@ -64,7 +63,7 @@ NOTES:
 
 
 ## Getting Started  
-1. Download the latest release from GitHub and *tar -xzvf Source code.tar.gz* or  *unzip Source code.zip*  
+1. Download the latest Project 2 release(tag) from GitHub and *tar -xzvf Source code.tar.gz* or  *unzip Source code.zip*  
 2. cd source/CorduroyProject  
 
 <-or->  
@@ -83,9 +82,8 @@ NOTES:
 
 NOTES:   
 - On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random. 
-- There are subtle differences between Unix and windows commands you will need to familiarize yourself with.  
-- There are several security settings that were disabled to make testing much easier, and to make a deployable application for submission.  Comments are available where these changes were made so that they can be reverted to at 
-least defaults or a more secure settings.  Examples include password policies, timeouts, etc.
+- There are subtle differences between Unix and windows commands you will need to familiarize yourself with.  This is especially true for Docker docker-compose vs. docker compose for example.  
+- There are several security settings that were disabled to make testing much easier, and to make a deployable application for submission.  Comments are available where these changes were made so that they can be reverted to at least defaults or a more secure settings.  Examples include password policies, timeouts, etc.  I tried to put comments everyone I did something that seemed less secure that would be done differently in a true production environment.  
 
 Normal execution after Getting Stated
 - *docker compose up -d*  // Not needed if already running.
@@ -112,6 +110,10 @@ NOTES (for testing):
  - Use the same usernames, passwords as if testing as a local instance.  This site has the same test data but may have additional test data depending on how I left it.  Same code, same sample test scenario. You get the idea.
 
 ### *** NEW - Specific instructions for installing and running on GCS ***
+NOTES:  
+- This assumes some familiarty with GCS and GCS Compute Engines.
+- This can take a very long time to build on micro or mini compute instances so should only be done once when ready for deployment.    
+
 For hosting on Google Cloud with a Compute Engine follow these [instructions](https://github.com/bartelsjoshuac/Corduroy/blob/main/GCS.md).  
 
 ## Samples (from Project 1 submission phase, before use of Alpine - historical)   

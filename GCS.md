@@ -16,7 +16,7 @@
 4. Get Docker Compose: *sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose*  
 5. Change permissions the Docker Compose: *sudo chmod +x /usr/local/bin/docker-compose*  
 6. Add yourself to the Docker Group: *sudo usermod -aG docker $USER*  
-7. Refresh the shell: *sudo newgrp docker*  
+7. Create the docker groups: *sudo newgrp docker*  
 
 ## Setting up Coduroy (using Git)
 1. Clone the repository: *git clone https://github.com/bartelsjoshuac/Corduroy*  
@@ -31,15 +31,15 @@
 5. create the Django SuperUser: *python manage.py createsuperuser*  
 6. Populate the demo user: *python manage.py populate_users*  
 7. Populate some sample data: *python manage.py populate_data* 
-8. If you wish to have current weather data displayed, you need to manually insert a valie OpenWeatherMap.org API key at the end of the settings.py file.  If you contact the author, he might give you one :-)   
+8. If you wish to have current weather data displayed, you need to manually insert a valid OpenWeatherMap.org API key at the end of the settings.py file.  If you contact the author, he might give you one :-)  
 9. Access your server using the IP address from Step 7 above at http://<EXTERNAL_IP>:8000
 
 ## Going back to GCS  
 1. Set your project *gcloud config set project corduroy-project3*  
 2. List your instances and addresses: *gcloud compute instances list*  // See if your EXTERNAL_IP changed  
 3. Open a SSH window to your computer engine: *gcloud compute ssh corduroy-vm* // You can also start a SSH session from the console.  
-4. Find your *EXTERNAL_IP* as you will use this to access your server: *gcloud compute instances list*.     
-5. Return to your work.   
+4. Find your *EXTERNAL_IP* as you will use this to access your server: *gcloud compute instances list*.  
+5. Return to your work.  
 
 NOTES:
 - You will need to setup billing for the project after leaving the GCS console API, even with a free tier or you will have issues reconnecting. GCS now removes SSH access if billing is not configured. 
