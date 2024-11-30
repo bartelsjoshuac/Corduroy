@@ -8,6 +8,7 @@
 5. Create a micro instance: *gcloud compute instances create corduroy-vm --machine-type=e2-micro  --image-family=debian-11 --image-project=debian-cloud --tags=http-server,https-server* 
 6. Open the firewall to allow access to port 8000: *gcloud compute firewall-rules create allow-port-8000 --allow tcp:8000 --source-ranges 0.0.0.0/0 --target-tags http-server*  
 7. Find your *EXTERNAL_IP* as you will use this to access your server: *gcloud compute instances list*  
+8.  In the GCS console setup billing.  Even with free credits, GCS will disable console access on the second connection attempt if you do not have valid billing information.  [Privacy.com](https://privacy.com/) can be used to create a virtual credit card number and protect your real credit card number.  This is also recommended for the openweather.org API key, which is also free to a certain limit.
 
 ## Setting up your Compute Engine for Docker
 1. Connect to your install *gcloud compute ssh corduroy-vm* //Note you need to have a default SSH client installed like PuTTY  
@@ -42,12 +43,11 @@
 5. Return to your work.  
 
 NOTES:
-- You will need to setup billing for the project after leaving the GCS console API, even with a free tier or you will have issues reconnecting. GCS now removes SSH access if billing is not configured. 
-- Your public and private IPs can change under a basic GCS plan, check that and make note of them and update accordingly.  For this reason, some security features were disabled in Django to avoid constant updates.
+- Your public and private IPs can change under a basic GCS plan, check that and make note of them and update accordingly.  For this reason, some security features were disabled in Django to avoid constant updates.  You would also need to update the URL you use to access the web interface remotely.  Likely there is free Google DNS that can eliminate this issue, but it would be better to just get a static public IP in a production enviroment.
 
 ### *** Live GCS Demo instance ***
  - As of project submission on 12/08/24 a running instance is available on GCS at http://35.202.122.99:8000.  This will remaining running through course completion, and can be restart at request if it is not available (out of education credits so it costs real money).  
- - Use the same usernames, passwords a testing a local instance.  This site has the same test data but may have additional test data from verification.  
+ - Use the same usernames, passwords a testing a local instance.  This site has the same test data but may have additional test data from verification I did after deployment.  It is the Project 2 Release (tag).  
 
 
 
