@@ -43,7 +43,7 @@
 5. Return to your work.  
 
 NOTES:
-- Your public and private IPs can change under a basic GCS plan, check that and make note of them and update accordingly.  For this reason, some security features were disabled in Django to avoid constant updates.  You would also need to update the URL you use to access the web interface remotely.  Likely there is free Google DNS that can eliminate this issue, but it would be better to just get a static public IP in a production enviroment.
+- Your public and private IPs can change under a basic GCS plan, check that and make note of them and update accordingly.  For this reason, some security features were disabled in Django to avoid constant updates.  You would also need to update the URL you use to access the web interface remotely.  Likely there is free Google DNS that can eliminate this issue, but it would be better to just get a static public IP in a production environment and setup DNS for that.
 
 ### *** Live GCS Demo instance ***
  - As of project submission on 12/08/24 a running instance is available on GCS at http://35.202.122.99:8000.  This will remaining running through course completion, and can be restart at request if it is not available (out of education credits so it costs real money).  
