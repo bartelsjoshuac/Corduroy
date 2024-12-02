@@ -64,14 +64,15 @@ Lastly I went ahead and did the Google Cloud hosting as GCS was something I had 
 
 ## Getting Started  
 1. Download the latest Project 2 release(tag) from GitHub and *tar -xzvf Source code.tar.gz* or  *unzip Source code.zip*  
-2. cd source/CorduroyProject  
+2. cd source/CorduroyProject   
 
-<-or->  
+<-or->    
 
 1. Clone the repository: *git clone https://github.com/bartelsjoshuac/Corduroy*  
-2. *cd /Corduroy/source/corduroyproject*  
+2. *cd Corduroy/source/corduroyproject*  
 
-<-continue->
+<-continue->  
+
 3. Run *docker compose build* to install everything from requirements.txt.   // This seems to occur automatically with the up command on Windows but not on *nix.
 4. *docker compose up  -d*  // Starts the webserver and database.  
 5. *docker compose exec corduroyserver bash*   // Starts a shell in the container.  Not you need to "exit" the container shell to return to you local machine if needed later.  
