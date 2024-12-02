@@ -66,7 +66,7 @@ Lastly I went ahead and did the Google Cloud hosting as GCS was something I had 
 1. Download the latest Project 2 release(tag) from GitHub and *tar -xzvf Source code.tar.gz* or  *unzip Source code.zip*  
 2. cd source/CorduroyProject   
 
-<-or->    
+<-or (preferred)->  
 
 1. Clone the repository: *git clone https://github.com/bartelsjoshuac/Corduroy*  
 2. *cd Corduroy/source/corduroyproject*  
@@ -79,7 +79,8 @@ Lastly I went ahead and did the Google Cloud hosting as GCS was something I had 
 6. *python manage.py createsuperuser*  // Follow the prompts to create a user called root with a password of password.  
 7. *python manage.py populate_users* // Create groomy (groomy account) and admin(Corduroy admin account) and the groomers and admins groups.  
 8. *python manage.py populate_data* // Populates some sample data.  
-9. If you wish to have current weather data displayed, you need to manually insert a valie OpenWeatherMap.org API key at the end of the settings.py file.  If you contact the author, he might give you one :-)  
+9. If you wish to have current weather data displayed, you need to manually insert a valie OpenWeatherMap.org API key at the end of the settings.py file.  If you contact the author, he might give you one :-) 
+10. Access the Corduroy Interface http://localhost:8000/.    
 
 NOTES:   
 - On OSX, docker sometimes has to be run as sudo (root) or you will get a weird postgres database lock file permissions error.  But this seems random. 
