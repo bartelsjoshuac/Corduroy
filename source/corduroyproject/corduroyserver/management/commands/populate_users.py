@@ -59,7 +59,7 @@ class Command(BaseCommand):
             root_user.save()
             self.stdout.write(self.style.SUCCESS("Root user added to groomers and admins groups"))
         except User.DoesNotExist:
-            self.stdout.write(self.style.WARNING("Root user does not exist; run python manage.py createsuperuser"))
+            self.stdout.write(self.style.WARNING("Root user does not exist; run python manage.py createsuperuser to create root"))
 
         self.stdout.write(self.style.SUCCESS('Users, groups, permissions, and root assignments created successfully'))
 
