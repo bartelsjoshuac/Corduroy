@@ -1,4 +1,5 @@
-# Google Cloud (Compute Engine) Deployment Steps w/Docker
+<img src="https://github.com/bartelsjoshuac/Corduroy/blob/main/html_images/gcs.webp" alt="DogApi goes wild" width="250" height="175"> 
+# Google Cloud (Compute Engine) Deployment Steps w/Docker on a compute instance  
 
 ## Create GCS Project and Compute Engine with Billing  
 1. Install the [Google Cloud SDK](https://cloud.google.com/sdk/?hl=en) on your location machine
